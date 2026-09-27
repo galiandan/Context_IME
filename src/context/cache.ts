@@ -252,6 +252,9 @@ export class DocumentCache {
       (e) => e.startLine === e.endLine && e.newLines === 0,
     );
     const mapped = singleLine ? this.rows : new Map<number, Row>();
+    // All surviving rows retain the same payload size. Account only for rows
+    // intersected by edits instead of rescanning every mapped row afterward.
+    let mappedEstimated = this.estimated;
     let byEnd: Edit[] = [];
     let deltaPrefix: number[] = [];
     if (singleLine) {
@@ -308,6 +311,7 @@ export class DocumentCache {
         if (interval && line <= interval.end) {
           this.fullRows.delete(row);
           this.forgetRegion(row);
+          mappedEstimated -= this.rowBytes(row);
           continue;
         }
         low = 0;
@@ -317,7 +321,8 @@ export class DocumentCache {
           if (byEnd[mid]!.endLine < line) low = mid + 1;
           else high = mid;
         }
-        mapped.set(line + deltaPrefix[low]!, row);
+        const mappedLine = line + deltaPrefix[low]!;
+        mapped.set(mappedLine, row);
       }
     }
     if (singleLine) {
@@ -472,11 +477,7 @@ export class DocumentCache {
       this.anchorCount = mappedAnchorCount;
     }
     this.rows = mapped;
-    if (!singleLine)
-      this.estimated = [...mapped.values()].reduce(
-        (n, r) => n + this.rowBytes(r),
-        0,
-      );
+    if (!singleLine) this.estimated = mappedEstimated;
     this.valid = Math.min(this.valid, first - 1);
   }
   async query(
@@ -673,6 +674,7 @@ export class DocumentCache {
       let scanned = 0,
         regionAnchor: Anchor | undefined;
       const checkpoints: Row[] = [];
+      let checkpointStride = 64;
       // Find the nearest semantic opening in the same nested scope path.
       outer: for (let n = line; n >= 0; n--) {
         if (++scanned % 128 === 0) {
@@ -731,10 +733,23 @@ export class DocumentCache {
           this.stats.regionLinkHits++;
           break outer;
         }
-        if ((scanned - 1) % 64 === 0 && checkpoints.length < 256)
-          checkpoints.push(r);
+        if ((scanned - 1) % checkpointStride === 0) {
+          if (checkpoints.length === 256) {
+            // Keep samples across the whole scanned prefix as the region grows.
+            // Stopping at 256 clustered every link near the original query.
+            for (let i = 0; i < checkpoints.length; i += 2)
+              checkpoints[i / 2] = checkpoints[i]!;
+            checkpoints.length /= 2;
+            checkpointStride *= 2;
+          }
+          if ((scanned - 1) % checkpointStride === 0) checkpoints.push(r);
+        }
       }
       if (regionAnchor) {
+        let newLinks = 0;
+        for (const checkpoint of checkpoints)
+          if (!this.regionLinks.has(checkpoint)) newLinks++;
+        if (newLinks) this.fit(row, newLinks * REGION_LINK_BYTES);
         for (const checkpoint of checkpoints)
           this.rememberRegion(checkpoint, regionAnchor, regionEpoch);
         region = `${kind}:${regionAnchor.id}`;

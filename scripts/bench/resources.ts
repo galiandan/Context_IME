@@ -262,6 +262,18 @@ async function main() {
     );
   }
   await scenario(
+    "python-multiline-20k-move",
+    new Doc(
+      [
+        'value = """',
+        ...Array(19998).fill("long prose 世界😀 content"),
+        '"""',
+      ],
+      "python",
+    ),
+    "move",
+  );
+  await scenario(
     "cpp-comment-10k-move",
     new Doc(
       ["/*", ...Array(9998).fill("long prose 世界😀 content"), "*/"],

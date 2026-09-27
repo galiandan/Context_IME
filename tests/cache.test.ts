@@ -146,6 +146,50 @@ test("multiple old-coordinate newline insertions remap anchors before, at, and a
     );
   }
 });
+test("multiline row remapping preserves exact cache byte accounting", async () => {
+  const { DocumentCache } = await import("../src/context/cache");
+  const d = new Doc(Array.from({ length: 120 }, (_, i) => `value${i} = "text"`));
+  const g = await tokenizer.grammar("python");
+  const cached = new DocumentCache(d, g, Infinity, 0, 1024 * 1024);
+  for (let line = 0; line < d.lineCount; line++) {
+    const column = d.lineAt(line).indexOf("text") + 1;
+    assert.equal((await cached.query(line, column)).kind, "string");
+  }
+
+  d.lines.splice(70, 0, "");
+  d.lines.splice(20, 0, "");
+  d.version++;
+  cached.edit([
+    {
+      startLine: 20,
+      endLine: 20,
+      newLines: 1,
+      startColumn: 0,
+      endColumn: 0,
+      newLastColumn: 0,
+      text: "\n",
+    },
+    {
+      startLine: 70,
+      endLine: 70,
+      newLines: 1,
+      startColumn: 0,
+      endColumn: 0,
+      newLastColumn: 0,
+      text: "\n",
+    },
+  ]);
+
+  const fresh = new DocumentCache(d, g, Infinity, 0, 1024 * 1024);
+  for (let line = 0; line < d.lineCount; line++) {
+    const start = d.lineAt(line).indexOf("text");
+    const column = start >= 0 ? start + 1 : 0;
+    const expected = start >= 0 ? "string" : "code";
+    assert.equal((await cached.query(line, column)).kind, expected, `cached row ${line}`);
+    assert.equal((await fresh.query(line, column)).kind, expected, `fresh row ${line}`);
+  }
+  assert.equal(cached.bytes, fresh.bytes);
+});
 test("long regions reuse sparse opener links and keep scan distance bounded", async () => {
   const d = new Doc([
     'value = """',
@@ -185,6 +229,28 @@ test("long regions reuse sparse opener links and keep scan distance bounded", as
   const beforeEditQuery = c.stats.regionRowsScanned;
   assert.equal((await reliable(c, 1000, 4)).region, first.region);
   assert.equal(c.stats.regionRowsScanned - beforeEditQuery, 1);
+  c.clear();
+  assert.equal(c.bytes, 0);
+});
+test("sparse region links stay distributed after the checkpoint budget fills", async () => {
+  const d = new Doc([
+    'value = """',
+    ...Array<string>(20000).fill("long prose"),
+    '"""',
+  ]);
+  const c = new SemanticCache(d, await tokenizer.grammar("python"));
+  assert.equal((await reliable(c, 20000, 2)).kind, "string");
+  assert.ok(c.bytes <= 8 * 1024 * 1024);
+  const scans = c.stats.regionRowsScanned,
+      links = c.stats.regionLinkHits;
+
+  assert.equal((await reliable(c, 1000, 2)).kind, "string");
+  assert.ok(
+    c.stats.regionLinkHits > links,
+    `region links were not used: ${JSON.stringify(c.stats)}`,
+  );
+  assert.ok(c.stats.regionRowsScanned - scans <= 128);
+  assert.ok(c.bytes <= 8 * 1024 * 1024);
   c.clear();
   assert.equal(c.bytes, 0);
 });

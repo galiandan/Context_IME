@@ -24,6 +24,7 @@ npm 12 默认阻止未登记的依赖安装脚本。已在 package.json 的 allo
 | `npm run build` | esbuild 构建到 dist/，核对 grammar 哈希 |
 | `npm run test:integration` | 独立 VS Code 配置；报告到 artifacts/reports/；结束自动清理临时配置 |
 | `npm run bench` | 核心与只读后端基准，artifacts/reports/benchmark.json |
+| `npm run bench:cache-mapping` | 1k/10k/40k 行缓存插行映射，artifacts/reports/cache-mapping.json |
 | `npm run bench:cold` | 30 次全新进程冷启动，artifacts/reports/cold-start.json |
 | `npm run bench:idle` | 五分钟空闲观测，artifacts/reports/idle.json |
 | `npm run bench:report` | 汇总最新基准到 artifacts/reports/performance.md |
