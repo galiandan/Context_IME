@@ -52,6 +52,7 @@ export class DocumentCache {
     private budgetMs = 100,
     private tokenBudgetMs = 5,
     private maxBytes = 8 * 1024 * 1024,
+    private now: () => number = () => performance.now(),
   ) {}
   get bytes() {
     return this.estimated + this.anchors.length * 64;
@@ -145,7 +146,7 @@ export class DocumentCache {
       return unknown("not-ready");
     const epoch = this.epoch,
       version = this.document.version,
-      start = performance.now();
+      start = this.now();
     let batch = start,
       count = 0,
       retried = false;
@@ -170,7 +171,7 @@ export class DocumentCache {
           this.stats.yields++;
           await new Promise<void>((r) => setImmediate(r));
           if (!current()) return unknown("cancelled");
-          if (performance.now() - start >= this.budgetMs)
+          if (this.now() - start >= this.budgetMs)
             return unknown("request-budget");
           result = this.grammar.tokenizeLine(text, input, this.tokenBudgetMs);
           this.stats.tokenized++;
@@ -198,13 +199,12 @@ export class DocumentCache {
         return unknown("cache-limit");
       }
       this.valid = n;
-      if (performance.now() - start > this.budgetMs)
-        return unknown("request-budget");
-      if (++count >= 128 || performance.now() - batch >= 4) {
+      if (this.now() - start > this.budgetMs) return unknown("request-budget");
+      if (++count >= 128 || this.now() - batch >= 4) {
         this.stats.yields++;
         await new Promise<void>((r) => setImmediate(r));
         count = 0;
-        batch = performance.now();
+        batch = this.now();
       }
     }
     if (!current()) return unknown("cancelled");
@@ -230,8 +230,7 @@ export class DocumentCache {
       this.stats.yields++;
       await new Promise<void>((r) => setImmediate(r));
       if (!current()) return unknown("cancelled");
-      if (performance.now() - start >= this.budgetMs)
-        return unknown("request-budget");
+      if (this.now() - start >= this.budgetMs) return unknown("request-budget");
       insertion = atInsertion(
         this.grammar,
         row.text,

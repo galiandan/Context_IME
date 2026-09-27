@@ -28,7 +28,14 @@ function fixture(stopped = false) {
 
 test("production line and insertion probes retain the 5ms budget", async () => {
   const { doc, grammar, limits } = fixture();
-  const c = new DocumentCache(doc, grammar);
+  const c = new DocumentCache(
+    doc,
+    grammar,
+    undefined,
+    undefined,
+    undefined,
+    () => 0,
+  );
   assert.equal((await c.query(0, 0)).kind, "code");
   assert.deepEqual(limits, [5, 5]);
 });
@@ -61,7 +68,14 @@ test("typing invalidates classification bytes without accumulating phantom memor
 
 test("stopped tokenization reports unknown without retaining an input stack", async () => {
   const { doc, grammar } = fixture(true);
-  const c = new DocumentCache(doc, grammar);
+  const c = new DocumentCache(
+    doc,
+    grammar,
+    undefined,
+    undefined,
+    undefined,
+    () => 0,
+  );
   assert.equal((await c.query(1, 1)).reason, "tokenizer-timeout");
   assert.equal(c.stats.tokenized, 2);
   assert.equal(c.bytes, 0);
@@ -74,7 +88,14 @@ test("a stopped boundary probe reports its reason and is never cached", async ()
     args[0].length > 3
       ? { tokens: [], ruleStack: INITIAL, stoppedEarly: true }
       : original(...args);
-  const c = new DocumentCache(doc, grammar);
+  const c = new DocumentCache(
+    doc,
+    grammar,
+    undefined,
+    undefined,
+    undefined,
+    () => 0,
+  );
   assert.equal((await c.query(0, 0)).reason, "tokenizer-timeout");
   assert.equal((await c.query(0, 1)).kind, "code");
 });
@@ -91,7 +112,14 @@ test("one bounded retry yields and recovers a cold tokenizer", async () => {
     ++calls === 1
       ? { tokens: [], ruleStack: INITIAL, stoppedEarly: true }
       : original(...args);
-  const c = new DocumentCache(doc, grammar);
+  const c = new DocumentCache(
+    doc,
+    grammar,
+    undefined,
+    undefined,
+    undefined,
+    () => 0,
+  );
   assert.equal((await c.query(0, 1)).kind, "code");
   assert.equal(calls, 2);
   assert.equal(yielded, true);
@@ -103,7 +131,35 @@ test("cold retry is cancelled when focus or snapshot becomes invalid", async () 
   setImmediate(() => {
     alive = false;
   });
-  const c = new DocumentCache(doc, grammar);
+  const c = new DocumentCache(
+    doc,
+    grammar,
+    undefined,
+    undefined,
+    undefined,
+    () => 0,
+  );
   assert.equal((await c.query(0, 1, () => alive)).reason, "cancelled");
   assert.equal(c.stats.tokenized, 1);
+});
+
+test("100ms production request budget prevents a late retry", async () => {
+  const { doc, grammar } = fixture(true);
+  let now = 0;
+  const original = grammar.tokenizeLine.bind(grammar);
+  grammar.tokenizeLine = (...args) => {
+    now = 101;
+    return original(...args);
+  };
+  const c = new DocumentCache(
+    doc,
+    grammar,
+    undefined,
+    undefined,
+    undefined,
+    () => now,
+  );
+  assert.equal((await c.query(0, 1)).reason, "request-budget");
+  assert.equal(c.stats.tokenized, 1);
+  assert.equal(c.bytes, 0);
 });

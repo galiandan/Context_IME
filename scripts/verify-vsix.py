@@ -8,7 +8,7 @@ import xml.etree.ElementTree as ET
 import zipfile
 
 root = pathlib.Path(__file__).resolve().parent.parent
-project = json.loads((root / 'package.json').read_text())
+project = json.loads((root / 'package.json').read_text(encoding="utf-8"))
 target_arg = sys.argv[2] if len(sys.argv) == 3 and sys.argv[1] == '--target' else None
 path = (root / 'artifacts/vsix' / f"{project['name']}-{project['version']}-{target_arg}.vsix") if target_arg else pathlib.Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else (
     root / 'artifacts/vsix' /
@@ -55,7 +55,7 @@ with zipfile.ZipFile(path) as archive:
             assert cpu == (0x0100000c if target.endswith('arm64') else 0x01000007)
         assert len([n for n in names if n.startswith('extension/native/bin/')]) == 1
     if path.stem.endswith('-' + project['publisher']):
-        assert archive.read('extension/readme.md').decode() == (root / 'README.marketplace.md').read_text()
+        assert archive.read('extension/readme.md').decode() == (root / 'README.marketplace.md').read_text(encoding="utf-8")
     print(json.dumps({
         'path': str(path), 'bytes': path.stat().st_size,
         'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
