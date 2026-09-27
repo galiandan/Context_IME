@@ -8,7 +8,7 @@
 - 首版语言：Python、JavaScript、TypeScript、C、C++
 - 目标环境：Windows、macOS、Linux 桌面版 VS Code
 
-**当前已实现 0.1.3 本地预览版，并生成 Linux x64 VSIX。已由发布者上传 Marketplace（根据用户确认）；本地脚本不会自动发布新版本。** 分类/增量缓存/控制器/平台进程与本地 VS Code 集成已自动测试；真实输入法切换、候选词、多窗口及 Windows/macOS 原生环境尚未验证。详见[交付记录](docs/delivery.md)、[兼容性](docs/compatibility.md)、[性能实测](docs/performance-results.md)。
+**当前已实现 0.1.4 本地预览版，并生成 Linux x64 VSIX。0.1.3 已由发布者上传 Marketplace（根据用户确认），0.1.4 尚未发布；本地脚本不会自动发布新版本。** 分类/增量缓存/控制器/平台进程与本地 VS Code 集成已自动测试；用户已反馈 Linux 字符串和 C++ 头文件切换正常；候选词、多窗口及 Windows/macOS 原生环境尚未系统验证。详见[交付记录](docs/delivery.md)、[兼容性](docs/compatibility.md)、[性能实测](docs/performance-results.md)。
 
 0.1.1 修复了注释回车后漏处理选区事件、直到首个字母才切回 code 的问题；详见 [修复记录](docs/0.1.1-newline-fix.md)。
 
@@ -31,12 +31,12 @@
 当前机器可安装：
 
 ```sh
-code --install-extension artifacts/vsix/vscode-auto-ime-0.1.3-linux-x64-Galiandan-CIO.vsix
+code --install-extension artifacts/vsix/vscode-auto-ime-0.1.4-linux-x64-Galiandan-CIO.vsix
 ```
 
 也可在扩展面板选择“从 VSIX 安装”。第一次显示“待配置”，不猜输入源。命令面板执行 **Context IME：配置输入方案**，分别选 code/text 输入源；Fcitx5 可手动切换后记录当前。配置过程不会试切，不安装系统组件。回编辑器执行 **Context IME：重新同步**。相同输入源并不保证内部中英文模式转换。
 
-单光标进入字符串用 text、回代码用 code；注释默认 code，可以将 `autoIme.rules.comment` 设为 `text` 或 `keep`。同一区域的后续输入/移动不会反复设源，因此用户手动切换后不会在下一按键被抢回。状态栏点击启停；它显示规则状态，不是实时输入法指示器。错误查看 **Context IME：打开诊断**。
+单光标进入字符串用 text、回代码用 code；注释默认 code，可以将 `autoIme.rules.comment` 设为 `text` 或 `keep`。同一区域的后续输入/移动不会反复设源，因此用户手动切换后不会在下一按键被抢回。状态栏悬停可直接打开配置与诊断，显示具体暂停原因；点击启停；它显示规则状态，不是实时输入法指示器。错误查看 **Context IME：打开诊断**。
 
 本版优先保守：多光标、选区、未知语言、超长行、预算/缓存超限、失焦等暂停；回焦等待有效编辑器交互。公开 API 不能完整观察 composition/所有输入控件焦点，Linux 仅 bestEffort。窗口内终端/搜索框/命令面板、真实候选词行为仍须实测。Windows 目前只提供 KLID 布局，TSF profile 和内部模式不支持。
 

@@ -11,6 +11,7 @@ export async function run() {
       set: number;
       caches: number;
       paused: boolean;
+      pauseReason?: string;
       lastContext?: string;
     };
   };
@@ -84,9 +85,11 @@ export async function run() {
     new vscode.Selection(1, 2, 1, 2),
   ];
   await vscode.commands.executeCommand("autoIme.resync");
+  assert.equal(api.diagnosticSnapshot().pauseReason, "多光标时暂停");
   editor.selections = [new vscode.Selection(0, 0, 0, 5)];
   await vscode.commands.executeCommand("autoIme.resync");
   assert.equal(api.diagnosticSnapshot().paused, true);
+  assert.equal(api.diagnosticSnapshot().pauseReason, "非空选区时暂停");
   const large = await vscode.workspace.openTextDocument({
     language: "python",
     content: "x".repeat(1024 * 1024 + 1),
@@ -94,6 +97,7 @@ export async function run() {
   await vscode.window.showTextDocument(large);
   await vscode.commands.executeCommand("autoIme.resync");
   assert.equal(api.diagnosticSnapshot().paused, true);
+  assert.equal(api.diagnosticSnapshot().pauseReason, "文件超过大小限制");
   const header = await vscode.workspace.openTextDocument({
     language: "cpp",
     content: "#include <iostream>",
@@ -115,6 +119,7 @@ export async function run() {
   });
   await vscode.window.showTextDocument(unknown);
   await vscode.commands.executeCommand("autoIme.resync");
+  assert.equal(api.diagnosticSnapshot().pauseReason, "不支持当前语言");
   await vscode.commands.executeCommand("autoIme.diagnostics");
   assert.equal(api.diagnosticSnapshot().set, 0);
   writeFileSync(

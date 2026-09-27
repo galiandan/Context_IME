@@ -1,7 +1,7 @@
+import { SemanticCache } from "./semanticCache";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { Tokenizer } from "../src/context/tokenizer";
-import { DocumentCache } from "../src/context/cache";
 const tokenizer = new Tokenizer(process.cwd());
 const fixtures: [string, string, string][] = [
   ["python", '""|"abc"""', "unknown"],
@@ -40,7 +40,7 @@ for (const [languageId, marked, expected] of fixtures)
     const pos = marked.indexOf("|"),
       before = marked.slice(0, pos).split(/\r?\n/),
       lines = marked.replace("|", "").split(/\r?\n/);
-    const c = new DocumentCache(
+    const c = new SemanticCache(
       {
         version: 1,
         languageId,

@@ -1,7 +1,8 @@
+import { SemanticCache } from "./semanticCache";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { Tokenizer } from "../src/context/tokenizer";
-import { DocumentCache, type DocumentView } from "../src/context/cache";
+import { type DocumentView } from "../src/context/cache";
 const tokenizer = new Tokenizer(process.cwd());
 export class Doc implements DocumentView {
   version = 1;
@@ -51,7 +52,7 @@ for (const [lang, marked, expected] of cases)
     const offset = marked.indexOf("|");
     const before = marked.slice(0, offset).split(/\r?\n/);
     const doc = new Doc(marked.replace("|", ""), lang);
-    const cache = new DocumentCache(doc, await tokenizer.grammar(lang));
+    const cache = new SemanticCache(doc, await tokenizer.grammar(lang));
     let result = await cache.query(before.length - 1, before.at(-1)!.length);
     for (let retry = 0; result.kind === "unknown" && retry < 3; retry++)
       result = await cache.query(before.length - 1, before.at(-1)!.length);
@@ -59,7 +60,7 @@ for (const [lang, marked, expected] of cases)
   });
 test("warm cache, state propagation and mapped suffix", async () => {
   const d = new Doc("x=1\na=2\nb=3\nc=4");
-  const c = new DocumentCache(d, await tokenizer.grammar("python"));
+  const c = new SemanticCache(d, await tokenizer.grammar("python"));
   await c.query(3, 2);
   const n = c.stats.tokenized;
   await c.query(3, 2);
@@ -76,7 +77,7 @@ test("warm cache, state propagation and mapped suffix", async () => {
   assert.ok(c.stats.tokenized > n + 3);
 });
 test("unknown for cancelled and long lines", async () => {
-  const c = new DocumentCache(
+  const c = new SemanticCache(
     new Doc("a".repeat(20001)),
     await tokenizer.grammar("python"),
   );

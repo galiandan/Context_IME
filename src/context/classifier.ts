@@ -68,7 +68,8 @@ export function atInsertion(
   input: StateStack,
   tokens: IToken[],
   language: string,
-): { kind: Kind; path: string } {
+  timeLimit = 5,
+): { kind: Kind; path: string; reason?: string } {
   const unknown = { kind: "unknown" as const, path: "" };
   if (column < 0 || column > text.length) return unknown;
   const left = tokens.find(
@@ -93,9 +94,9 @@ export function atInsertion(
   const probe = grammar.tokenizeLine(
     text.slice(0, column) + " " + text.slice(column),
     input,
-    5,
+    timeLimit,
   );
-  if (probe.stoppedEarly) return unknown;
+  if (probe.stoppedEarly) return { ...unknown, reason: "tokenizer-timeout" };
   const token = probe.tokens.find(
     (t) => t.startIndex <= column && t.endIndex > column,
   );

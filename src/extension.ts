@@ -11,6 +11,7 @@ export function activate(context: vscode.ExtensionContext) {
   const caches = new Map<string, DocumentCache>();
   const newlineInteraction = new NewlineInteraction();
   let lastContext: string | undefined;
+  let pauseReason = "等待有效编辑器交互";
   let generation = 0,
     backendEpoch = 0,
     setup = false,
@@ -77,7 +78,24 @@ export function activate(context: vscode.ExtensionContext) {
   }
   function render() {
     status.text = `$(keyboard) IME · ${!setting("enabled", true) ? "停用" : setup ? "暂停" : lastError || controller.error ? "后端错误" : !configured() ? "待配置" : paused ? "暂停" : "自动"}`;
-    status.tooltip = `Context IME（规则状态，并非实时输入法）\n期望：${controller.desired ? "已配置方案" : "无"}\n最近请求：${controller.lastRequest ? "已发送" : "无"}\n最近观测：${adapter?.observed ? new Date(adapter.observed.observedAt).toISOString() : "无"}\n确认范围：仅输入源；内部模式未知\n点击启用/停用`;
+    const reason = !setting("enabled", true)
+      ? "规则已停用"
+      : setup
+        ? "正在配置输入方案"
+        : lastError || controller.error
+          ? "后端请求失败，请打开诊断"
+          : !configured()
+            ? "尚未配置本机 code / text 输入方案"
+            : paused
+              ? pauseReason
+              : "规则正在运行";
+    const tooltip = new vscode.MarkdownString(
+      `Context IME（规则状态，并非实时输入法）\n\n${reason}\n\n期望：${controller.desired ? "已配置方案" : "无"} · 最近请求：${controller.lastRequest ? "已发送" : "无"}\n\n最近观测：${adapter?.observed ? new Date(adapter.observed.observedAt).toISOString() : "无"}\n\n确认范围：仅输入源；内部模式未知\n\n[配置输入方案](command:autoIme.setup) · [打开诊断](command:autoIme.diagnostics)\n\n点击状态栏启用/停用`,
+    );
+    tooltip.isTrusted = {
+      enabledCommands: ["autoIme.setup", "autoIme.diagnostics"],
+    };
+    status.tooltip = tooltip;
   }
   async function backend() {
     if (adapter) return adapter;
@@ -116,39 +134,41 @@ export function activate(context: vscode.ExtensionContext) {
     if (reset) controller.reset();
     else controller.cancel();
     paused = true;
+    pauseReason = "等待有效编辑器交互";
     render();
   }
   function eligible(
     editor: vscode.TextEditor | undefined,
   ): editor is vscode.TextEditor {
-    if (
-      !editor ||
-      disposed ||
-      setup ||
-      !vscode.window.state.focused ||
-      !setting("enabled", true) ||
-      vscode.env.uiKind !== vscode.UIKind.Desktop
-    )
-      return false;
+    return !ineligibleReason(editor);
+  }
+  function ineligibleReason(
+    editor: vscode.TextEditor | undefined,
+  ): string | undefined {
+    if (disposed) return "扩展已停用";
+    if (setup) return "正在配置输入方案";
+    if (!setting("enabled", true)) return "规则已停用";
+    if (!vscode.window.state.focused) return "窗口未聚焦，回焦后等待编辑器交互";
+    if (vscode.env.uiKind !== vscode.UIKind.Desktop)
+      return "仅支持桌面 VS Code";
+    if (!editor) return "没有活动文本编辑器";
     const d = editor.document;
-    if (
-      d.uri.scheme === "vscode-notebook-cell" ||
-      d.uri.scheme === "vscode-scm" ||
-      d.uri.scheme === "git" ||
-      !languages[d.languageId] ||
-      !setting<string[]>("enabledLanguages", []).includes(d.languageId)
-    )
-      return false;
-    if (editor.selections.length !== 1 || !editor.selection.isEmpty)
-      return false;
+    if (["vscode-notebook-cell", "vscode-scm", "git"].includes(d.uri.scheme))
+      return "不支持此类文档";
+    if (!languages[d.languageId]) return "不支持当前语言";
+    if (!setting<string[]>("enabledLanguages", []).includes(d.languageId))
+      return "当前语言未启用";
+    if (editor.selections.length !== 1) return "多光标时暂停";
+    if (!editor.selection.isEmpty) return "非空选区时暂停";
     const last = d.lineAt(d.lineCount - 1);
-    return (
-      d.offsetAt(last.range.end) * 2 <= setting("maxFileSizeKB", 2048) * 1024
-    );
+    if (d.offsetAt(last.range.end) * 2 > setting("maxFileSizeKB", 2048) * 1024)
+      return "文件超过大小限制";
+    return undefined;
   }
   async function interact(editor: vscode.TextEditor | undefined) {
     const gen = ++generation;
     if (!eligible(editor)) {
+      pauseReason = ineligibleReason(editor) ?? "等待有效编辑器交互";
       controller.cancel();
       paused = true;
       render();
@@ -215,6 +235,7 @@ export function activate(context: vscode.ExtensionContext) {
           }
       }
       if (result.kind === "unknown") {
+        pauseReason = "上下文不可靠：" + (result.reason ?? "unknown");
         controller.cancel();
         paused = true;
         render();
@@ -227,6 +248,7 @@ export function activate(context: vscode.ExtensionContext) {
         d,
       );
       if (policy === "keep") {
+        pauseReason = "当前区域策略为 keep，保持输入源";
         controller.cancel();
         paused = true;
         render();
@@ -236,9 +258,10 @@ export function activate(context: vscode.ExtensionContext) {
       const a = await backend();
       if (!valid()) return;
       const target = readPlan(a.backend, policy);
-      paused = false;
+      paused = !target || !configured();
+      pauseReason = paused ? "尚未配置本机 code / text 输入方案" : "";
       render();
-      if (!target || !configured()) {
+      if (!target || paused) {
         controller.cancel();
         return;
       }
@@ -253,7 +276,11 @@ export function activate(context: vscode.ExtensionContext) {
         policy === "code",
       );
     } catch (e) {
-      if (valid()) report(e);
+      if (valid()) {
+        paused = true;
+        pauseReason = "后端不可用，请打开诊断";
+        report(e);
+      }
     }
   }
   async function configure() {
@@ -354,6 +381,8 @@ export function activate(context: vscode.ExtensionContext) {
             capabilities: adapter?.capability,
             configured: configured(),
             paused,
+            pauseReason: paused ? pauseReason : undefined,
+            lastContext,
             error: lastError || controller.error,
             errors: Object.fromEntries(errors),
             desired: controller.desired
@@ -461,6 +490,7 @@ export function activate(context: vscode.ExtensionContext) {
       set: adapter?.setCount ?? 0,
       caches: caches.size,
       paused,
+      pauseReason: paused ? pauseReason : undefined,
       configured: configured(),
     }),
   };

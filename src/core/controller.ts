@@ -27,7 +27,8 @@ export class Controller {
   ) {
     const key = region + "\0" + target;
     if (key === this.key && !this.pending) return;
-    this.key = key;
+    // Only a completed, still-valid transaction owns a region.
+    this.key = undefined;
     this.desired = target;
     this.pending = { key, target, valid, epoch: this.epoch };
     if (this.timer) clearTimeout(this.timer);
@@ -60,6 +61,8 @@ export class Controller {
       try {
         await this.execute(intent.target, valid);
         if (valid()) {
+          this.key = intent.key;
+          if (this.pending?.key === intent.key) this.pending = undefined;
           this.failures = 0;
           this.error = undefined;
         }
@@ -77,7 +80,6 @@ export class Controller {
   }
   cancel() {
     this.epoch++;
-    if (this.pending) this.key = undefined;
     this.pending = undefined;
     if (this.timer) clearTimeout(this.timer);
     this.timer = undefined;
@@ -89,7 +91,8 @@ export class Controller {
     this.error = undefined;
   }
   async idle() {
-    await this.running;
+    // A completed transaction may drain the latest queued intent.
+    while (this.running) await this.running;
   }
   dispose() {
     this.reset();

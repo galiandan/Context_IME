@@ -1,8 +1,9 @@
+import { SemanticCache } from "./semanticCache";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { Tokenizer } from "../src/context/tokenizer";
 import {
-  DocumentCache,
+  type DocumentCache,
   type DocumentView,
   type Edit,
 } from "../src/context/cache";
@@ -27,7 +28,7 @@ async function reliable(c: DocumentCache, line: number, col: number) {
 test("multiple old-snapshot ranges, undo/redo, insertion and deletion", async () => {
   const d = new Doc(["a=1", "b=2", "c=3", "d=4", "e=5", "f=6"]);
   const g = await tokenizer.grammar("python"),
-    c = new DocumentCache(d, g);
+    c = new SemanticCache(d, g);
   await reliable(c, 5, 1);
   const snapshots = [
     ["a=1", '"""', "c=3", "d=4", '"""', "f=6"],
@@ -40,7 +41,7 @@ test("multiple old-snapshot ranges, undo/redo, insertion and deletion", async ()
       { startLine: 1, endLine: 1, newLines: 0 },
       { startLine: 4, endLine: 4, newLines: 0 },
     ]);
-    const baseline = new DocumentCache(d, g);
+    const baseline = new SemanticCache(d, g);
     for (let n = 0; n < d.lineCount; n++)
       assert.equal(
         (await reliable(c, n, 1)).kind,
@@ -50,7 +51,7 @@ test("multiple old-snapshot ranges, undo/redo, insertion and deletion", async ()
   d.lines.splice(1, 2, "new=1");
   d.version++;
   c.edit([{ startLine: 1, endLine: 3, newLines: 1 }]);
-  const baseline = new DocumentCache(d, g);
+  const baseline = new SemanticCache(d, g);
   assert.equal(
     (await reliable(c, 3, 1)).kind,
     (await reliable(baseline, 3, 1)).kind,
@@ -59,7 +60,7 @@ test("multiple old-snapshot ranges, undo/redo, insertion and deletion", async ()
 test("seeded edits agree with full tokenization including delimiter propagation", async () => {
   const d = new Doc(Array.from({ length: 60 }, (_, i) => `v${i}="hello"`));
   const g = await tokenizer.grammar("python"),
-    c = new DocumentCache(d, g);
+    c = new SemanticCache(d, g);
   let seed = 42;
   const random = () => {
     seed = (1664525 * seed + 1013904223) >>> 0;
@@ -78,7 +79,7 @@ test("seeded edits agree with full tokenization including delimiter propagation"
       newLines: count,
     };
     c.edit([edit]);
-    const full = new DocumentCache(d, g);
+    const full = new SemanticCache(d, g);
     for (const line of [0, Math.floor(d.lineCount / 2), d.lineCount - 1])
       assert.equal(
         (await reliable(c, line, Math.min(2, d.lineAt(line).length))).kind,
@@ -90,7 +91,7 @@ test("seeded edits agree with full tokenization including delimiter propagation"
 test("stable identity after earlier insertions and interior typing; nested templates", async () => {
   const d = new Doc(["x=0", 'value="hello"']);
   const g = await tokenizer.grammar("python"),
-    c = new DocumentCache(d, g);
+    c = new SemanticCache(d, g);
   const a = await reliable(c, 1, 9);
   d.lines[1] = 'value="h中ello"';
   d.version++;
@@ -120,7 +121,7 @@ test("stable identity after earlier insertions and interior typing; nested templ
   assert.equal((await reliable(c, 2, 10)).region, a.region);
   const js = new Doc(['`a ${"b"} c`']);
   js.languageId = "javascript";
-  const jc = new DocumentCache(js, await tokenizer.grammar("javascript"));
+  const jc = new SemanticCache(js, await tokenizer.grammar("javascript"));
   assert.equal(
     (await reliable(jc, 0, 2)).region,
     (await reliable(jc, 0, 11)).region,
@@ -132,7 +133,7 @@ test("stable identity after earlier insertions and interior typing; nested templ
 });
 test("cancel cold batches and release bounded cache", async () => {
   const d = new Doc(Array(1000).fill("x=1"));
-  const c = new DocumentCache(d, await tokenizer.grammar("python"));
+  const c = new SemanticCache(d, await tokenizer.grammar("python"));
   let alive = true;
   setImmediate(() => {
     alive = false;
@@ -151,21 +152,21 @@ test("stoppedEarly never becomes a trustworthy predecessor", async () => {
     ruleStack: undefined as never,
     stoppedEarly: true,
   });
-  const c = new DocumentCache(new Doc(['"""', "text"]), stopped);
+  const c = new SemanticCache(new Doc(['"""', "text"]), stopped);
   assert.equal((await c.query(1, 1)).kind, "unknown");
   assert.equal(c.stats.tokenized, 1);
   assert.equal(c.bytes, 0);
 });
 test("unsupported grammar and request budget preserve unknown", async () => {
   const d = new Doc(["x=1"]);
-  assert.equal((await new DocumentCache(d).query(0, 1)).kind, "unknown");
-  const c = new DocumentCache(d, await tokenizer.grammar("python"), 0);
+  assert.equal((await new SemanticCache(d).query(0, 1)).kind, "unknown");
+  const c = new SemanticCache(d, await tokenizer.grammar("python"), 0);
   assert.equal((await c.query(0, 1)).kind, "unknown");
   assert.equal((await c.query(0, 1)).kind, "code");
 });
 test("same-line multiple edits use old columns in descending application order", async () => {
   const d = new Doc(['value="hello"']);
-  const c = new DocumentCache(d, await tokenizer.grammar("python"));
+  const c = new SemanticCache(d, await tokenizer.grammar("python"));
   const before = await reliable(c, 0, 9);
   d.lines[0] = 'xxvalue="中hello"';
   d.version++;

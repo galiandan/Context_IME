@@ -113,3 +113,74 @@ test("stale pending snapshot does not claim ownership of an unexecuted region", 
   assert.deepEqual(calls, ["text"]);
   c.dispose();
 });
+
+test("cancelled in-flight lookup retains the latest same-region intent", async () => {
+  let generation = 1;
+  let release!: () => void;
+  let requests = 0;
+  const applied: string[] = [];
+  const c = new Controller(async (target, valid) => {
+    if (++requests === 1)
+      await new Promise<void>((r) => {
+        release = r;
+      });
+    if (!valid()) throw Error("STALE_REQUEST");
+    applied.push(target);
+  }, 0);
+  c.accept("r", "text", () => generation === 1, true);
+  generation++;
+  c.cancel();
+  c.accept("r", "text", () => generation === 2, true);
+  release();
+  await c.idle();
+  assert.deepEqual(applied, ["text"]);
+  assert.equal(requests, 2);
+  c.cancel();
+  c.accept("r", "text", () => true, true);
+  await c.idle();
+  assert.equal(
+    requests,
+    2,
+    "successful ownership survives typing/manual override",
+  );
+  c.dispose();
+});
+
+test("same-region movement refreshes an in-flight snapshot without concurrent work", async () => {
+  let generation = 1;
+  let release!: () => void;
+  let requests = 0;
+  let applied = 0;
+  const c = new Controller(async (_target, valid) => {
+    if (++requests === 1)
+      await new Promise<void>((r) => {
+        release = r;
+      });
+    if (valid()) applied++;
+  }, 0);
+  c.accept("r", "text", () => generation === 1, true);
+  generation++;
+  c.accept("r", "text", () => generation === 2, true);
+  release();
+  await c.idle();
+  assert.equal(applied, 1);
+  assert.equal(requests, 2);
+  c.dispose();
+});
+
+test("duplicate still-valid in-flight requests are applied only once", async () => {
+  let release!: () => void;
+  let calls = 0;
+  const c = new Controller(async () => {
+    calls++;
+    await new Promise<void>((r) => {
+      release = r;
+    });
+  }, 0);
+  c.accept("r", "text", () => true, true);
+  c.accept("r", "text", () => true, true);
+  release();
+  await c.idle();
+  assert.equal(calls, 1);
+  c.dispose();
+});

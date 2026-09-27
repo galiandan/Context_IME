@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { NewlineInteraction } from "../src/core/newlineInteraction";
 import { Controller } from "../src/core/controller";
 import { Tokenizer } from "../src/context/tokenizer";
-import { DocumentCache } from "../src/context/cache";
+import { SemanticCache } from "./semanticCache";
 const point = { line: 0, character: 7 };
 const change = { range: { start: point, end: point }, text: "\n" };
 test("Enter unknown-kind selection is accepted only for the paired editor/version/destination", () => {
@@ -80,7 +80,7 @@ test("comment Enter classifies blank line as code and dispatches before any lett
   const grammar = await tokenizer.grammar("python");
   let version = 1;
   const lines = ["# hello"];
-  const cache = new DocumentCache(
+  const cache = new SemanticCache(
     {
       get version() {
         return version;

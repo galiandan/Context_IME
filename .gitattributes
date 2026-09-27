@@ -1,0 +1,6 @@
+# Keep vendored checksums and scripts identical across Windows/macOS/Linux.
+* text=auto eol=lf
+*.json text eol=lf
+*.wasm binary
+*.png binary
+*.vsix binary

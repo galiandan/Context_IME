@@ -1,7 +1,7 @@
+import { SemanticCache } from "./semanticCache";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { Tokenizer } from "../src/context/tokenizer";
-import { DocumentCache } from "../src/context/cache";
 import type { Kind } from "../src/context/classifier";
 const tokenizer = new Tokenizer(process.cwd());
 const fixtures: [string, Kind][] = [
@@ -35,7 +35,7 @@ for (const languageId of ["c", "cpp"]) {
     test(`${languageId} header ${JSON.stringify(marked)}`, async () => {
       const before = marked.slice(0, marked.indexOf("|")).split(/\r?\n/);
       const lines = marked.replace("|", "").split(/\r?\n/);
-      const cache = new DocumentCache(
+      const cache = new SemanticCache(
         {
           version: 1,
           languageId,
@@ -52,7 +52,7 @@ for (const languageId of ["c", "cpp"]) {
   test(`${languageId} incremental typing of header never enters text region`, async () => {
     let text = "#include ",
       version = 1;
-    const cache = new DocumentCache(
+    const cache = new SemanticCache(
       {
         get version() {
           return version;

@@ -39,7 +39,7 @@ interface Anchor {
 }
 let sequence = 0;
 export class DocumentCache {
-  private blocked?: string;
+  private classified = new Set<Row>();
   private estimated = 0;
   private rows = new Map<number, Row>();
   private valid = -1;
@@ -50,6 +50,8 @@ export class DocumentCache {
     readonly document: DocumentView,
     private grammar?: IGrammar,
     private budgetMs = 100,
+    private tokenBudgetMs = 5,
+    private maxBytes = 8 * 1024 * 1024,
   ) {}
   get bytes() {
     return this.estimated + this.anchors.length * 64;
@@ -60,7 +62,7 @@ export class DocumentCache {
     );
   }
   clear() {
-    this.blocked = undefined;
+    this.classified.clear();
     this.rows.clear();
     this.estimated = 0;
     this.anchors = [];
@@ -69,27 +71,43 @@ export class DocumentCache {
   }
   edit(edits: Edit[]) {
     if (!edits.length) return;
-    this.blocked = undefined;
     this.epoch++;
+    // Only rows queried at cursor positions carry classifications. Invalidate
+    // those identities without walking every tokenized line on each keystroke.
+    for (const r of this.classified) {
+      this.estimated -= r.results.size * 128;
+      r.results.clear();
+    }
+    this.classified.clear();
     const sorted = [...edits].sort(
       (a, b) =>
         a.startLine - b.startLine ||
         (a.startColumn ?? 0) - (b.startColumn ?? 0),
     );
     const first = sorted[0]!.startLine;
-    const mapped = new Map<number, Row>();
-    for (const [line, row] of this.rows) {
-      let delta = 0,
-        dirty = false;
+    const singleLine = sorted.every(
+      (e) => e.startLine === e.endLine && e.newLines === 0,
+    );
+    const mapped = singleLine ? this.rows : new Map<number, Row>();
+    if (singleLine) {
       for (const e of sorted) {
-        if (line >= e.startLine && line <= e.endLine) {
-          dirty = true;
-          break;
-        }
-        if (line > e.endLine) delta += e.newLines - (e.endLine - e.startLine);
+        const row = mapped.get(e.startLine);
+        if (row) this.estimated -= this.rowBytes(row);
+        mapped.delete(e.startLine);
       }
-      if (!dirty) mapped.set(line + delta, row);
-    }
+    } else
+      for (const [line, row] of this.rows) {
+        let delta = 0,
+          dirty = false;
+        for (const e of sorted) {
+          if (line >= e.startLine && line <= e.endLine) {
+            dirty = true;
+            break;
+          }
+          if (line > e.endLine) delta += e.newLines - (e.endLine - e.startLine);
+        }
+        if (!dirty) mapped.set(line + delta, row);
+      }
     for (const a of this.anchors)
       for (const e of [...sorted].reverse()) {
         const sc = e.startColumn ?? 0,
@@ -106,13 +124,12 @@ export class DocumentCache {
       }
     this.anchors = this.anchors.filter((a) => a.id !== -1);
     this.rows = mapped;
-    this.estimated = [...mapped.values()].reduce(
-      (n, r) => n + this.rowBytes(r),
-      0,
-    );
+    if (!singleLine)
+      this.estimated = [...mapped.values()].reduce(
+        (n, r) => n + this.rowBytes(r),
+        0,
+      );
     this.valid = Math.min(this.valid, first - 1);
-    // Cached classifications contain region identities, but mapped line positions need refreshed lookup.
-    for (const [n, r] of mapped) if (n >= first) r.results.clear();
   }
   async query(
     line: number,
@@ -124,7 +141,6 @@ export class DocumentCache {
       region: "unknown",
       reason,
     });
-    if (this.blocked) return unknown(this.blocked);
     if (!this.grammar || !alive() || line >= this.document.lineCount)
       return unknown("not-ready");
     const epoch = this.epoch,
@@ -144,7 +160,11 @@ export class DocumentCache {
       if (old && old.text === text && old.input.equals(input)) {
         this.stats.reused++;
       } else {
-        const result = this.grammar.tokenizeLine(text, input, 5);
+        const result = this.grammar.tokenizeLine(
+          text,
+          input,
+          this.tokenBudgetMs,
+        );
         this.stats.tokenized++;
         if (result.stoppedEarly) return unknown("tokenizer-timeout");
         this.rows.set(n, {
@@ -159,12 +179,16 @@ export class DocumentCache {
       this.estimated += old
         ? -this.rowBytes(old) + this.rowBytes(this.rows.get(n)!)
         : this.rowBytes(this.rows.get(n)!);
-      this.valid = n;
-      if (this.bytes > 8 * 1024 * 1024) {
-        this.clear();
-        this.blocked = "cache-limit";
+      if (this.bytes > this.maxBytes) {
+        // Keep the trusted prefix and predecessor stacks. Dropping the whole
+        // document here made even previously warm positions unusable.
+        const overflow = this.rows.get(n)!;
+        this.estimated -= this.rowBytes(overflow);
+        this.classified.delete(overflow);
+        this.rows.delete(n);
         return unknown("cache-limit");
       }
+      this.valid = n;
       if (performance.now() - start > this.budgetMs)
         return unknown("request-budget");
       if (++count >= 128 || performance.now() - batch >= 4) {
@@ -187,8 +211,11 @@ export class DocumentCache {
       row.input,
       row.tokens,
       this.document.languageId,
+      this.tokenBudgetMs,
     );
     const kind = insertion.kind;
+    if (kind === "unknown")
+      return unknown(insertion.reason ?? "ambiguous-boundary");
     let region: string = kind;
     if (kind === "string" || kind === "comment") {
       // Find the nearest semantic opening in the same nested scope path.
@@ -224,12 +251,9 @@ export class DocumentCache {
       }
     }
     const result = { kind, region };
-    if (
-      kind !== "unknown" &&
-      row.results.size < 256 &&
-      this.bytes + 128 <= 8 * 1024 * 1024
-    ) {
+    if (row.results.size < 256 && this.bytes + 128 <= this.maxBytes) {
       row.results.set(column, result);
+      this.classified.add(row);
       this.estimated += 128;
     }
     return result;
