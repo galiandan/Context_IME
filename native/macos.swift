@@ -70,7 +70,7 @@ func main() -> Never {
         if current() != desired {
             guard TISSelectInputSource(selected) == noErr else { fail() }
             // One bounded settling interval, only when immediate observation differs.
-            if current() != desired { CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.03, false) }
+            if current() != desired { CFRunLoopRunInMode(CFRunLoopMode.defaultMode, 0.03, false) }
         }
     }
     guard foreground(executable)?.processIdentifier == app.processIdentifier,
