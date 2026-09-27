@@ -1,0 +1,159 @@
+{
+  "scope": "Fresh Node process each sample; measured inside process includes WASM+grammar+100-line query, excludes Node/tsx startup",
+  "n": 30,
+  "p50": 26.586252,
+  "p95": 39.408524000000014,
+  "unknown": 0,
+  "samples": [
+    {
+      "ms": 33.480881,
+      "kind": "code",
+      "tokenized": 101
+    },
+    {
+      "ms": 39.408524000000014,
+      "kind": "code",
+      "tokenized": 101
+    },
+    {
+      "ms": 23.192932000000013,
+      "kind": "code",
+      "tokenized": 100
+    },
+    {
+      "ms": 23.874076000000002,
+      "kind": "code",
+      "tokenized": 100
+    },
+    {
+      "ms": 24.835222,
+      "kind": "code",
+      "tokenized": 100
+    },
+    {
+      "ms": 23.910325999999998,
+      "kind": "code",
+      "tokenized": 100
+    },
+    {
+      "ms": 26.918864,
+      "kind": "code",
+      "tokenized": 100
+    },
+    {
+      "ms": 27.080224,
+      "kind": "code",
+      "tokenized": 101
+    },
+    {
+      "ms": 24.769730999999993,
+      "kind": "code",
+      "tokenized": 100
+    },
+    {
+      "ms": 24.87279199999999,
+      "kind": "code",
+      "tokenized": 100
+    },
+    {
+      "ms": 28.722883999999993,
+      "kind": "code",
+      "tokenized": 101
+    },
+    {
+      "ms": 32.44311499999999,
+      "kind": "code",
+      "tokenized": 101
+    },
+    {
+      "ms": 24.745621,
+      "kind": "code",
+      "tokenized": 100
+    },
+    {
+      "ms": 31.718580999999986,
+      "kind": "code",
+      "tokenized": 101
+    },
+    {
+      "ms": 26.586252,
+      "kind": "code",
+      "tokenized": 100
+    },
+    {
+      "ms": 41.575647000000004,
+      "kind": "code",
+      "tokenized": 101
+    },
+    {
+      "ms": 33.755013000000005,
+      "kind": "code",
+      "tokenized": 101
+    },
+    {
+      "ms": 33.53258100000001,
+      "kind": "code",
+      "tokenized": 101
+    },
+    {
+      "ms": 31.081137,
+      "kind": "code",
+      "tokenized": 100
+    },
+    {
+      "ms": 30.89216599999999,
+      "kind": "code",
+      "tokenized": 100
+    },
+    {
+      "ms": 35.411371999999986,
+      "kind": "code",
+      "tokenized": 101
+    },
+    {
+      "ms": 25.199094000000002,
+      "kind": "code",
+      "tokenized": 100
+    },
+    {
+      "ms": 25.028492999999997,
+      "kind": "code",
+      "tokenized": 101
+    },
+    {
+      "ms": 27.99273000000001,
+      "kind": "code",
+      "tokenized": 101
+    },
+    {
+      "ms": 24.891881999999995,
+      "kind": "code",
+      "tokenized": 101
+    },
+    {
+      "ms": 23.33704300000001,
+      "kind": "code",
+      "tokenized": 100
+    },
+    {
+      "ms": 23.245672000000006,
+      "kind": "code",
+      "tokenized": 100
+    },
+    {
+      "ms": 24.747691000000003,
+      "kind": "code",
+      "tokenized": 101
+    },
+    {
+      "ms": 23.758425000000003,
+      "kind": "code",
+      "tokenized": 100
+    },
+    {
+      "ms": 23.425183000000004,
+      "kind": "code",
+      "tokenized": 100
+    }
+  ]
+}

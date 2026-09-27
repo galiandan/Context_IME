@@ -147,7 +147,8 @@ export class DocumentCache {
       version = this.document.version,
       start = performance.now();
     let batch = start,
-      count = 0;
+      count = 0,
+      retried = false;
     const current = () =>
       alive() && epoch === this.epoch && version === this.document.version;
     for (let n = this.valid + 1; n <= line; n++) {
@@ -160,12 +161,20 @@ export class DocumentCache {
       if (old && old.text === text && old.input.equals(input)) {
         this.stats.reused++;
       } else {
-        const result = this.grammar.tokenizeLine(
-          text,
-          input,
-          this.tokenBudgetMs,
-        );
+        let result = this.grammar.tokenizeLine(text, input, this.tokenBudgetMs);
         this.stats.tokenized++;
+        if (result.stoppedEarly && !retried && this.tokenBudgetMs > 0) {
+          // Lazy regex compilation can consume the first slice. Retry at most
+          // once per query, after yielding and revalidating all cancellation gates.
+          retried = true;
+          this.stats.yields++;
+          await new Promise<void>((r) => setImmediate(r));
+          if (!current()) return unknown("cancelled");
+          if (performance.now() - start >= this.budgetMs)
+            return unknown("request-budget");
+          result = this.grammar.tokenizeLine(text, input, this.tokenBudgetMs);
+          this.stats.tokenized++;
+        }
         if (result.stoppedEarly) return unknown("tokenizer-timeout");
         this.rows.set(n, {
           text,
@@ -204,7 +213,7 @@ export class DocumentCache {
     this.stats.hits++;
     const cached = row.results.get(column);
     if (cached) return cached;
-    const insertion = atInsertion(
+    let insertion = atInsertion(
       this.grammar,
       row.text,
       column,
@@ -213,6 +222,26 @@ export class DocumentCache {
       this.document.languageId,
       this.tokenBudgetMs,
     );
+    if (
+      insertion.reason === "tokenizer-timeout" &&
+      !retried &&
+      this.tokenBudgetMs > 0
+    ) {
+      this.stats.yields++;
+      await new Promise<void>((r) => setImmediate(r));
+      if (!current()) return unknown("cancelled");
+      if (performance.now() - start >= this.budgetMs)
+        return unknown("request-budget");
+      insertion = atInsertion(
+        this.grammar,
+        row.text,
+        column,
+        row.input,
+        row.tokens,
+        this.document.languageId,
+        this.tokenBudgetMs,
+      );
+    }
     const kind = insertion.kind;
     if (kind === "unknown")
       return unknown(insertion.reason ?? "ambiguous-boundary");
@@ -241,6 +270,8 @@ export class DocumentCache {
               (a) => a.line === n && a.column === t.startIndex,
             );
             if (!a) {
+              if (this.bytes + 64 > this.maxBytes)
+                return unknown("cache-limit");
               a = { line: n, column: t.startIndex, id: ++sequence };
               this.anchors.push(a);
             }

@@ -134,7 +134,8 @@ export function activate(context: vscode.ExtensionContext) {
     if (reset) controller.reset();
     else controller.cancel();
     paused = true;
-    pauseReason = "等待有效编辑器交互";
+    pauseReason =
+      ineligibleReason(vscode.window.activeTextEditor) ?? "等待有效编辑器交互";
     render();
   }
   function eligible(

@@ -63,7 +63,7 @@ test("stopped tokenization reports unknown without retaining an input stack", as
   const { doc, grammar } = fixture(true);
   const c = new DocumentCache(doc, grammar);
   assert.equal((await c.query(1, 1)).reason, "tokenizer-timeout");
-  assert.equal(c.stats.tokenized, 1);
+  assert.equal(c.stats.tokenized, 2);
   assert.equal(c.bytes, 0);
 });
 
@@ -77,4 +77,33 @@ test("a stopped boundary probe reports its reason and is never cached", async ()
   const c = new DocumentCache(doc, grammar);
   assert.equal((await c.query(0, 0)).reason, "tokenizer-timeout");
   assert.equal((await c.query(0, 1)).kind, "code");
+});
+
+test("one bounded retry yields and recovers a cold tokenizer", async () => {
+  const { doc, grammar } = fixture();
+  const original = grammar.tokenizeLine.bind(grammar);
+  let calls = 0;
+  let yielded = false;
+  setImmediate(() => {
+    yielded = true;
+  });
+  grammar.tokenizeLine = (...args) =>
+    ++calls === 1
+      ? { tokens: [], ruleStack: INITIAL, stoppedEarly: true }
+      : original(...args);
+  const c = new DocumentCache(doc, grammar);
+  assert.equal((await c.query(0, 1)).kind, "code");
+  assert.equal(calls, 2);
+  assert.equal(yielded, true);
+});
+
+test("cold retry is cancelled when focus or snapshot becomes invalid", async () => {
+  const { doc, grammar } = fixture(true);
+  let alive = true;
+  setImmediate(() => {
+    alive = false;
+  });
+  const c = new DocumentCache(doc, grammar);
+  assert.equal((await c.query(0, 1, () => alive)).reason, "cancelled");
+  assert.equal(c.stats.tokenized, 1);
 });

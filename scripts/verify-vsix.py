@@ -3,12 +3,14 @@ import hashlib
 import json
 import pathlib
 import sys
+import struct
 import xml.etree.ElementTree as ET
 import zipfile
 
 root = pathlib.Path(__file__).resolve().parent.parent
 project = json.loads((root / 'package.json').read_text())
-path = pathlib.Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else (
+target_arg = sys.argv[2] if len(sys.argv) == 3 and sys.argv[1] == '--target' else None
+path = (root / 'artifacts/vsix' / f"{project['name']}-{project['version']}-{target_arg}.vsix") if target_arg else pathlib.Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else (
     root / 'artifacts/vsix' /
     f"{project['name']}-{project['version']}-linux-x64-{project['publisher']}.vsix"
 )
@@ -35,6 +37,23 @@ with zipfile.ZipFile(path) as archive:
     identity = next(element for element in ET.fromstring(archive.read('extension.vsixmanifest')).iter()
                     if element.tag.endswith('}Identity'))
     assert identity.attrib['Publisher'] == project['publisher']
+    target = identity.attrib['TargetPlatform']
+    if target_arg:
+        assert target == target_arg
+    if target.startswith(('win32-', 'darwin-')):
+        helper = f"extension/native/bin/{target}/context-ime" + ('.exe' if target.startswith('win32-') else '')
+        data = archive.read(helper)
+        if target.startswith('win32-'):
+            assert data[:2] == b'MZ'
+            pe = struct.unpack_from('<I', data, 0x3c)[0]
+            assert data[pe:pe+4] == b'PE\0\0'
+            machine = struct.unpack_from('<H', data, pe+4)[0]
+            assert machine == (0xAA64 if target.endswith('arm64') else 0x8664)
+        else:
+            assert data[:4] == b'\xcf\xfa\xed\xfe'
+            cpu = struct.unpack_from('<I', data, 4)[0]
+            assert cpu == (0x0100000c if target.endswith('arm64') else 0x01000007)
+        assert len([n for n in names if n.startswith('extension/native/bin/')]) == 1
     if path.stem.endswith('-' + project['publisher']):
         assert archive.read('extension/readme.md').decode() == (root / 'README.marketplace.md').read_text()
     print(json.dumps({

@@ -18,7 +18,7 @@ jobs:
         with: { node-version: "22", cache: npm }
       - uses: ilammy/msvc-dev-cmd@v1
         if: runner.os == 'Windows'
-        with: { arch: "${{ matrix.arch }}" }
+        with: { arch: "${{ matrix.arch == 'arm64' && 'amd64_arm64' || 'amd64' }}" }
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
@@ -27,5 +27,6 @@ jobs:
       - run: npm run native:build
         env: { TARGET_ARCH: "${{ matrix.arch }}" }
       - run: npm run package -- ${{ matrix.target }}
+      - run: python scripts/verify-vsix.py --target ${{ matrix.target }}
       - uses: actions/upload-artifact@v4
         with: { name: "${{ matrix.target }}", path: "artifacts/vsix/*.vsix" }
