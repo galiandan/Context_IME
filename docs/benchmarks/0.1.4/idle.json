@@ -1,0 +1,13 @@
+{
+  "durationMs": 300001.92103200004,
+  "before": {
+    "processes": 2,
+    "set": 1
+  },
+  "after": {
+    "processes": 2,
+    "set": 1
+  },
+  "passed": true,
+  "scope": "Core controller + live backend initialized; no polling. Not an Extension Host CPU measurement."
+}

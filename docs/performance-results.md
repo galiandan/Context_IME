@@ -1,5 +1,7 @@
 # 性能实测（2026-09-27）
 
+最新 0.1.4（系统 Node 26）结果与前后对比见 [稳定性修复记录](0.1.4-stability.md)。以下保留首次 Node 24 测量，不能混为同一环境。
+
 环境：AMD Ryzen 7 9700X 8-Core Processor；Linux 7.2.7-zen1-1-zen x64；Node v24.20.0（VS Code Electron RUN_AS_NODE）；VS Code 1.139.1；Wayland；Fcitx5 5.1.23。没有修改系统输入法。
 
 命令：`npm run bench`、`node scripts/bench/cold-bench.mjs`、`node --import tsx scripts/bench/idle.ts`。本次历史原始结果已归档至 docs/benchmarks/2026-09-27-node24/ 下的 benchmark.json、cold-start.json、idle.json；当前脚本的新结果写入 artifacts/reports/；这些是本机结果，不是第三方 README 数字。

@@ -12,6 +12,8 @@
 
 0.1.1 修复了注释回车后漏处理选区事件、直到首个字母才切回 code 的问题；详见 [修复记录](docs/0.1.1-newline-fix.md)。
 
+0.1.4 修复快速输入时的漏切竞态，优化单行编辑缓存，增加冷分词有限重试与暂停原因；实测和验证边界见 [修复记录](docs/0.1.4-stability.md)。
+
 0.1.3 将 C/C++ 的 `#include <…>` 和 `#include "…"` 头文件路径归为 code，包含尚未闭合的路径输入。
 
 源码仓库：[galiandan/Context_IME](https://github.com/galiandan/Context_IME)。
