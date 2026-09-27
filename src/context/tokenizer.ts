@@ -16,6 +16,7 @@ export const languages: Record<string, string> = {
 export class Tokenizer {
   private registry?: Registry;
   private compilation = { scanners: 0 };
+  private manifest?: Promise<{ scope: string; file: string }[]>;
   constructor(private root: string) {}
   async grammar(language: string): Promise<IGrammar | undefined> {
     const scope = languages[language];
@@ -34,9 +35,11 @@ export class Tokenizer {
           createOnigString: (s) => new OnigString(s),
         })),
         loadGrammar: async (scope) => {
-          const manifest = JSON.parse(
-            await readFile(join(this.root, "grammars/manifest.json"), "utf8"),
-          ) as { scope: string; file: string }[];
+          this.manifest ??= readFile(
+            join(this.root, "grammars/manifest.json"),
+            "utf8",
+          ).then((content) => JSON.parse(content) as { scope: string; file: string }[]);
+          const manifest = await this.manifest;
           const entry = manifest.find((e) => e.scope === scope);
           if (!entry) throw new Error("GRAMMAR_DEPENDENCY_MISSING: " + scope);
           const file = join(this.root, "grammars", entry.file);

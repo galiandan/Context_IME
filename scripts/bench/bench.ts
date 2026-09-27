@@ -67,7 +67,14 @@ async function main() {
           const b = performance.now();
           d.lines[lines - 1] = `x=${j}`;
           d.version++;
-          c.edit([{ startLine: lines - 1, endLine: lines - 1, newLines: 0 }]);
+          c.edit([
+            {
+              startLine: lines - 1,
+              endLine: lines - 1,
+              newLines: 0,
+              text: `x=${j}`,
+            },
+          ]);
           r = await c.query(lines - 1, 2);
           if (r.kind === "unknown") unknown++;
           input.push(performance.now() - b);
@@ -76,7 +83,14 @@ async function main() {
           const b = performance.now();
           d.lines[0] = j % 2 ? "x=1" : '"""';
           d.version++;
-          c.edit([{ startLine: 0, endLine: 0, newLines: 0 }]);
+          c.edit([
+            {
+              startLine: 0,
+              endLine: 0,
+              newLines: 0,
+              text: j % 2 ? "x=1" : '"""',
+            },
+          ]);
           r = await c.query(lines - 1, 2);
           delimiter.push(performance.now() - b);
           if (r.kind === "unknown") unknown++;

@@ -187,6 +187,7 @@ async function main() {
             startColumn: doc.lines[changed]!.length - 1,
             endColumn: doc.lines[changed]!.length - 1,
             newLastColumn: doc.lines[changed]!.length,
+            text: " ",
           },
         ]);
       }

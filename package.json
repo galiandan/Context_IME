@@ -2,7 +2,7 @@
   "name": "vscode-auto-ime",
   "displayName": "Context IME",
   "description": "按代码与字符串上下文选择本机输入源",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "publisher": "Galiandan-CIO",
   "license": "MIT",
   "engines": {

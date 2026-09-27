@@ -61,6 +61,39 @@ export function scopePath(scopes: readonly string[]): string {
   });
   return clean.slice(0, end + 1).join(" ");
 }
+function tokenAtLeft(tokens: readonly IToken[], column: number): IToken | undefined {
+  let low = 0,
+    high = tokens.length;
+  while (low < high) {
+    const mid = (low + high) >>> 1;
+    if (tokens[mid]!.endIndex < column) low = mid + 1;
+    else high = mid;
+  }
+  const token = tokens[low];
+  return token && token.startIndex < column ? token : undefined;
+}
+function tokenAtRight(
+  tokens: readonly IToken[],
+  column: number,
+): IToken | undefined {
+  let low = 0,
+    high = tokens.length;
+  while (low < high) {
+    const mid = (low + high) >>> 1;
+    if (tokens[mid]!.endIndex <= column) low = mid + 1;
+    else high = mid;
+  }
+  const token = tokens[low];
+  return token && token.startIndex <= column ? token : undefined;
+}
+function insertionToken(token: IToken, language: string) {
+  const kind = scopeKind(token.scopes, language);
+  return {
+    kind,
+    path:
+      kind === "string" || kind === "comment" ? scopePath(token.scopes) : "",
+  };
+}
 export function atInsertion(
   grammar: IGrammar,
   text: string,
@@ -72,12 +105,8 @@ export function atInsertion(
 ): { kind: Kind; path: string; reason?: string } {
   const unknown = { kind: "unknown" as const, path: "" };
   if (column < 0 || column > text.length) return unknown;
-  const left = tokens.find(
-    (t) => t.startIndex < column && t.endIndex >= column,
-  );
-  const right = tokens.find(
-    (t) => t.startIndex <= column && t.endIndex > column,
-  );
+  const left = tokenAtLeft(tokens, column);
+  const right = tokenAtRight(tokens, column);
   // Ordinary content fast path. Delimiters and token boundaries need the same-grammar probe.
   if (
     left === right &&
@@ -86,10 +115,7 @@ export function atInsertion(
     column < Math.min(left.endIndex, text.length) &&
     !left.scopes.some((s) => /punctuation|escape/.test(s))
   )
-    return {
-      kind: scopeKind(left.scopes, language),
-      path: scopePath(left.scopes),
-    };
+    return insertionToken(left, language);
   // A neutral space preserves code/string semantics; never propagate this artificial stack.
   const probe = grammar.tokenizeLine(
     text.slice(0, column) + " " + text.slice(column),
@@ -97,9 +123,7 @@ export function atInsertion(
     timeLimit,
   );
   if (probe.stoppedEarly) return { ...unknown, reason: "tokenizer-timeout" };
-  const token = probe.tokens.find(
-    (t) => t.startIndex <= column && t.endIndex > column,
-  );
+  const token = tokenAtRight(probe.tokens, column);
   // Splitting a multi-character delimiter is ambiguous rather than an inferred string.
   if (
     right &&
@@ -109,6 +133,6 @@ export function atInsertion(
   )
     return unknown;
   return token
-    ? { kind: scopeKind(token.scopes, language), path: scopePath(token.scopes) }
+    ? insertionToken(token, language)
     : unknown;
 }

@@ -449,6 +449,7 @@ export function activate(context: vscode.ExtensionContext) {
           newLastColumn:
             c.text.split(/\r?\n/).at(-1)!.length +
             (c.text.includes("\n") ? 0 : c.range.start.character),
+          text: c.text,
         })),
       );
     }),
