@@ -1,5 +1,8 @@
 # GitHub Actions 构建与 Release
 
+> 后续验证更新：0.1.7 的五平台 CI 已全部成功，VSIX 已下载校验并发布 Marketplace。Swift/Win32 本轮均已在对应 Runner 编译；真实桌面输入法仍未验证。[完整记录](https://github.com/galiandan/Context_IME/blob/main/docs/0.1.7-release.md)。下文“未编译/未推送”等表述属于最初交付时的历史状态。
+
+
 开发者只需提交源码，不需要本机安装 Xcode/Swift/MSVC。macOS SDK 类型检查、Swift 编译以及 Windows C++ 编译由 GitHub-hosted Runner 完成。
 
 ## 已有命令核对

@@ -1,5 +1,8 @@
 # Windows · 短时原生 helper
 
+> 后续验证更新：0.1.7 的五平台 CI 已全部成功，VSIX 已下载校验并发布 Marketplace。Swift/Win32 本轮均已在对应 Runner 编译；真实桌面输入法仍未验证。[完整记录](https://github.com/galiandan/Context_IME/blob/main/docs/0.1.7-release.md)。下文“未编译/未推送”等表述属于最初交付时的历史状态。
+
+
 ## 1. 输入源与模式分层
 
 优先使用小型可审查的 Win32 helper，每个请求执行完退出，不弹控制台、不抢焦点。可以参考 im-select，但不能把 1033/2052 这样的语言标识当作用户输入源的唯一身份。

@@ -1,5 +1,8 @@
 # macOS · 短时原生 helper
 
+> 后续验证更新：0.1.7 的五平台 CI 已全部成功，VSIX 已下载校验并发布 Marketplace。Swift/Win32 本轮均已在对应 Runner 编译；真实桌面输入法仍未验证。[完整记录](https://github.com/galiandan/Context_IME/blob/main/docs/0.1.7-release.md)。下文“未编译/未推送”等表述属于最初交付时的历史状态。
+
+
 ## 1. TIS 路径
 
 候选 API 为 `TISCreateInputSourceList`、`TISCopyCurrentKeyboardInputSource`、`TISSelectInputSource`；以实际 source ID 枚举、查询、选择，不假定 ABC、US 或某中文输入法已安装。只展示 enabled/selectable 来源，并在需要时区分输入模式 ID。

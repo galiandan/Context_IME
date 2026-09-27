@@ -1,5 +1,8 @@
 # Windows/macOS 优化记录（2026-09-27，未发布）
 
+> 后续验证更新：0.1.7 的五平台 CI 已全部成功，VSIX 已下载校验并发布 Marketplace。Swift/Win32 本轮均已在对应 Runner 编译；真实桌面输入法仍未验证。[完整记录](https://github.com/galiandan/Context_IME/blob/main/docs/0.1.7-release.md)。下文“未编译/未推送”等表述属于最初交付时的历史状态。
+
+
 本次保留已有 0.1.6 工作和版本号，未发布、未修改系统输入法、未触发远程 CI。macOS 替换为 Swift helper；Windows 保持 C++。具体编译命令见 [macOS](platforms/macos.md#swift-迁移与本机编译2026-09-27未发布) 和 [Windows](platforms/windows.md)。
 
 ## 改动与工作量
