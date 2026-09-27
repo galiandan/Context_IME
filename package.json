@@ -2,7 +2,7 @@
   "name": "vscode-auto-ime",
   "displayName": "Context IME",
   "description": "按代码与字符串上下文选择本机输入源",
-  "version": "0.1.4",
+  "version": "0.1.7",
   "publisher": "Galiandan-CIO",
   "license": "MIT",
   "engines": {
@@ -37,7 +37,12 @@
     "bench:cold": "node scripts/bench/cold-bench.mjs",
     "bench:idle": "node --import tsx scripts/bench/idle.ts",
     "bench:report": "python scripts/bench/report.py",
-    "verify:vsix": "python scripts/verify-vsix.py"
+    "verify:vsix": "python scripts/verify-vsix.py",
+    "bench:resources": "node --expose-gc --import tsx scripts/bench/resources.ts",
+    "bench:resources:cold": "node scripts/bench/cold-resources.mjs",
+    "bench:resources:idle": "node --expose-gc --import tsx scripts/bench/resources.ts --idle",
+    "bench:host": "node scripts/bench/host.mjs",
+    "bench:profile": "node --cpu-prof --cpu-prof-dir=artifacts/reports/perf-current --cpu-prof-name=core.cpuprofile --expose-gc --import tsx scripts/bench/resources.ts --profile"
   },
   "dependencies": {
     "vscode-oniguruma": "2.0.1",

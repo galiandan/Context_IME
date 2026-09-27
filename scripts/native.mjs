@@ -5,7 +5,8 @@ if (!["x64", "arm64"].includes(arch)) throw Error("Unsupported architecture");
 const out = `native/bin/${process.platform}-${arch}`;
 if (process.platform === "win32" || process.platform === "darwin")
   mkdirSync(out, { recursive: true });
-if (process.platform === "win32")
+if (process.platform === "win32") {
+  mkdirSync(`artifacts/tmp/native-${arch}`, { recursive: true });
   execFileSync(
     "cl.exe",
     [
@@ -16,6 +17,9 @@ if (process.platform === "win32")
       "/MT",
       "native/windows.cpp",
       `/Fe:${out}/context-ime.exe`,
+      `/Fo:artifacts/tmp/native-${arch}/windows.obj`,
+      "/W4",
+      "/analyze",
       "user32.lib",
       "advapi32.lib",
       "/link",
@@ -23,18 +27,18 @@ if (process.platform === "win32")
     ],
     { stdio: "inherit" },
   );
-else if (process.platform === "darwin")
+} else if (process.platform === "darwin")
   execFileSync(
     "xcrun",
     [
-      "clang++",
-      "-std=c++17",
-      "-O2",
-      "-fobjc-arc",
-      "-arch",
-      arch === "x64" ? "x86_64" : "arm64",
-      "-mmacosx-version-min=11.0",
-      "native/macos.mm",
+      "swiftc",
+      "-swift-version",
+      "5",
+      "-O",
+      "-whole-module-optimization",
+      "-target",
+      `${arch === "x64" ? "x86_64" : "arm64"}-apple-macosx11.0`,
+      "native/macos.swift",
       "-framework",
       "AppKit",
       "-framework",

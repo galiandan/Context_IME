@@ -2,7 +2,7 @@
 
 ## 1. 工程构成
 
-TypeScript strict、稳定 VS Code API、npm 锁文件、简单打包工具（优先 esbuild）。TextMate + Oniguruma 按需加载。Windows/macOS helper 采用小型 C++/Objective-C++ 原生程序；Linux 首版直接调用已有框架工具。不使用前端框架、Webview、数据库、语言服务器或独立常驻 daemon。
+TypeScript strict、稳定 VS Code API、npm 锁文件、简单打包工具（优先 esbuild）。TextMate + Oniguruma 按需加载。Windows/macOS helper 采用小型 C++/Swift 原生程序；Linux 首版直接调用已有框架工具。不使用前端框架、Webview、数据库、语言服务器或独立常驻 daemon。
 
 建议目录如下，允许按实现规模合并小模块，不为目录完整制造占位抽象：
 

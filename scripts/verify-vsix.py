@@ -37,6 +37,7 @@ with zipfile.ZipFile(path) as archive:
     identity = next(element for element in ET.fromstring(archive.read('extension.vsixmanifest')).iter()
                     if element.tag.endswith('}Identity'))
     assert identity.attrib['Publisher'] == project['publisher']
+    assert identity.attrib['Version'] == project['version']
     target = identity.attrib['TargetPlatform']
     if target_arg:
         assert target == target_arg
@@ -53,9 +54,11 @@ with zipfile.ZipFile(path) as archive:
             assert data[:4] == b'\xcf\xfa\xed\xfe'
             cpu = struct.unpack_from('<I', data, 4)[0]
             assert cpu == (0x0100000c if target.endswith('arm64') else 0x01000007)
+            assert (archive.getinfo(helper).external_attr >> 16) & 0o111, 'helper must be executable'
         assert len([n for n in names if n.startswith('extension/native/bin/')]) == 1
-    if path.stem.endswith('-' + project['publisher']):
-        assert archive.read('extension/readme.md').decode() == (root / 'README.marketplace.md').read_text(encoding="utf-8")
+    else:
+        assert not any(n.startswith('extension/native/bin/') for n in names)
+    assert archive.read('extension/readme.md').decode() == (root / 'README.marketplace.md').read_text(encoding="utf-8")
     print(json.dumps({
         'path': str(path), 'bytes': path.stat().st_size,
         'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),

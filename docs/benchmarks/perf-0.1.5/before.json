@@ -1,0 +1,1038 @@
+{
+  "environment": {
+    "date": "2026-09-27T09:02:45.227Z",
+    "node": "v26.10.0",
+    "platform": "linux",
+    "kernel": "7.2.7-zen1-1-zen",
+    "cpu": "AMD Ryzen 7 9700X 8-Core Processor",
+    "extension": "0.1.4",
+    "cpuUnit": "microseconds",
+    "memoryUnit": "bytes",
+    "latencyUnit": "milliseconds"
+  },
+  "initialMemory": {
+    "rss": 57966592,
+    "heapTotal": 6848512,
+    "heapUsed": 5022064,
+    "external": 2314435,
+    "arrayBuffers": 137615
+  },
+  "grammarMemory": [
+    {
+      "language": "python",
+      "memory": {
+        "rss": 76001280,
+        "heapTotal": 11567104,
+        "heapUsed": 8153920,
+        "external": 4841542,
+        "arrayBuffers": 619866
+      }
+    },
+    {
+      "language": "javascript",
+      "memory": {
+        "rss": 76816384,
+        "heapTotal": 12091392,
+        "heapUsed": 8670472,
+        "external": 5075365,
+        "arrayBuffers": 619866
+      }
+    },
+    {
+      "language": "typescript",
+      "memory": {
+        "rss": 77864960,
+        "heapTotal": 12877824,
+        "heapUsed": 9141040,
+        "external": 5306453,
+        "arrayBuffers": 619866
+      }
+    },
+    {
+      "language": "c",
+      "memory": {
+        "rss": 78258176,
+        "heapTotal": 12877824,
+        "heapUsed": 9419800,
+        "external": 5201968,
+        "arrayBuffers": 619866
+      }
+    },
+    {
+      "language": "cpp",
+      "memory": {
+        "rss": 84635648,
+        "heapTotal": 15761408,
+        "heapUsed": 11105792,
+        "external": 5865575,
+        "arrayBuffers": 619866
+      }
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "python-100-lines-move",
+      "lines": 100,
+      "mode": "move",
+      "prepared": "code",
+      "prepareRequests": 1,
+      "latency": {
+        "n": 1000,
+        "p50": 0.0006099999999946704,
+        "p95": 0.036510000000006926,
+        "max": 1.1075459999999993
+      },
+      "elapsed": 9.230062000000004,
+      "cpu": {
+        "user": 22256,
+        "system": 2795
+      },
+      "kinds": {
+        "code": 479,
+        "string": 521
+      },
+      "reasons": {},
+      "eventLoopDelay": {
+        "p95": 1.161215,
+        "max": 1.161215
+      },
+      "beforeStats": {
+        "tokenized": 101,
+        "hits": 1,
+        "reused": 0,
+        "yields": 3
+      },
+      "afterStats": {
+        "tokenized": 101,
+        "hits": 1001,
+        "reused": 0,
+        "yields": 3
+      },
+      "cacheBytes": 185632,
+      "beforeMemory": {
+        "rss": 101179392,
+        "heapTotal": 16285696,
+        "heapUsed": 12186408,
+        "external": 5231892,
+        "arrayBuffers": 646859
+      },
+      "afterMemory": {
+        "rss": 97619968,
+        "heapTotal": 19169280,
+        "heapUsed": 12178216,
+        "external": 4841558,
+        "arrayBuffers": 619882
+      }
+    },
+    {
+      "name": "javascript-100-lines-move",
+      "lines": 100,
+      "mode": "move",
+      "prepared": "code",
+      "prepareRequests": 2,
+      "latency": {
+        "n": 1000,
+        "p50": 0.004549999999994725,
+        "p95": 0.0539799999999957,
+        "max": 0.1509410000000173
+      },
+      "elapsed": 26.304639999999978,
+      "cpu": {
+        "user": 31328,
+        "system": 1148
+      },
+      "kinds": {
+        "code": 712,
+        "string": 256,
+        "unknown": 32
+      },
+      "reasons": {
+        "ambiguous-boundary": 32
+      },
+      "eventLoopDelay": {
+        "p95": 1.050623,
+        "max": 1.055743
+      },
+      "beforeStats": {
+        "tokenized": 103,
+        "hits": 1,
+        "reused": 0,
+        "yields": 4
+      },
+      "afterStats": {
+        "tokenized": 103,
+        "hits": 1001,
+        "reused": 0,
+        "yields": 4
+      },
+      "cacheBytes": 369904,
+      "beforeMemory": {
+        "rss": 108830720,
+        "heapTotal": 19431424,
+        "heapUsed": 12686256,
+        "external": 4841558,
+        "arrayBuffers": 619882
+      },
+      "afterMemory": {
+        "rss": 116441088,
+        "heapTotal": 27295744,
+        "heapUsed": 12800352,
+        "external": 4841558,
+        "arrayBuffers": 619882
+      }
+    },
+    {
+      "name": "typescript-100-lines-move",
+      "lines": 100,
+      "mode": "move",
+      "prepared": "code",
+      "prepareRequests": 2,
+      "latency": {
+        "n": 1000,
+        "p50": 0.0025599999999883494,
+        "p95": 0.05636999999998693,
+        "max": 0.14835100000001944
+      },
+      "elapsed": 24.242598000000015,
+      "cpu": {
+        "user": 40116,
+        "system": 41
+      },
+      "kinds": {
+        "code": 760,
+        "string": 210,
+        "unknown": 30
+      },
+      "reasons": {
+        "ambiguous-boundary": 30
+      },
+      "eventLoopDelay": {
+        "p95": 1.048575,
+        "max": 1.064959
+      },
+      "beforeStats": {
+        "tokenized": 102,
+        "hits": 1,
+        "reused": 0,
+        "yields": 3
+      },
+      "afterStats": {
+        "tokenized": 102,
+        "hits": 1001,
+        "reused": 0,
+        "yields": 3
+      },
+      "cacheBytes": 416560,
+      "beforeMemory": {
+        "rss": 125358080,
+        "heapTotal": 28344320,
+        "heapUsed": 13030432,
+        "external": 4939587,
+        "arrayBuffers": 619882
+      },
+      "afterMemory": {
+        "rss": 126050304,
+        "heapTotal": 28082176,
+        "heapUsed": 13197736,
+        "external": 4841558,
+        "arrayBuffers": 619882
+      }
+    },
+    {
+      "name": "c-100-lines-move",
+      "lines": 100,
+      "mode": "move",
+      "prepared": "code",
+      "prepareRequests": 1,
+      "latency": {
+        "n": 1000,
+        "p50": 0.0022700000000099863,
+        "p95": 0.02726999999998725,
+        "max": 0.1720210000000293
+      },
+      "elapsed": 11.226163999999983,
+      "cpu": {
+        "user": 20429,
+        "system": 0
+      },
+      "kinds": {
+        "code": 640,
+        "string": 360
+      },
+      "reasons": {},
+      "eventLoopDelay": {
+        "p95": 1.017855,
+        "max": 1.021439
+      },
+      "beforeStats": {
+        "tokenized": 100,
+        "hits": 1,
+        "reused": 0,
+        "yields": 1
+      },
+      "afterStats": {
+        "tokenized": 100,
+        "hits": 1001,
+        "reused": 0,
+        "yields": 1
+      },
+      "cacheBytes": 356560,
+      "beforeMemory": {
+        "rss": 126443520,
+        "heapTotal": 27820032,
+        "heapUsed": 13212856,
+        "external": 4863209,
+        "arrayBuffers": 619882
+      },
+      "afterMemory": {
+        "rss": 126722048,
+        "heapTotal": 27820032,
+        "heapUsed": 13347256,
+        "external": 4841558,
+        "arrayBuffers": 619882
+      }
+    },
+    {
+      "name": "cpp-100-lines-move",
+      "lines": 100,
+      "mode": "move",
+      "prepared": "code",
+      "prepareRequests": 1,
+      "latency": {
+        "n": 1000,
+        "p50": 0.0026799999999980173,
+        "p95": 0.16625099999998838,
+        "max": 0.2993109999999888
+      },
+      "elapsed": 69.461726,
+      "cpu": {
+        "user": 74504,
+        "system": 0
+      },
+      "kinds": {
+        "code": 460,
+        "unknown": 180,
+        "string": 360
+      },
+      "reasons": {
+        "ambiguous-boundary": 180
+      },
+      "eventLoopDelay": {
+        "p95": 1.128447,
+        "max": 1.143807
+      },
+      "beforeStats": {
+        "tokenized": 101,
+        "hits": 1,
+        "reused": 0,
+        "yields": 5
+      },
+      "afterStats": {
+        "tokenized": 101,
+        "hits": 1001,
+        "reused": 0,
+        "yields": 5
+      },
+      "cacheBytes": 285920,
+      "beforeMemory": {
+        "rss": 138358784,
+        "heapTotal": 34635776,
+        "heapUsed": 17362512,
+        "external": 5332267,
+        "arrayBuffers": 619882
+      },
+      "afterMemory": {
+        "rss": 141111296,
+        "heapTotal": 38043648,
+        "heapUsed": 17448872,
+        "external": 4842250,
+        "arrayBuffers": 619882
+      }
+    },
+    {
+      "name": "python-simple-10k-type",
+      "lines": 10000,
+      "mode": "type",
+      "prepared": "code",
+      "prepareRequests": 1,
+      "latency": {
+        "n": 1000,
+        "p50": 0.26107200000001285,
+        "p95": 0.7118239999999787,
+        "max": 0.8899650000000747
+      },
+      "elapsed": 287.253147,
+      "cpu": {
+        "user": 299334,
+        "system": 0
+      },
+      "kinds": {
+        "code": 1000
+      },
+      "reasons": {},
+      "eventLoopDelay": {
+        "p95": 1.349631,
+        "max": 1.776639
+      },
+      "beforeStats": {
+        "tokenized": 10000,
+        "hits": 1,
+        "reused": 0,
+        "yields": 78
+      },
+      "afterStats": {
+        "tokenized": 11000,
+        "hits": 1001,
+        "reused": 0,
+        "yields": 78
+      },
+      "cacheBytes": 7422288,
+      "beforeMemory": {
+        "rss": 159494144,
+        "heapTotal": 56594432,
+        "heapUsed": 30009168,
+        "external": 4841558,
+        "arrayBuffers": 619882
+      },
+      "afterMemory": {
+        "rss": 160440320,
+        "heapTotal": 58429440,
+        "heapUsed": 30040528,
+        "external": 5469061,
+        "arrayBuffers": 1131589
+      }
+    },
+    {
+      "name": "python-code-10k-move",
+      "lines": 10000,
+      "mode": "move",
+      "prepared": "unknown",
+      "prepareRequests": 8,
+      "latency": {
+        "n": 1000,
+        "p50": 0.011860000000069704,
+        "p95": 0.012969999999995707,
+        "max": 0.1363810000000285
+      },
+      "elapsed": 8.605348999999933,
+      "cpu": {
+        "user": 13766,
+        "system": 0
+      },
+      "kinds": {
+        "code": 774,
+        "unknown": 226
+      },
+      "reasons": {
+        "cache-limit": 226
+      },
+      "eventLoopDelay": {
+        "p95": 1.018879,
+        "max": 1.018879
+      },
+      "beforeStats": {
+        "tokenized": 7746,
+        "hits": 0,
+        "reused": 0,
+        "yields": 60
+      },
+      "afterStats": {
+        "tokenized": 7972,
+        "hits": 774,
+        "reused": 0,
+        "yields": 60
+      },
+      "cacheBytes": 8388504,
+      "beforeMemory": {
+        "rss": 195330048,
+        "heapTotal": 88084480,
+        "heapUsed": 31052400,
+        "external": 4841558,
+        "arrayBuffers": 619882
+      },
+      "afterMemory": {
+        "rss": 195985408,
+        "heapTotal": 82055168,
+        "heapUsed": 31062416,
+        "external": 4841558,
+        "arrayBuffers": 619882
+      }
+    },
+    {
+      "name": "python-multiline-10k-move",
+      "lines": 10000,
+      "mode": "move",
+      "prepared": "string",
+      "prepareRequests": 1,
+      "latency": {
+        "n": 1000,
+        "p50": 0.9449749999998858,
+        "p95": 1.7852399999999307,
+        "max": 3.832461999999964
+      },
+      "elapsed": 956.546121,
+      "cpu": {
+        "user": 1002775,
+        "system": 7995
+      },
+      "kinds": {
+        "string": 1000
+      },
+      "reasons": {},
+      "eventLoopDelay": {
+        "p95": 2.195455,
+        "max": 3.848191
+      },
+      "beforeStats": {
+        "tokenized": 10000,
+        "hits": 1,
+        "reused": 0,
+        "yields": 78
+      },
+      "afterStats": {
+        "tokenized": 10000,
+        "hits": 1001,
+        "reused": 0,
+        "yields": 78
+      },
+      "cacheBytes": 4748768,
+      "beforeMemory": {
+        "rss": 202862592,
+        "heapTotal": 75993088,
+        "heapUsed": 24716552,
+        "external": 4959606,
+        "arrayBuffers": 679466
+      },
+      "afterMemory": {
+        "rss": 203632640,
+        "heapTotal": 93294592,
+        "heapUsed": 24891392,
+        "external": 4841558,
+        "arrayBuffers": 619882
+      }
+    },
+    {
+      "name": "python-code-10k-type",
+      "lines": 10000,
+      "mode": "type",
+      "prepared": "unknown",
+      "prepareRequests": 8,
+      "latency": {
+        "n": 1000,
+        "p50": 0.0120600000000195,
+        "p95": 0.012860000000046057,
+        "max": 0.143970999999965
+      },
+      "elapsed": 13.649118000000044,
+      "cpu": {
+        "user": 18378,
+        "system": 0
+      },
+      "kinds": {
+        "unknown": 1000
+      },
+      "reasons": {
+        "cache-limit": 1000
+      },
+      "eventLoopDelay": {
+        "p95": 1.019391,
+        "max": 1.117183
+      },
+      "beforeStats": {
+        "tokenized": 7746,
+        "hits": 0,
+        "reused": 0,
+        "yields": 60
+      },
+      "afterStats": {
+        "tokenized": 8746,
+        "hits": 0,
+        "reused": 0,
+        "yields": 60
+      },
+      "cacheBytes": 8387992,
+      "beforeMemory": {
+        "rss": 208285696,
+        "heapTotal": 99356672,
+        "heapUsed": 31217304,
+        "external": 4841558,
+        "arrayBuffers": 619882
+      },
+      "afterMemory": {
+        "rss": 208740352,
+        "heapTotal": 94605312,
+        "heapUsed": 31432416,
+        "external": 4841558,
+        "arrayBuffers": 619882
+      }
+    },
+    {
+      "name": "python-multiline-10k-type",
+      "lines": 10000,
+      "mode": "type",
+      "prepared": "string",
+      "prepareRequests": 1,
+      "latency": {
+        "n": 1000,
+        "p50": 1.866500999999971,
+        "p95": 1.9235210000001643,
+        "max": 2.007962000000134
+      },
+      "elapsed": 1877.3674879999999,
+      "cpu": {
+        "user": 1895992,
+        "system": 1900
+      },
+      "kinds": {
+        "string": 1000
+      },
+      "reasons": {},
+      "eventLoopDelay": {
+        "p95": 1.927167,
+        "max": 2.021375
+      },
+      "beforeStats": {
+        "tokenized": 10000,
+        "hits": 1,
+        "reused": 0,
+        "yields": 78
+      },
+      "afterStats": {
+        "tokenized": 11000,
+        "hits": 1001,
+        "reused": 0,
+        "yields": 78
+      },
+      "cacheBytes": 4622768,
+      "beforeMemory": {
+        "rss": 208265216,
+        "heapTotal": 83333120,
+        "heapUsed": 24838600,
+        "external": 5045622,
+        "arrayBuffers": 752266
+      },
+      "afterMemory": {
+        "rss": 208408576,
+        "heapTotal": 93818880,
+        "heapUsed": 24895568,
+        "external": 4860057,
+        "arrayBuffers": 619882
+      }
+    },
+    {
+      "name": "python-code-10k-head-edit",
+      "lines": 10000,
+      "mode": "head-edit",
+      "prepared": "unknown",
+      "prepareRequests": 8,
+      "latency": {
+        "n": 100,
+        "p50": 0.7557839999999487,
+        "p95": 0.9530749999998989,
+        "max": 2.2031019999999444
+      },
+      "elapsed": 81.3088829999997,
+      "cpu": {
+        "user": 107551,
+        "system": 0
+      },
+      "kinds": {
+        "unknown": 100
+      },
+      "reasons": {
+        "cache-limit": 100
+      },
+      "eventLoopDelay": {
+        "p95": 1.014783,
+        "max": 1.036287
+      },
+      "beforeStats": {
+        "tokenized": 7746,
+        "hits": 0,
+        "reused": 0,
+        "yields": 60
+      },
+      "afterStats": {
+        "tokenized": 7946,
+        "hits": 0,
+        "reused": 773600,
+        "yields": 6060
+      },
+      "cacheBytes": 8388352,
+      "beforeMemory": {
+        "rss": 208527360,
+        "heapTotal": 98832384,
+        "heapUsed": 31221072,
+        "external": 4841558,
+        "arrayBuffers": 619882
+      },
+      "afterMemory": {
+        "rss": 208240640,
+        "heapTotal": 94638080,
+        "heapUsed": 31150568,
+        "external": 4846148,
+        "arrayBuffers": 619882
+      }
+    },
+    {
+      "name": "python-multiline-10k-head-edit",
+      "lines": 10000,
+      "mode": "head-edit",
+      "prepared": "string",
+      "prepareRequests": 1,
+      "latency": {
+        "n": 100,
+        "p50": 2.6309049999999843,
+        "p95": 2.7409660000002987,
+        "max": 3.1157279999997627
+      },
+      "elapsed": 267.61534500000016,
+      "cpu": {
+        "user": 277573,
+        "system": 27
+      },
+      "kinds": {
+        "string": 100
+      },
+      "reasons": {},
+      "eventLoopDelay": {
+        "p95": 2.627583,
+        "max": 2.736127
+      },
+      "beforeStats": {
+        "tokenized": 10000,
+        "hits": 1,
+        "reused": 0,
+        "yields": 78
+      },
+      "afterStats": {
+        "tokenized": 10100,
+        "hits": 101,
+        "reused": 999700,
+        "yields": 7878
+      },
+      "cacheBytes": 4620968,
+      "beforeMemory": {
+        "rss": 208826368,
+        "heapTotal": 83857408,
+        "heapUsed": 24840120,
+        "external": 4930934,
+        "arrayBuffers": 619882
+      },
+      "afterMemory": {
+        "rss": 209219584,
+        "heapTotal": 84905984,
+        "heapUsed": 24824576,
+        "external": 4842712,
+        "arrayBuffers": 619882
+      }
+    },
+    {
+      "name": "cpp-comment-10k-move",
+      "lines": 10000,
+      "mode": "move",
+      "prepared": "comment",
+      "prepareRequests": 1,
+      "latency": {
+        "n": 1000,
+        "p50": 0.8971350000001621,
+        "p95": 1.663590000000113,
+        "max": 1.8709610000005341
+      },
+      "elapsed": 897.6270450000002,
+      "cpu": {
+        "user": 904458,
+        "system": 0
+      },
+      "kinds": {
+        "comment": 1000
+      },
+      "reasons": {},
+      "eventLoopDelay": {
+        "p95": 2.072575,
+        "max": 2.545663
+      },
+      "beforeStats": {
+        "tokenized": 10000,
+        "hits": 1,
+        "reused": 0,
+        "yields": 78
+      },
+      "afterStats": {
+        "tokenized": 10000,
+        "hits": 1001,
+        "reused": 0,
+        "yields": 78
+      },
+      "cacheBytes": 4748108,
+      "beforeMemory": {
+        "rss": 209285120,
+        "heapTotal": 79138816,
+        "heapUsed": 24838760,
+        "external": 4902262,
+        "arrayBuffers": 619882
+      },
+      "afterMemory": {
+        "rss": 209416192,
+        "heapTotal": 93294592,
+        "heapUsed": 24929048,
+        "external": 4841558,
+        "arrayBuffers": 619882
+      }
+    },
+    {
+      "name": "js-template-10k-move",
+      "lines": 10000,
+      "mode": "move",
+      "prepared": "string",
+      "prepareRequests": 1,
+      "latency": {
+        "n": 1000,
+        "p50": 1.1819869999999355,
+        "p95": 2.281633000000511,
+        "max": 2.4851150000004054
+      },
+      "elapsed": 1197.1266510000005,
+      "cpu": {
+        "user": 1205142,
+        "system": 993
+      },
+      "kinds": {
+        "string": 1000
+      },
+      "reasons": {},
+      "eventLoopDelay": {
+        "p95": 2.605055,
+        "max": 2.965503
+      },
+      "beforeStats": {
+        "tokenized": 10000,
+        "hits": 1,
+        "reused": 0,
+        "yields": 78
+      },
+      "afterStats": {
+        "tokenized": 10000,
+        "hits": 1001,
+        "reused": 0,
+        "yields": 78
+      },
+      "cacheBytes": 4749254,
+      "beforeMemory": {
+        "rss": 209510400,
+        "heapTotal": 86740992,
+        "heapUsed": 24840536,
+        "external": 4902262,
+        "arrayBuffers": 625158
+      },
+      "afterMemory": {
+        "rss": 209510400,
+        "heapTotal": 93294592,
+        "heapUsed": 24908472,
+        "external": 4841558,
+        "arrayBuffers": 619882
+      }
+    },
+    {
+      "name": "python-code-40k-move",
+      "lines": 40000,
+      "mode": "move",
+      "prepared": "unknown",
+      "prepareRequests": 8,
+      "latency": {
+        "n": 1000,
+        "p50": 0.01107999999931053,
+        "p95": 0.012349999999969441,
+        "max": 0.16307099999994534
+      },
+      "elapsed": 11.817407000000458,
+      "cpu": {
+        "user": 17499,
+        "system": 3
+      },
+      "kinds": {
+        "code": 195,
+        "unknown": 805
+      },
+      "reasons": {
+        "cache-limit": 805
+      },
+      "eventLoopDelay": {
+        "p95": 1.012735,
+        "max": 1.015807
+      },
+      "beforeStats": {
+        "tokenized": 7789,
+        "hits": 0,
+        "reused": 0,
+        "yields": 60
+      },
+      "afterStats": {
+        "tokenized": 8594,
+        "hits": 195,
+        "reused": 0,
+        "yields": 60
+      },
+      "cacheBytes": 8388558,
+      "beforeMemory": {
+        "rss": 209436672,
+        "heapTotal": 99155968,
+        "heapUsed": 31531944,
+        "external": 4841558,
+        "arrayBuffers": 619882
+      },
+      "afterMemory": {
+        "rss": 209694720,
+        "heapTotal": 94666752,
+        "heapUsed": 31714632,
+        "external": 4841558,
+        "arrayBuffers": 619882
+      }
+    }
+  ],
+  "closes": [
+    {
+      "iteration": 10,
+      "memory": {
+        "rss": 209043456,
+        "heapTotal": 83132416,
+        "heapUsed": 17319056,
+        "external": 4887958,
+        "arrayBuffers": 619882
+      },
+      "cacheBytes": 0
+    },
+    {
+      "iteration": 20,
+      "memory": {
+        "rss": 209072128,
+        "heapTotal": 80510976,
+        "heapUsed": 17222232,
+        "external": 4887958,
+        "arrayBuffers": 626282
+      },
+      "cacheBytes": 0
+    },
+    {
+      "iteration": 30,
+      "memory": {
+        "rss": 208756736,
+        "heapTotal": 80510976,
+        "heapUsed": 17217504,
+        "external": 4862358,
+        "arrayBuffers": 619882
+      },
+      "cacheBytes": 0
+    },
+    {
+      "iteration": 40,
+      "memory": {
+        "rss": 208760832,
+        "heapTotal": 80510976,
+        "heapUsed": 17288760,
+        "external": 4862358,
+        "arrayBuffers": 619882
+      },
+      "cacheBytes": 0
+    },
+    {
+      "iteration": 50,
+      "memory": {
+        "rss": 209899520,
+        "heapTotal": 80510976,
+        "heapUsed": 17285656,
+        "external": 4862358,
+        "arrayBuffers": 619882
+      },
+      "cacheBytes": 0
+    },
+    {
+      "iteration": 60,
+      "memory": {
+        "rss": 210178048,
+        "heapTotal": 80773120,
+        "heapUsed": 17279488,
+        "external": 4862358,
+        "arrayBuffers": 619882
+      },
+      "cacheBytes": 0
+    },
+    {
+      "iteration": 70,
+      "memory": {
+        "rss": 209780736,
+        "heapTotal": 80773120,
+        "heapUsed": 17305016,
+        "external": 4862358,
+        "arrayBuffers": 619882
+      },
+      "cacheBytes": 0
+    },
+    {
+      "iteration": 80,
+      "memory": {
+        "rss": 210415616,
+        "heapTotal": 80773120,
+        "heapUsed": 17283488,
+        "external": 4887958,
+        "arrayBuffers": 624282
+      },
+      "cacheBytes": 0
+    },
+    {
+      "iteration": 90,
+      "memory": {
+        "rss": 210939904,
+        "heapTotal": 80773120,
+        "heapUsed": 17293968,
+        "external": 4862358,
+        "arrayBuffers": 619882
+      },
+      "cacheBytes": 0
+    },
+    {
+      "iteration": 100,
+      "memory": {
+        "rss": 210939904,
+        "heapTotal": 80773120,
+        "heapUsed": 17304632,
+        "external": 4862358,
+        "arrayBuffers": 619882
+      },
+      "cacheBytes": 0
+    }
+  ],
+  "beforeDispose": {
+    "rss": 210939904,
+    "heapTotal": 80773120,
+    "heapUsed": 17188104,
+    "external": 4841558,
+    "arrayBuffers": 619882
+  },
+  "afterDispose": {
+    "rss": 210939904,
+    "heapTotal": 80773120,
+    "heapUsed": 17162456,
+    "external": 4841558,
+    "arrayBuffers": 619882
+  },
+  "resourceUsage": {
+    "userCPUTime": 9354723,
+    "systemCPUTime": 61172,
+    "maxRSS": 557076,
+    "sharedMemorySize": 0,
+    "unsharedDataSize": 0,
+    "unsharedStackSize": 0,
+    "minorPageFault": 56404,
+    "majorPageFault": 0,
+    "swappedOut": 0,
+    "fsRead": 0,
+    "fsWrite": 8,
+    "ipcSent": 0,
+    "ipcReceived": 0,
+    "signalsCount": 0,
+    "voluntaryContextSwitches": 12165,
+    "involuntaryContextSwitches": 494
+  },
+  "scope": "Synthetic core workload; CPU/RSS include Node/tsx/WASM; GC snapshots outside timed intervals; no IME set"
+}

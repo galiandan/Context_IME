@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "extensionPath": "/mnt/data/VsCode_Aut_Ime",
+  "vscode": "1.139.1",
+  "extensionKind": 1,
+  "platform": "linux",
+  "checks": [
+    "activation",
+    "commands",
+    "UI declaration",
+    "unconfigured resync",
+    "multiple selections",
+    "unsupported language",
+    "nonempty selection",
+    "oversized document",
+    "zero source settings",
+    "C++ include header stays code",
+    "Enter without Keyboard kind analyzes code before first letter",
+    "diagnostics"
+  ],
+  "nativeSwitching": false
+}

@@ -2,6 +2,9 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { Registry, parseRawGrammar, type IGrammar } from "vscode-textmate";
 import { loadWASM, OnigScanner, OnigString } from "vscode-oniguruma";
+// Counts successful scanner construction through the public registry factory.
+// Used only to distinguish cold compilation progress from repeated timeouts.
+export const grammarCompilation = new WeakMap<IGrammar, { scanners: number }>();
 let wasm: Promise<void> | undefined;
 export const languages: Record<string, string> = {
   python: "source.python",
@@ -12,6 +15,7 @@ export const languages: Record<string, string> = {
 };
 export class Tokenizer {
   private registry?: Registry;
+  private compilation = { scanners: 0 };
   constructor(private root: string) {}
   async grammar(language: string): Promise<IGrammar | undefined> {
     const scope = languages[language];
@@ -22,7 +26,11 @@ export class Tokenizer {
       );
       this.registry = new Registry({
         onigLib: wasm.then(() => ({
-          createOnigScanner: (p) => new OnigScanner(p),
+          createOnigScanner: (p) => {
+            const scanner = new OnigScanner(p);
+            this.compilation.scanners++;
+            return scanner;
+          },
           createOnigString: (s) => new OnigString(s),
         })),
         loadGrammar: async (scope) => {
@@ -36,7 +44,9 @@ export class Tokenizer {
         },
       });
     }
-    return (await this.registry.loadGrammar(scope)) ?? undefined;
+    const grammar = (await this.registry.loadGrammar(scope)) ?? undefined;
+    if (grammar) grammarCompilation.set(grammar, this.compilation);
+    return grammar;
   }
   dispose() {
     this.registry?.dispose();

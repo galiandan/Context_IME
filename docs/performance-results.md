@@ -1,5 +1,7 @@
 # 性能实测（2026-09-27）
 
+新增：已发布 0.1.4 的 [性能消耗审计与优化实验](performance-audit-0.1.4.md)，覆盖五语言冷启动、长字符串/注释、CPU profile、实际 Host 对照、空闲和内存趋势。
+
 最新 0.1.4（系统 Node 26）结果与前后对比见 [稳定性修复记录](0.1.4-stability.md)。以下保留首次 Node 24 测量，不能混为同一环境。
 
 环境：AMD Ryzen 7 9700X 8-Core Processor；Linux 7.2.7-zen1-1-zen x64；Node v24.20.0（VS Code Electron RUN_AS_NODE）；VS Code 1.139.1；Wayland；Fcitx5 5.1.23。没有修改系统输入法。
@@ -33,3 +35,7 @@ Fcitx5 只读查询 30 次：p50 1.441ms，p95 1.590ms；含探测 get=31、set=
 末次整个进程 RSS 248.2MiB；external 5.4MiB，包含运行时/WASM，不能当扩展独占开销。没有单独测得 native helper 峰值 RSS、WASM 专属内存、关闭插件对照组、真实 Extension Host CPU 或电功耗。
 
 缓存预算是估算，不是总堆 8MiB 承诺。单次同步正则不可硬抢占；超长行和 stoppedEarly 保守返回 unknown。尚未达成的实机、峰值内存和焦点/composition 验收见 compatibility.md。
+
+0.1.5 已合入优化的同机对照见 [性能优化记录](0.1.5-performance.md)。
+
+0.1.6 大文件 token 淘汰和冷初始化进展重试见 [完整报告](0.1.6-cache-cold.md)。

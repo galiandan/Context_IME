@@ -117,3 +117,101 @@ test("IBus name-only list and capture fallback", async () => {
     [],
   );
 });
+
+for (const backend of ["windows", "macos"] as const) {
+  test(`${backend}: use validated helper observation, only three processes per switch`, async () => {
+    class NativeRunner extends ProcessRunner {
+      calls: string[][] = [];
+      override async run(_file: string, args: readonly string[]) {
+        this.calls.push([...args]);
+        return JSON.stringify(
+          args[0] === "target"
+            ? { version: 1, target: "123:456" }
+            : {
+                version: 1,
+                status: "observed",
+                sourceId: args[0] === "set" ? "源 ;$(x)" : "old",
+              },
+        );
+      }
+    }
+    const runner = new NativeRunner();
+    const adapter = new Adapter(
+      backend,
+      "/helper",
+      runner,
+      "/App With Spaces/Code",
+    );
+    const result = await adapter.set({ sourceId: "源 ;$(x)" }, () => true);
+    assert.equal(result.status, "confirmed");
+    assert.deepEqual(
+      runner.calls.map((a) => a[0]),
+      ["get", "target", "set"],
+    );
+    assert.deepEqual(runner.calls[2], [
+      "set",
+      "--source",
+      "源 ;$(x)",
+      "--target",
+      "123:456",
+      "--app",
+      "/App With Spaces/Code",
+    ]);
+    assert.equal(result.observed.mode, undefined);
+  });
+}
+test("native rejects failed/accepted replies even with matching source, malformed guards and stale observations", async () => {
+  class NativeRunner extends ProcessRunner {
+    reply: object = { version: 1, status: "observed", sourceId: "old" };
+    override async run() {
+      return JSON.stringify(this.reply);
+    }
+  }
+  const runner = new NativeRunner();
+  const adapter = new Adapter("macos", "/helper", runner);
+  await adapter.get();
+  for (const status of ["failed", "accepted", undefined]) {
+    runner.reply = { version: 1, status, sourceId: "desired" };
+    await assert.rejects(adapter.get(), /INVALID_OUTPUT/);
+    assert.equal(adapter.observed, undefined);
+  }
+  for (const target of ["", "x", "1\n", "1".repeat(129)]) {
+    let calls = 0;
+    runner.run = async () =>
+      JSON.stringify(
+        ++calls === 1
+          ? { version: 1, status: "observed", sourceId: "old" }
+          : { version: 1, target },
+      );
+    await assert.rejects(
+      adapter.set({ sourceId: "desired" }, () => true),
+      /FOCUS_UNSAFE/,
+    );
+    assert.equal(calls, 2);
+  }
+});
+test("native mismatch stays unverified and invalidation after target prevents set", async () => {
+  class NativeRunner extends ProcessRunner {
+    calls = 0;
+    override async run(_file: string, args: readonly string[]) {
+      this.calls++;
+      return JSON.stringify(
+        args[0] === "target"
+          ? { version: 1, target: "1" }
+          : { version: 1, status: "observed", sourceId: "old" },
+      );
+    }
+  }
+  const runner = new NativeRunner();
+  const adapter = new Adapter("windows", "/helper", runner);
+  assert.equal(
+    (await adapter.set({ sourceId: "desired" }, () => true)).status,
+    "unverified",
+  );
+  runner.calls = 0;
+  await assert.rejects(
+    adapter.set({ sourceId: "desired" }, () => runner.calls < 2),
+    /STALE_REQUEST/,
+  );
+  assert.equal(runner.calls, 2);
+});

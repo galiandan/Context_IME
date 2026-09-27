@@ -8,9 +8,13 @@
 - 首版语言：Python、JavaScript、TypeScript、C、C++
 - 目标环境：Windows、macOS、Linux 桌面版 VS Code
 
-**当前已实现 0.1.4 本地预览版，并生成 Linux x64 VSIX。0.1.3 已由发布者上传 Marketplace（根据用户确认），0.1.4 尚未发布；本地脚本不会自动发布新版本。** 分类/增量缓存/控制器/平台进程与本地 VS Code 集成已自动测试；用户已反馈 Linux 字符串和 C++ 头文件切换正常；候选词、多窗口及 Windows/macOS 原生环境尚未系统验证。详见[交付记录](docs/delivery.md)、[兼容性](docs/compatibility.md)、[性能实测](docs/performance-results.md)。
+**当前源码版本为 0.1.7，五平台构建与发布以 GitHub Actions 运行结果为准。** 分类/增量缓存/控制器/平台进程与本地 VS Code 集成已自动测试；用户已反馈 Linux 字符串和 C++ 头文件切换正常；候选词、多窗口及 Windows/macOS 原生环境尚未系统验证。详见[交付记录](docs/delivery.md)、[兼容性](docs/compatibility.md)、[性能实测](docs/performance-results.md)。
 
 0.1.1 修复了注释回车后漏处理选区事件、直到首个字母才切回 code 的问题；详见 [修复记录](docs/0.1.1-newline-fix.md)。
+
+0.1.6 在容量压力下淘汰 token、保留可信行状态，并按实际 scanner 初始化进展有限重试；见 [大文件与冷启动记录](docs/0.1.6-cache-cold.md)。
+
+0.1.5 优化长字符串/注释定位和缓存内存分配；对照结果见 [性能优化记录](docs/0.1.5-performance.md)。
 
 0.1.4 修复快速输入时的漏切竞态，优化单行编辑缓存，增加冷分词有限重试与暂停原因；实测和验证边界见 [修复记录](docs/0.1.4-stability.md)。
 
@@ -26,14 +30,14 @@
 
 早期本地包 ID 为 `context-ime-local.vscode-auto-ime`，与正式发布者的包是两个扩展。安装新身份的包时请停用或卸载旧身份的版本，避免两个实例同时管理输入法；`autoIme.*` 用户设置继续沿用。
 
-终端发布与更新：见 [本地发布指南](docs/publishing.md)。`npm run publish:marketplace -- --dry-run` 只检查和打包；`npm run publish:marketplace` 才上传。
+终端发布与更新：见 [本地发布指南](docs/publishing.md)。`npm run publish:marketplace -- --run-id <成功运行ID> --dry-run` 下载并校验 CI 包；去掉 `--dry-run` 上传完全相同的构建产物，不在本地重新编译。
 
 ## 安装与使用
 
 当前机器可安装：
 
 ```sh
-code --install-extension artifacts/vsix/vscode-auto-ime-0.1.4-linux-x64-Galiandan-CIO.vsix
+code --install-extension artifacts/vsix/vscode-auto-ime-0.1.7-linux-x64.vsix
 ```
 
 也可在扩展面板选择“从 VSIX 安装”。第一次显示“待配置”，不猜输入源。命令面板执行 **Context IME：配置输入方案**，分别选 code/text 输入源；Fcitx5 可手动切换后记录当前。配置过程不会试切，不安装系统组件。回编辑器执行 **Context IME：重新同步**。相同输入源并不保证内部中英文模式转换。
@@ -43,6 +47,8 @@ code --install-extension artifacts/vsix/vscode-auto-ime-0.1.4-linux-x64-Galianda
 本版优先保守：多光标、选区、未知语言、超长行、预算/缓存超限、失焦等暂停；回焦等待有效编辑器交互。公开 API 不能完整观察 composition/所有输入控件焦点，Linux 仅 bestEffort。窗口内终端/搜索框/命令面板、真实候选词行为仍须实测。Windows 目前只提供 KLID 布局，TSF profile 和内部模式不支持。
 
 ## 开发、F5 与打包
+
+跨平台编译和打包交给 [GitHub Actions](docs/github-actions.md)：分支 push/PR 自动构建五个平台 VSIX，推送匹配版本的 `vX.Y.Z` Tag 自动创建 GitHub Release。macOS 的 Swift 检查和编译使用 GitHub macOS Runner，本地无需安装 Xcode/Swift。
 
 当前机器已通过 pacman 安装 Node.js/npm，直接使用系统 `node` 和 `npm`，不再需要修改 PATH。所有 npm 工具均在项目的 dependencies/devDependencies 中固定版本；不需要全局安装 vsce、TypeScript、ESLint 等工具。
 
@@ -56,6 +62,8 @@ npm run verify:vsix
 ```
 
 按 **F5** 选择“Context IME”，预启动任务直接运行项目的 npm build。目录结构、项目级安装方式和清理命令见[开发指南](docs/development.md)。安装包集中在 `artifacts/vsix/`，测试/性能报告在 `artifacts/reports/`，临时文件在 `artifacts/tmp/`。`npm run clean` 只清理可重建的构建/测试中间产物，保留 VSIX 和报告。
+
+Windows/macOS 最新源码优化及未验证边界见 [原生优化记录](docs/native-optimization.md)，Swift 的 Mac 编译步骤见 [macOS 文档](docs/platforms/macos.md)。
 
 `npm run native:build` 在 Windows MSVC 开发者终端构建 helper；macOS 使用 Xcode Command Line Tools 与 `TARGET_ARCH=x64/arm64`。`npm run package -- win32-x64` / `darwin-arm64` 等生成对应包；缺失 helper 即失败。只使用已有工具，项目不会自动安装系统 SDK、签名或发布。构建矩阵见 `.github/workflows/ci.yml`。
 

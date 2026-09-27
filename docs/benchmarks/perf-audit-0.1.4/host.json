@@ -1,0 +1,329 @@
+{
+  "passed": true,
+  "vscode": "1.139.1",
+  "node": "v24.20.0",
+  "platform": "linux",
+  "extension": "0.1.4",
+  "idle": [
+    {
+      "enabled": false,
+      "elapsed": 10001.38735,
+      "cpu": {
+        "user": 2493,
+        "system": 80
+      },
+      "oneCoreCpuPercent": 0.025726430843616907,
+      "before": {
+        "focused": true,
+        "memory": {
+          "rss": 197844992,
+          "heapTotal": 67575808,
+          "heapUsed": 38482824,
+          "external": 7259674,
+          "arrayBuffers": 0
+        },
+        "snapshot": {
+          "processes": 0,
+          "set": 0,
+          "caches": 0,
+          "paused": true,
+          "pauseReason": "规则已停用",
+          "configured": false
+        }
+      },
+      "after": {
+        "focused": true,
+        "memory": {
+          "rss": 197808128,
+          "heapTotal": 68034560,
+          "heapUsed": 38875552,
+          "external": 7524363,
+          "arrayBuffers": 0
+        },
+        "snapshot": {
+          "processes": 0,
+          "set": 0,
+          "caches": 0,
+          "paused": true,
+          "pauseReason": "规则已停用",
+          "configured": false
+        }
+      }
+    },
+    {
+      "enabled": true,
+      "elapsed": 10010.10759,
+      "cpu": {
+        "user": 123,
+        "system": 24
+      },
+      "oneCoreCpuPercent": 0.0014685156845551947,
+      "before": {
+        "focused": true,
+        "memory": {
+          "rss": 205406208,
+          "heapTotal": 69017600,
+          "heapUsed": 48560304,
+          "external": 9112123,
+          "arrayBuffers": 0
+        },
+        "snapshot": {
+          "lastContext": "string",
+          "processes": 2,
+          "set": 0,
+          "caches": 1,
+          "paused": true,
+          "pauseReason": "尚未配置本机 code / text 输入方案",
+          "configured": false
+        }
+      },
+      "after": {
+        "focused": true,
+        "memory": {
+          "rss": 205406208,
+          "heapTotal": 69017600,
+          "heapUsed": 48596356,
+          "external": 9112123,
+          "arrayBuffers": 0
+        },
+        "snapshot": {
+          "lastContext": "string",
+          "processes": 2,
+          "set": 0,
+          "caches": 1,
+          "paused": true,
+          "pauseReason": "尚未配置本机 code / text 输入方案",
+          "configured": false
+        }
+      }
+    },
+    {
+      "enabled": true,
+      "elapsed": 10003.998044000004,
+      "cpu": {
+        "user": 85979,
+        "system": 3357
+      },
+      "oneCoreCpuPercent": 0.8930029734819884,
+      "before": {
+        "focused": true,
+        "memory": {
+          "rss": 204718080,
+          "heapTotal": 48340992,
+          "heapUsed": 35279252,
+          "external": 7284883,
+          "arrayBuffers": 0
+        },
+        "snapshot": {
+          "lastContext": "string",
+          "processes": 2,
+          "set": 0,
+          "caches": 1,
+          "paused": true,
+          "pauseReason": "尚未配置本机 code / text 输入方案",
+          "configured": false
+        }
+      },
+      "after": {
+        "focused": true,
+        "memory": {
+          "rss": 170725376,
+          "heapTotal": 34709504,
+          "heapUsed": 33641592,
+          "external": 7247746,
+          "arrayBuffers": 0
+        },
+        "snapshot": {
+          "lastContext": "string",
+          "processes": 2,
+          "set": 0,
+          "caches": 1,
+          "paused": true,
+          "pauseReason": "尚未配置本机 code / text 输入方案",
+          "configured": false
+        }
+      }
+    },
+    {
+      "enabled": false,
+      "elapsed": 10010.161359999998,
+      "cpu": {
+        "user": 198,
+        "system": 0
+      },
+      "oneCoreCpuPercent": 0.0019779900930588,
+      "before": {
+        "focused": true,
+        "memory": {
+          "rss": 175259648,
+          "heapTotal": 39952384,
+          "heapUsed": 34987812,
+          "external": 7283067,
+          "arrayBuffers": 0
+        },
+        "snapshot": {
+          "lastContext": "string",
+          "processes": 2,
+          "set": 0,
+          "caches": 0,
+          "paused": true,
+          "pauseReason": "规则已停用",
+          "configured": false
+        }
+      },
+      "after": {
+        "focused": true,
+        "memory": {
+          "rss": 175390720,
+          "heapTotal": 39952384,
+          "heapUsed": 35075796,
+          "external": 7283067,
+          "arrayBuffers": 0
+        },
+        "snapshot": {
+          "lastContext": "string",
+          "processes": 2,
+          "set": 0,
+          "caches": 0,
+          "paused": true,
+          "pauseReason": "规则已停用",
+          "configured": false
+        }
+      }
+    }
+  ],
+  "typing": [
+    {
+      "enabled": false,
+      "latency": {
+        "n": 100,
+        "p50": 1.213857000000644,
+        "p95": 8.001126000001022,
+        "max": 9.266912999999477
+      },
+      "focusedSamples": 100,
+      "actualInserted": 100,
+      "validWorkload": true,
+      "elapsed": 230.15899100000024,
+      "cpu": {
+        "user": 57500,
+        "system": 9172
+      },
+      "snapshot": {
+        "processes": 0,
+        "set": 0,
+        "caches": 0,
+        "paused": true,
+        "pauseReason": "规则已停用",
+        "configured": false
+      },
+      "memory": {
+        "rss": 198168576,
+        "heapTotal": 68034560,
+        "heapUsed": 43929976,
+        "external": 7759639,
+        "arrayBuffers": 0
+      }
+    },
+    {
+      "enabled": true,
+      "latency": {
+        "n": 100,
+        "p50": 1.1351360000007844,
+        "p95": 7.114900000000489,
+        "max": 10.727180999998382
+      },
+      "focusedSamples": 100,
+      "actualInserted": 100,
+      "validWorkload": true,
+      "elapsed": 199.24598500000138,
+      "cpu": {
+        "user": 161431,
+        "system": 11460
+      },
+      "snapshot": {
+        "lastContext": "string",
+        "processes": 2,
+        "set": 0,
+        "caches": 1,
+        "paused": true,
+        "pauseReason": "尚未配置本机 code / text 输入方案",
+        "configured": false
+      },
+      "memory": {
+        "rss": 204718080,
+        "heapTotal": 48340992,
+        "heapUsed": 38188392,
+        "external": 7299506,
+        "arrayBuffers": 0
+      }
+    },
+    {
+      "enabled": true,
+      "latency": {
+        "n": 100,
+        "p50": 1.3021169999992708,
+        "p95": 6.9299600000013015,
+        "max": 9.981467000005068
+      },
+      "focusedSamples": 100,
+      "actualInserted": 100,
+      "validWorkload": true,
+      "elapsed": 220.15394399999786,
+      "cpu": {
+        "user": 91311,
+        "system": 12685
+      },
+      "snapshot": {
+        "lastContext": "string",
+        "processes": 2,
+        "set": 0,
+        "caches": 1,
+        "paused": true,
+        "pauseReason": "尚未配置本机 code / text 输入方案",
+        "configured": false
+      },
+      "memory": {
+        "rss": 174518272,
+        "heapTotal": 39690240,
+        "heapUsed": 34426380,
+        "external": 7272332,
+        "arrayBuffers": 0
+      }
+    },
+    {
+      "enabled": false,
+      "latency": {
+        "n": 100,
+        "p50": 0.9586549999949057,
+        "p95": 5.784863000000769,
+        "max": 16.12311200000113
+      },
+      "focusedSamples": 100,
+      "actualInserted": 100,
+      "validWorkload": true,
+      "elapsed": 180.34209700000065,
+      "cpu": {
+        "user": 47968,
+        "system": 1444
+      },
+      "snapshot": {
+        "lastContext": "string",
+        "processes": 2,
+        "set": 0,
+        "caches": 0,
+        "paused": true,
+        "pauseReason": "规则已停用",
+        "configured": false
+      },
+      "memory": {
+        "rss": 175915008,
+        "heapTotal": 39428096,
+        "heapUsed": 35978680,
+        "external": 7318654,
+        "arrayBuffers": 0
+      }
+    }
+  ],
+  "scope": "Isolated profile; built-in extensions share Host. Activated-but-disabled baseline, not uninstalled. No input plans, no OS set. Typing latency includes VS Code IPC/editor work. No forced GC."
+}

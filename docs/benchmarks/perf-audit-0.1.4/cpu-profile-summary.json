@@ -1,0 +1,156 @@
+{
+  "sampledMicroseconds": 8063479,
+  "scope": "Sampling includes harness, WASM and GC; self time only; profiling run is not the latency baseline",
+  "top": [
+    {
+      "function": "scopePath",
+      "url": "file://src/context/classifier.ts",
+      "microseconds": 1540011,
+      "percent": 19.098592555396994
+    },
+    {
+      "function": "scopeKind",
+      "url": "file://src/context/classifier.ts",
+      "microseconds": 1113572,
+      "percent": 13.810068830091826
+    },
+    {
+      "function": "query",
+      "url": "file://src/context/cache.ts",
+      "microseconds": 719644,
+      "percent": 8.924733356408568
+    },
+    {
+      "function": "wasm-function[118]",
+      "url": "wasm://wasm/001ce0fe",
+      "microseconds": 680578,
+      "percent": 8.440252650251832
+    },
+    {
+      "function": "scenario",
+      "url": "file://scripts/bench/resources.ts",
+      "microseconds": 614205,
+      "percent": 7.617121592305256
+    },
+    {
+      "function": "wasm-function[208]",
+      "url": "wasm://wasm/001ce0fe",
+      "microseconds": 493801,
+      "percent": 6.123919960602613
+    },
+    {
+      "function": "",
+      "url": "file://src/context/classifier.ts",
+      "microseconds": 444689,
+      "percent": 5.514852832133624
+    },
+    {
+      "function": "",
+      "url": "file://src/context/cache.ts",
+      "microseconds": 294621,
+      "percent": 3.653770289474308
+    },
+    {
+      "function": "(garbage collector)",
+      "url": "",
+      "microseconds": 291702,
+      "percent": 3.6175700339766497
+    },
+    {
+      "function": "wasm-function[115]",
+      "url": "wasm://wasm/001ce0fe",
+      "microseconds": 171547,
+      "percent": 2.1274563994027886
+    },
+    {
+      "function": "RegExp: ^(meta\\.interpolation|meta\\.embedded|source\\..+\\.embedded)|^meta\\.template\\.expression",
+      "url": "",
+      "microseconds": 148060,
+      "percent": 1.8361801401107387
+    },
+    {
+      "function": "RegExp: punctuation.*(begin|start)|punctuation\\.definition\\.comment",
+      "url": "",
+      "microseconds": 134558,
+      "percent": 1.6687338058423664
+    },
+    {
+      "function": "emscripten_memcpy_big",
+      "url": "file://node_modules/vscode-oniguruma/release/main.js",
+      "microseconds": 94287,
+      "percent": 1.1693091778375067
+    },
+    {
+      "function": "c",
+      "url": "file://node_modules/vscode-textmate/release/main.js",
+      "microseconds": 87334,
+      "percent": 1.083080888534589
+    },
+    {
+      "function": "s",
+      "url": "file://node_modules/vscode-oniguruma/release/main.js",
+      "microseconds": 80470,
+      "percent": 0.9979563411773008
+    },
+    {
+      "function": "(program)",
+      "url": "",
+      "microseconds": 80444,
+      "percent": 0.9976338997100382
+    },
+    {
+      "function": "now",
+      "url": "",
+      "microseconds": 75453,
+      "percent": 0.9357375395905415
+    },
+    {
+      "function": "RegExp: regexp|regex",
+      "url": "",
+      "microseconds": 59954,
+      "percent": 0.7435252203174337
+    },
+    {
+      "function": "wasm-function[218]",
+      "url": "wasm://wasm/001ce0fe",
+      "microseconds": 56744,
+      "percent": 0.7037161007054151
+    },
+    {
+      "function": "y",
+      "url": "file://node_modules/vscode-textmate/release/main.js",
+      "microseconds": 52463,
+      "percent": 0.6506248729611623
+    },
+    {
+      "function": "_findNextMatchSync",
+      "url": "file://node_modules/vscode-oniguruma/release/main.js",
+      "microseconds": 43962,
+      "percent": 0.5451989147612339
+    },
+    {
+      "function": "",
+      "url": "file://node_modules/vscode-textmate/release/main.js",
+      "microseconds": 38723,
+      "percent": 0.4802269591078491
+    },
+    {
+      "function": "wasm-function[219]",
+      "url": "wasm://wasm/001ce0fe",
+      "microseconds": 34731,
+      "percent": 0.4307197922881674
+    },
+    {
+      "function": "resolveBackReferences",
+      "url": "file://node_modules/vscode-textmate/release/main.js",
+      "microseconds": 34209,
+      "percent": 0.42424615975312885
+    },
+    {
+      "function": "_utf8ByteLength",
+      "url": "file://node_modules/vscode-oniguruma/release/main.js",
+      "microseconds": 30517,
+      "percent": 0.37845947140186015
+    }
+  ]
+}

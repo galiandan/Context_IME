@@ -1,7 +1,18 @@
 name: build-test-vsix
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches: ['**'] # Tags are built by release.yml through workflow_call.
+  pull_request:
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
 jobs:
   build:
+    name: Build ${{ matrix.target }}
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -14,19 +25,44 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v4
-        with: { node-version: "22", cache: npm }
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: package-lock.json
       - uses: ilammy/msvc-dev-cmd@v1
         if: runner.os == 'Windows'
-        with: { arch: "${{ matrix.arch == 'arm64' && 'amd64_arm64' || 'amd64' }}" }
+        with:
+          arch: ${{ matrix.arch == 'arm64' && 'amd64_arm64' || 'amd64' }}
+      - name: macOS toolchain and Swift type check
+        if: runner.os == 'macOS'
+        shell: bash
+        env:
+          TARGET_ARCH: ${{ matrix.arch }}
+        run: |
+          xcodebuild -version
+          xcrun swiftc --version
+          uname -m
+          expected=arm64
+          if [ "$TARGET_ARCH" = x64 ]; then expected=x86_64; fi
+          test "$(uname -m)" = "$expected"
+          xcrun swiftc -swift-version 5 -typecheck native/macos.swift
       - run: npm ci
-      - run: npm run lint
-      - run: npm run typecheck
-      - run: npm run build
-      - run: npm test
-      - run: npm run native:build
-        env: { TARGET_ARCH: "${{ matrix.arch }}" }
+      - run: npm run check
+      - name: Build native helper (Linux needs no helper)
+        run: npm run native:build
+        env:
+          TARGET_ARCH: ${{ matrix.arch }}
+      # vsce invokes vscode:prepublish -> npm run build itself.
       - run: npm run package -- ${{ matrix.target }}
-      - run: python scripts/verify-vsix.py --target ${{ matrix.target }}
+      - name: Verify VSIX contents and binary architecture
+        run: python scripts/verify-vsix.py --target ${{ matrix.target }}
       - uses: actions/upload-artifact@v4
-        with: { name: "${{ matrix.target }}", path: "artifacts/vsix/*.vsix" }
+        with:
+          name: vsix-${{ matrix.target }}
+          path: artifacts/vsix/*-${{ matrix.target }}.vsix
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14

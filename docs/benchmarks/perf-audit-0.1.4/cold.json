@@ -1,0 +1,4345 @@
+{
+  "environment": {
+    "node": "v26.10.0",
+    "cpu": "AMD Ryzen 7 9700X 8-Core Processor",
+    "date": "2026-09-27T08:53:52.371Z"
+  },
+  "scope": "Fresh process each sample; measured WASM/grammar + 100 lines; excludes Node/tsx startup and GC snapshots",
+  "scenarios": [
+    {
+      "language": "python",
+      "n": 30,
+      "p50": 38.142418000000006,
+      "p95": 40.293009,
+      "unknown": 0,
+      "samples": [
+        {
+          "language": "python",
+          "ms": 38.052706999999984,
+          "cpu": {
+            "user": 79314,
+            "system": 748
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 120729600,
+            "heapTotal": 12718080,
+            "heapUsed": 7782304,
+            "external": 3975439,
+            "arrayBuffers": 1192607
+          },
+          "after": {
+            "rss": 139558912,
+            "heapTotal": 16125952,
+            "heapUsed": 11397872,
+            "external": 6120762,
+            "arrayBuffers": 1695527
+          }
+        },
+        {
+          "language": "python",
+          "ms": 38.032517,
+          "cpu": {
+            "user": 75754,
+            "system": 1665
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 92499968,
+            "heapTotal": 12193792,
+            "heapUsed": 7658936,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 115212288,
+            "heapTotal": 14815232,
+            "heapUsed": 11119024,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 37.699065000000004,
+          "cpu": {
+            "user": 75643,
+            "system": 4308
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 93913088,
+            "heapTotal": 12718080,
+            "heapUsed": 7658736,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 113524736,
+            "heapTotal": 14553088,
+            "heapUsed": 11346528,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 38.269698000000005,
+          "cpu": {
+            "user": 78154,
+            "system": 987
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 92798976,
+            "heapTotal": 12718080,
+            "heapUsed": 7658032,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 114057216,
+            "heapTotal": 14553088,
+            "heapUsed": 11348304,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 37.80661599999999,
+          "cpu": {
+            "user": 76810,
+            "system": 1895
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 92925952,
+            "heapTotal": 12718080,
+            "heapUsed": 7658128,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 114401280,
+            "heapTotal": 14553088,
+            "heapUsed": 11347784,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 38.152317,
+          "cpu": {
+            "user": 79329,
+            "system": 1823
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 93622272,
+            "heapTotal": 12718080,
+            "heapUsed": 7658032,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 112472064,
+            "heapTotal": 14553088,
+            "heapUsed": 11368624,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 38.73186,
+          "cpu": {
+            "user": 77063,
+            "system": 6383
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 92749824,
+            "heapTotal": 12455936,
+            "heapUsed": 7658192,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 112439296,
+            "heapTotal": 14553088,
+            "heapUsed": 11346608,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 41.988299,
+          "cpu": {
+            "user": 91921,
+            "system": 5650
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 93327360,
+            "heapTotal": 12980224,
+            "heapUsed": 7658008,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 113168384,
+            "heapTotal": 14815232,
+            "heapUsed": 11125104,
+            "external": 6120762,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "python",
+          "ms": 38.142418000000006,
+          "cpu": {
+            "user": 80168,
+            "system": 2893
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 92962816,
+            "heapTotal": 12718080,
+            "heapUsed": 7658584,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 114106368,
+            "heapTotal": 14553088,
+            "heapUsed": 11344216,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 37.97890700000001,
+          "cpu": {
+            "user": 74348,
+            "system": 5807
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 92786688,
+            "heapTotal": 12980224,
+            "heapUsed": 7658008,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 111706112,
+            "heapTotal": 14553088,
+            "heapUsed": 11349296,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 38.163397,
+          "cpu": {
+            "user": 76423,
+            "system": 4290
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 92729344,
+            "heapTotal": 12718080,
+            "heapUsed": 7659816,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 114970624,
+            "heapTotal": 14553088,
+            "heapUsed": 11338040,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 37.543834000000004,
+          "cpu": {
+            "user": 76911,
+            "system": 4891
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 91930624,
+            "heapTotal": 12718080,
+            "heapUsed": 7658056,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 112939008,
+            "heapTotal": 14553088,
+            "heapUsed": 11117200,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 38.450858999999994,
+          "cpu": {
+            "user": 77188,
+            "system": 3179
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 93184000,
+            "heapTotal": 12455936,
+            "heapUsed": 7658632,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 115957760,
+            "heapTotal": 14553088,
+            "heapUsed": 11297592,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 38.408429,
+          "cpu": {
+            "user": 75281,
+            "system": 3860
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 92815360,
+            "heapTotal": 12718080,
+            "heapUsed": 7657200,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 110968832,
+            "heapTotal": 14553088,
+            "heapUsed": 11361200,
+            "external": 6120762,
+            "arrayBuffers": 1695519
+          }
+        },
+        {
+          "language": "python",
+          "ms": 38.93095199999999,
+          "cpu": {
+            "user": 75418,
+            "system": 3947
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 93933568,
+            "heapTotal": 12718080,
+            "heapUsed": 7658632,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 113115136,
+            "heapTotal": 14553088,
+            "heapUsed": 11128576,
+            "external": 6120762,
+            "arrayBuffers": 1695519
+          }
+        },
+        {
+          "language": "python",
+          "ms": 38.042457,
+          "cpu": {
+            "user": 77471,
+            "system": 2997
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 93216768,
+            "heapTotal": 12718080,
+            "heapUsed": 7658176,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 111685632,
+            "heapTotal": 14553088,
+            "heapUsed": 11112608,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 37.768135,
+          "cpu": {
+            "user": 71080,
+            "system": 6433
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 92418048,
+            "heapTotal": 12455936,
+            "heapUsed": 7658056,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 111714304,
+            "heapTotal": 14553088,
+            "heapUsed": 11115976,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 37.786995000000005,
+          "cpu": {
+            "user": 77217,
+            "system": 3347
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 93061120,
+            "heapTotal": 12718080,
+            "heapUsed": 7658888,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 111415296,
+            "heapTotal": 14553088,
+            "heapUsed": 11127560,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 40.293009,
+          "cpu": {
+            "user": 83790,
+            "system": 5365
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 92737536,
+            "heapTotal": 12980224,
+            "heapUsed": 7658152,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 112037888,
+            "heapTotal": 14553088,
+            "heapUsed": 11116304,
+            "external": 6120762,
+            "arrayBuffers": 1695519
+          }
+        },
+        {
+          "language": "python",
+          "ms": 37.887156000000004,
+          "cpu": {
+            "user": 78854,
+            "system": 1127
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 92839936,
+            "heapTotal": 12455936,
+            "heapUsed": 7657320,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 115331072,
+            "heapTotal": 14290944,
+            "heapUsed": 11346400,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 38.218047999999996,
+          "cpu": {
+            "user": 78273,
+            "system": 3040
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 93212672,
+            "heapTotal": 12718080,
+            "heapUsed": 7657224,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 111845376,
+            "heapTotal": 14553088,
+            "heapUsed": 11353112,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 38.379389,
+          "cpu": {
+            "user": 79423,
+            "system": 3167
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 92454912,
+            "heapTotal": 12455936,
+            "heapUsed": 7658584,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 112738304,
+            "heapTotal": 14553088,
+            "heapUsed": 11348656,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 37.94387599999999,
+          "cpu": {
+            "user": 73253,
+            "system": 4431
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 92491776,
+            "heapTotal": 12455936,
+            "heapUsed": 7658024,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 111579136,
+            "heapTotal": 14553088,
+            "heapUsed": 11352032,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 38.503619,
+          "cpu": {
+            "user": 78036,
+            "system": 4697
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 93614080,
+            "heapTotal": 12455936,
+            "heapUsed": 7658104,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 112644096,
+            "heapTotal": 14815232,
+            "heapUsed": 11348320,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 37.797426,
+          "cpu": {
+            "user": 73827,
+            "system": 5952
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 92155904,
+            "heapTotal": 12718080,
+            "heapUsed": 7658936,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 111288320,
+            "heapTotal": 14553088,
+            "heapUsed": 11345328,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 37.90360600000001,
+          "cpu": {
+            "user": 75948,
+            "system": 3924
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 92545024,
+            "heapTotal": 12455936,
+            "heapUsed": 7658056,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 113070080,
+            "heapTotal": 14553088,
+            "heapUsed": 11354480,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 39.585736,
+          "cpu": {
+            "user": 81583,
+            "system": 2405
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 93294592,
+            "heapTotal": 12718080,
+            "heapUsed": 7658464,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 112349184,
+            "heapTotal": 14553088,
+            "heapUsed": 11362736,
+            "external": 6120762,
+            "arrayBuffers": 1695519
+          }
+        },
+        {
+          "language": "python",
+          "ms": 38.056867,
+          "cpu": {
+            "user": 79609,
+            "system": 2777
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 92798976,
+            "heapTotal": 12455936,
+            "heapUsed": 7658056,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 112750592,
+            "heapTotal": 14553088,
+            "heapUsed": 11351384,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 38.33895799999999,
+          "cpu": {
+            "user": 79027,
+            "system": 2789
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 92536832,
+            "heapTotal": 12455936,
+            "heapUsed": 7658936,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 113827840,
+            "heapTotal": 14553088,
+            "heapUsed": 11135456,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        },
+        {
+          "language": "python",
+          "ms": 39.027822,
+          "cpu": {
+            "user": 84234,
+            "system": 0
+          },
+          "result": "code",
+          "cacheBytes": 141728,
+          "followups": [],
+          "before": {
+            "rss": 94552064,
+            "heapTotal": 12455936,
+            "heapUsed": 7657816,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 114569216,
+            "heapTotal": 14553088,
+            "heapUsed": 11127624,
+            "external": 6120562,
+            "arrayBuffers": 1695319
+          }
+        }
+      ]
+    },
+    {
+      "language": "javascript",
+      "n": 30,
+      "p50": 48.77556800000001,
+      "p95": 50.64075899999999,
+      "unknown": 30,
+      "samples": [
+        {
+          "language": "javascript",
+          "ms": 49.86025500000001,
+          "cpu": {
+            "user": 115840,
+            "system": 3182
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.993791000000016,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92614656,
+            "heapTotal": 12718080,
+            "heapUsed": 7658592,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 122671104,
+            "heapTotal": 17436672,
+            "heapUsed": 11702792,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.77556800000001,
+          "cpu": {
+            "user": 113299,
+            "system": 3995
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 16.252353,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92704768,
+            "heapTotal": 12718080,
+            "heapUsed": 7658744,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 120463360,
+            "heapTotal": 18223104,
+            "heapUsed": 11702680,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.868988,
+          "cpu": {
+            "user": 109060,
+            "system": 7350
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.505568999999994,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93179904,
+            "heapTotal": 12718080,
+            "heapUsed": 7658064,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 124276736,
+            "heapTotal": 18485248,
+            "heapUsed": 11704144,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.21310500000001,
+          "cpu": {
+            "user": 111465,
+            "system": 5256
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.866320999999985,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92639232,
+            "heapTotal": 12455936,
+            "heapUsed": 7657784,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 122540032,
+            "heapTotal": 17436672,
+            "heapUsed": 11699648,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.841438,
+          "cpu": {
+            "user": 113424,
+            "system": 4178
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.554298999999986,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93351936,
+            "heapTotal": 13242368,
+            "heapUsed": 7658064,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 121831424,
+            "heapTotal": 18485248,
+            "heapUsed": 11702912,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.674037,
+          "cpu": {
+            "user": 110080,
+            "system": 5795
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.710740000000001,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93569024,
+            "heapTotal": 12718080,
+            "heapUsed": 7658064,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 123109376,
+            "heapTotal": 18223104,
+            "heapUsed": 11704096,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.156925,
+          "cpu": {
+            "user": 111561,
+            "system": 5392
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.651038999999983,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93007872,
+            "heapTotal": 12455936,
+            "heapUsed": 7659024,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 122052608,
+            "heapTotal": 17698816,
+            "heapUsed": 11702984,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.786148,
+          "cpu": {
+            "user": 113908,
+            "system": 4224
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.645519000000007,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92098560,
+            "heapTotal": 12455936,
+            "heapUsed": 7657112,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 124932096,
+            "heapTotal": 18747392,
+            "heapUsed": 11718088,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 49.55923299999999,
+          "cpu": {
+            "user": 117969,
+            "system": 3106
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 16.307582999999994,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93007872,
+            "heapTotal": 12718080,
+            "heapUsed": 7658536,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 122593280,
+            "heapTotal": 18485248,
+            "heapUsed": 11702776,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.738478000000015,
+          "cpu": {
+            "user": 113567,
+            "system": 3399
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.656319000000025,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 91897856,
+            "heapTotal": 12455936,
+            "heapUsed": 7657704,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 122150912,
+            "heapTotal": 18223104,
+            "heapUsed": 11717520,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.641256999999996,
+          "cpu": {
+            "user": 112487,
+            "system": 4184
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.723809000000003,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92434432,
+            "heapTotal": 12718080,
+            "heapUsed": 7657232,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 121655296,
+            "heapTotal": 17960960,
+            "heapUsed": 11703744,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.12738399999999,
+          "cpu": {
+            "user": 109357,
+            "system": 6248
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.856949999999998,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92831744,
+            "heapTotal": 12455936,
+            "heapUsed": 7657904,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 123523072,
+            "heapTotal": 17436672,
+            "heapUsed": 11703600,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.567756999999986,
+          "cpu": {
+            "user": 112677,
+            "system": 5113
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.70330899999999,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93069312,
+            "heapTotal": 12455936,
+            "heapUsed": 7658064,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 122494976,
+            "heapTotal": 17698816,
+            "heapUsed": 11702608,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 49.17123000000001,
+          "cpu": {
+            "user": 110978,
+            "system": 7070
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.773979999999995,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93589504,
+            "heapTotal": 12718080,
+            "heapUsed": 7658680,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 124301312,
+            "heapTotal": 18223104,
+            "heapUsed": 11702776,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.52994700000001,
+          "cpu": {
+            "user": 109590,
+            "system": 7128
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 16.119202,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93016064,
+            "heapTotal": 12455936,
+            "heapUsed": 7658664,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 121679872,
+            "heapTotal": 17436672,
+            "heapUsed": 11703432,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.635827000000006,
+          "cpu": {
+            "user": 114606,
+            "system": 4239
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 16.080751000000006,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93605888,
+            "heapTotal": 12718080,
+            "heapUsed": 7657376,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 123191296,
+            "heapTotal": 17436672,
+            "heapUsed": 11699464,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 49.27231999999999,
+          "cpu": {
+            "user": 112786,
+            "system": 5012
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.723929000000012,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93597696,
+            "heapTotal": 12455936,
+            "heapUsed": 7658064,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 122761216,
+            "heapTotal": 17436672,
+            "heapUsed": 11705152,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.266255,
+          "cpu": {
+            "user": 113812,
+            "system": 3315
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.842200999999989,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92995584,
+            "heapTotal": 12718080,
+            "heapUsed": 7658112,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 121307136,
+            "heapTotal": 18485248,
+            "heapUsed": 11703688,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 49.035639,
+          "cpu": {
+            "user": 111150,
+            "system": 5727
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.566738000000015,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93732864,
+            "heapTotal": 12718080,
+            "heapUsed": 7658568,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 125083648,
+            "heapTotal": 18223104,
+            "heapUsed": 11719328,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.625527000000005,
+          "cpu": {
+            "user": 111510,
+            "system": 4849
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.764229999999998,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92729344,
+            "heapTotal": 12455936,
+            "heapUsed": 7658688,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 122544128,
+            "heapTotal": 18485248,
+            "heapUsed": 11718168,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 49.08422899999999,
+          "cpu": {
+            "user": 112020,
+            "system": 6881
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.63285900000001,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 94076928,
+            "heapTotal": 12718080,
+            "heapUsed": 7657920,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 122998784,
+            "heapTotal": 17698816,
+            "heapUsed": 11703808,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 51.97113599999999,
+          "cpu": {
+            "user": 118495,
+            "system": 3865
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.734530000000007,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93286400,
+            "heapTotal": 12718080,
+            "heapUsed": 7658112,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 121024512,
+            "heapTotal": 17698816,
+            "heapUsed": 11702696,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.726228000000006,
+          "cpu": {
+            "user": 112833,
+            "system": 2928
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.668069000000003,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92901376,
+            "heapTotal": 12455936,
+            "heapUsed": 7658592,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 122318848,
+            "heapTotal": 19009536,
+            "heapUsed": 11717152,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.88023899999999,
+          "cpu": {
+            "user": 113661,
+            "system": 3839
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.681268999999986,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92934144,
+            "heapTotal": 12455936,
+            "heapUsed": 7658136,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 124006400,
+            "heapTotal": 18223104,
+            "heapUsed": 11702824,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.44138699999999,
+          "cpu": {
+            "user": 119756,
+            "system": 2224
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.613579000000016,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93097984,
+            "heapTotal": 12718080,
+            "heapUsed": 7658568,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 122896384,
+            "heapTotal": 18223104,
+            "heapUsed": 11704128,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.678967,
+          "cpu": {
+            "user": 110296,
+            "system": 6696
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 16.590424,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92454912,
+            "heapTotal": 12718080,
+            "heapUsed": 7658064,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 119660544,
+            "heapTotal": 17698816,
+            "heapUsed": 11702624,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 50.64075899999999,
+          "cpu": {
+            "user": 116352,
+            "system": 5985
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.705369999999988,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93220864,
+            "heapTotal": 12455936,
+            "heapUsed": 7658064,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 123559936,
+            "heapTotal": 17698816,
+            "heapUsed": 11704072,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.894268999999994,
+          "cpu": {
+            "user": 111627,
+            "system": 4256
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.927800999999988,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92434432,
+            "heapTotal": 12718080,
+            "heapUsed": 7657904,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 123404288,
+            "heapTotal": 17960960,
+            "heapUsed": 11718400,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 49.447721,
+          "cpu": {
+            "user": 116704,
+            "system": 5098
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.939939999999993,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93192192,
+            "heapTotal": 12718080,
+            "heapUsed": 7659384,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 123805696,
+            "heapTotal": 18485248,
+            "heapUsed": 11702704,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "javascript",
+          "ms": 48.968999,
+          "cpu": {
+            "user": 114027,
+            "system": 3351
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 239728,
+          "followups": [
+            {
+              "ms": 15.713409999999996,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92766208,
+            "heapTotal": 12718080,
+            "heapUsed": 7658256,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 121360384,
+            "heapTotal": 18747392,
+            "heapUsed": 11703112,
+            "external": 6189941,
+            "arrayBuffers": 1668734
+          }
+        }
+      ]
+    },
+    {
+      "language": "typescript",
+      "n": 30,
+      "p50": 49.269441,
+      "p95": 50.142585,
+      "unknown": 30,
+      "samples": [
+        {
+          "language": "typescript",
+          "ms": 48.44981600000001,
+          "cpu": {
+            "user": 109088,
+            "system": 6962
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.733518999999987,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92921856,
+            "heapTotal": 12455936,
+            "heapUsed": 7658592,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 124436480,
+            "heapTotal": 17698816,
+            "heapUsed": 11764680,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 49.678353,
+          "cpu": {
+            "user": 116977,
+            "system": 2732
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.923201000000006,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93310976,
+            "heapTotal": 12718080,
+            "heapUsed": 7658040,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 121679872,
+            "heapTotal": 17698816,
+            "heapUsed": 11760136,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 49.222369999999984,
+          "cpu": {
+            "user": 118665,
+            "system": 1884
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 16.041292,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92532736,
+            "heapTotal": 12455936,
+            "heapUsed": 7658064,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 124440576,
+            "heapTotal": 17174528,
+            "heapUsed": 11764784,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 49.45168200000002,
+          "cpu": {
+            "user": 116594,
+            "system": 2943
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 16.672345000000007,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93683712,
+            "heapTotal": 12980224,
+            "heapUsed": 7659624,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 123150336,
+            "heapTotal": 17436672,
+            "heapUsed": 11760040,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 49.372551,
+          "cpu": {
+            "user": 113104,
+            "system": 5743
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.994250999999991,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93184000,
+            "heapTotal": 12718080,
+            "heapUsed": 7658040,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 120983552,
+            "heapTotal": 17436672,
+            "heapUsed": 11755896,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 49.568393,
+          "cpu": {
+            "user": 113809,
+            "system": 4023
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 16.037780999999995,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93257728,
+            "heapTotal": 12980224,
+            "heapUsed": 7658384,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 124600320,
+            "heapTotal": 17698816,
+            "heapUsed": 11761600,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 49.203981,
+          "cpu": {
+            "user": 115406,
+            "system": 1758
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.683539999999994,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93728768,
+            "heapTotal": 12718080,
+            "heapUsed": 7657968,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 121487360,
+            "heapTotal": 17698816,
+            "heapUsed": 11758712,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 49.851454000000004,
+          "cpu": {
+            "user": 109804,
+            "system": 8033
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.928671000000008,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92753920,
+            "heapTotal": 12718080,
+            "heapUsed": 7658800,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 124264448,
+            "heapTotal": 17960960,
+            "heapUsed": 11760664,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 49.464912,
+          "cpu": {
+            "user": 109905,
+            "system": 8303
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.764210000000006,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93802496,
+            "heapTotal": 12980224,
+            "heapUsed": 7657944,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 127152128,
+            "heapTotal": 17698816,
+            "heapUsed": 11759952,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 48.708136999999994,
+          "cpu": {
+            "user": 112214,
+            "system": 6798
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.723999000000006,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93483008,
+            "heapTotal": 12718080,
+            "heapUsed": 7658968,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 123031552,
+            "heapTotal": 17436672,
+            "heapUsed": 11765152,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 49.34920100000001,
+          "cpu": {
+            "user": 111915,
+            "system": 9868
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 16.08243200000001,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93741056,
+            "heapTotal": 12718080,
+            "heapUsed": 7658944,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 121565184,
+            "heapTotal": 17436672,
+            "heapUsed": 11762256,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 47.902113,
+          "cpu": {
+            "user": 112497,
+            "system": 3610
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.632938999999993,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93442048,
+            "heapTotal": 12718080,
+            "heapUsed": 7659016,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 126025728,
+            "heapTotal": 17960960,
+            "heapUsed": 11763560,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 48.595787000000016,
+          "cpu": {
+            "user": 113482,
+            "system": 4122
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.835290000000015,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93536256,
+            "heapTotal": 12455936,
+            "heapUsed": 7658088,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 123678720,
+            "heapTotal": 17960960,
+            "heapUsed": 11765624,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 49.002229,
+          "cpu": {
+            "user": 113985,
+            "system": 4122
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.90625,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92442624,
+            "heapTotal": 12455936,
+            "heapUsed": 7658552,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 123781120,
+            "heapTotal": 17436672,
+            "heapUsed": 11763720,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 50.142585,
+          "cpu": {
+            "user": 116370,
+            "system": 6728
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.844660000000005,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93302784,
+            "heapTotal": 12455936,
+            "heapUsed": 7658552,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 123465728,
+            "heapTotal": 17436672,
+            "heapUsed": 11761896,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 49.440302,
+          "cpu": {
+            "user": 115439,
+            "system": 4728
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.814351000000002,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93552640,
+            "heapTotal": 12455936,
+            "heapUsed": 7659472,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 123084800,
+            "heapTotal": 17698816,
+            "heapUsed": 11759824,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 48.85535899999999,
+          "cpu": {
+            "user": 115972,
+            "system": 3335
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.776670000000024,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93487104,
+            "heapTotal": 12718080,
+            "heapUsed": 7658040,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 122892288,
+            "heapTotal": 17698816,
+            "heapUsed": 11761384,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 49.94836500000001,
+          "cpu": {
+            "user": 114544,
+            "system": 3221
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.782409999999999,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93065216,
+            "heapTotal": 12718080,
+            "heapUsed": 7657232,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 123203584,
+            "heapTotal": 17960960,
+            "heapUsed": 11760560,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 48.586207,
+          "cpu": {
+            "user": 116780,
+            "system": 2348
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.729590000000002,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93061120,
+            "heapTotal": 12718080,
+            "heapUsed": 7658064,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 123920384,
+            "heapTotal": 17698816,
+            "heapUsed": 11760256,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 49.834154,
+          "cpu": {
+            "user": 113024,
+            "system": 6229
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 16.026550999999984,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93007872,
+            "heapTotal": 12980224,
+            "heapUsed": 7658016,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 124620800,
+            "heapTotal": 17960960,
+            "heapUsed": 11762944,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 48.68811699999999,
+          "cpu": {
+            "user": 113592,
+            "system": 4231
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 16.061511999999993,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93913088,
+            "heapTotal": 12718080,
+            "heapUsed": 7658040,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 124735488,
+            "heapTotal": 17698816,
+            "heapUsed": 11763056,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 49.11019,
+          "cpu": {
+            "user": 116950,
+            "system": 2983
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.778710000000004,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93081600,
+            "heapTotal": 12455936,
+            "heapUsed": 7658656,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 123305984,
+            "heapTotal": 17436672,
+            "heapUsed": 11764576,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 48.65795800000001,
+          "cpu": {
+            "user": 111053,
+            "system": 5676
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 16.497694000000024,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93990912,
+            "heapTotal": 12718080,
+            "heapUsed": 7658040,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 123994112,
+            "heapTotal": 17960960,
+            "heapUsed": 11761912,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 49.73930300000001,
+          "cpu": {
+            "user": 116598,
+            "system": 4709
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.789360000000016,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93683712,
+            "heapTotal": 12718080,
+            "heapUsed": 7657920,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 120397824,
+            "heapTotal": 17698816,
+            "heapUsed": 11759880,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 49.349761000000015,
+          "cpu": {
+            "user": 114035,
+            "system": 4999
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.770119999999991,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92680192,
+            "heapTotal": 12718080,
+            "heapUsed": 7658064,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 121151488,
+            "heapTotal": 17960960,
+            "heapUsed": 11760456,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 48.420406,
+          "cpu": {
+            "user": 113999,
+            "system": 3790
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.631759000000002,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 94322688,
+            "heapTotal": 12455936,
+            "heapUsed": 7657824,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 123113472,
+            "heapTotal": 17698816,
+            "heapUsed": 11765744,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 49.269441,
+          "cpu": {
+            "user": 114255,
+            "system": 4569
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.787059999999997,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93212672,
+            "heapTotal": 12718080,
+            "heapUsed": 7657944,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 122130432,
+            "heapTotal": 17960960,
+            "heapUsed": 11761624,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 50.63687800000001,
+          "cpu": {
+            "user": 113947,
+            "system": 7095
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 16.034872000000007,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 94478336,
+            "heapTotal": 13242368,
+            "heapUsed": 7659208,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 126955520,
+            "heapTotal": 17960960,
+            "heapUsed": 11764968,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 48.63368700000001,
+          "cpu": {
+            "user": 114007,
+            "system": 3622
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 15.795249999999982,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92856320,
+            "heapTotal": 12718080,
+            "heapUsed": 7659024,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 123326464,
+            "heapTotal": 17960960,
+            "heapUsed": 11760288,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "typescript",
+          "ms": 49.599942999999996,
+          "cpu": {
+            "user": 113590,
+            "system": 3197
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 289328,
+          "followups": [
+            {
+              "ms": 16.251442999999995,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93351936,
+            "heapTotal": 12718080,
+            "heapUsed": 7658656,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 127242240,
+            "heapTotal": 17698816,
+            "heapUsed": 11761792,
+            "external": 6093977,
+            "arrayBuffers": 1668734
+          }
+        }
+      ]
+    },
+    {
+      "language": "c",
+      "n": 30,
+      "p50": 41.614357999999996,
+      "p95": 44.12994100000002,
+      "unknown": 0,
+      "samples": [
+        {
+          "language": "c",
+          "ms": 41.712647000000004,
+          "cpu": {
+            "user": 96728,
+            "system": 2664
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 92717056,
+            "heapTotal": 12718080,
+            "heapUsed": 7658008,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 111054848,
+            "heapTotal": 16912384,
+            "heapUsed": 11498112,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 43.218126,
+          "cpu": {
+            "user": 98593,
+            "system": 4830
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 94269440,
+            "heapTotal": 12718080,
+            "heapUsed": 7657528,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 117100544,
+            "heapTotal": 17174528,
+            "heapUsed": 11226496,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 43.23083700000001,
+          "cpu": {
+            "user": 99611,
+            "system": 4926
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 91836416,
+            "heapTotal": 12455936,
+            "heapUsed": 7657912,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 115675136,
+            "heapTotal": 16912384,
+            "heapUsed": 11674048,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 42.872553999999994,
+          "cpu": {
+            "user": 93336,
+            "system": 7300
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 93941760,
+            "heapTotal": 12455936,
+            "heapUsed": 7658520,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 110485504,
+            "heapTotal": 16650240,
+            "heapUsed": 11213704,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 44.12994100000002,
+          "cpu": {
+            "user": 102048,
+            "system": 2286
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 93147136,
+            "heapTotal": 12718080,
+            "heapUsed": 7658008,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 116428800,
+            "heapTotal": 16912384,
+            "heapUsed": 11459392,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 45.94644199999999,
+          "cpu": {
+            "user": 99670,
+            "system": 6525
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 93564928,
+            "heapTotal": 12455936,
+            "heapUsed": 7657200,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 115183616,
+            "heapTotal": 17174528,
+            "heapUsed": 11281472,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 43.948431,
+          "cpu": {
+            "user": 101176,
+            "system": 5005
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 92422144,
+            "heapTotal": 12718080,
+            "heapUsed": 7657248,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 112779264,
+            "heapTotal": 17698816,
+            "heapUsed": 11282216,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 41.614357999999996,
+          "cpu": {
+            "user": 95992,
+            "system": 2000
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 92971008,
+            "heapTotal": 12455936,
+            "heapUsed": 7657504,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 116744192,
+            "heapTotal": 16912384,
+            "heapUsed": 11233952,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 41.299336,
+          "cpu": {
+            "user": 92076,
+            "system": 4687
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 92930048,
+            "heapTotal": 12718080,
+            "heapUsed": 7658424,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 110702592,
+            "heapTotal": 17174528,
+            "heapUsed": 11239392,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 41.394356,
+          "cpu": {
+            "user": 92076,
+            "system": 3975
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 92766208,
+            "heapTotal": 12980224,
+            "heapUsed": 7657912,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 109674496,
+            "heapTotal": 16912384,
+            "heapUsed": 11207440,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 41.496427,
+          "cpu": {
+            "user": 90169,
+            "system": 7586
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 94060544,
+            "heapTotal": 12718080,
+            "heapUsed": 7658008,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 110727168,
+            "heapTotal": 16912384,
+            "heapUsed": 11245520,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 42.180490000000006,
+          "cpu": {
+            "user": 94723,
+            "system": 6778
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 93483008,
+            "heapTotal": 12718080,
+            "heapUsed": 7658008,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 111308800,
+            "heapTotal": 17174528,
+            "heapUsed": 11233616,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 43.103646,
+          "cpu": {
+            "user": 101393,
+            "system": 2811
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 92717056,
+            "heapTotal": 12455936,
+            "heapUsed": 7658032,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 111140864,
+            "heapTotal": 17960960,
+            "heapUsed": 11274824,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 42.1797,
+          "cpu": {
+            "user": 95658,
+            "system": 4044
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 93007872,
+            "heapTotal": 12718080,
+            "heapUsed": 7659440,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 111144960,
+            "heapTotal": 16912384,
+            "heapUsed": 11229384,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 42.472892,
+          "cpu": {
+            "user": 96194,
+            "system": 1992
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 92729344,
+            "heapTotal": 12455936,
+            "heapUsed": 7658056,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 118059008,
+            "heapTotal": 17174528,
+            "heapUsed": 11373480,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 41.182434,
+          "cpu": {
+            "user": 93446,
+            "system": 2257
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 93941760,
+            "heapTotal": 12718080,
+            "heapUsed": 7658960,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 112074752,
+            "heapTotal": 17174528,
+            "heapUsed": 11233344,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 41.203784999999996,
+          "cpu": {
+            "user": 92212,
+            "system": 5137
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 92946432,
+            "heapTotal": 12455936,
+            "heapUsed": 7658032,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 111390720,
+            "heapTotal": 17436672,
+            "heapUsed": 11307488,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 41.71003800000001,
+          "cpu": {
+            "user": 96572,
+            "system": 2793
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 93188096,
+            "heapTotal": 12718080,
+            "heapUsed": 7658128,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 116846592,
+            "heapTotal": 16650240,
+            "heapUsed": 11248688,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 41.339096,
+          "cpu": {
+            "user": 93178,
+            "system": 5045
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 93589504,
+            "heapTotal": 12718080,
+            "heapUsed": 7658280,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 116445184,
+            "heapTotal": 16912384,
+            "heapUsed": 11664872,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 41.835959,
+          "cpu": {
+            "user": 93635,
+            "system": 4800
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 95625216,
+            "heapTotal": 12718080,
+            "heapUsed": 7657480,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 111464448,
+            "heapTotal": 17174528,
+            "heapUsed": 11238928,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 41.643067,
+          "cpu": {
+            "user": 88491,
+            "system": 7998
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 92721152,
+            "heapTotal": 12718080,
+            "heapUsed": 7658008,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 107388928,
+            "heapTotal": 15339520,
+            "heapUsed": 11213528,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 40.887753000000004,
+          "cpu": {
+            "user": 92387,
+            "system": 3063
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 92618752,
+            "heapTotal": 12718080,
+            "heapUsed": 7658536,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 109613056,
+            "heapTotal": 17174528,
+            "heapUsed": 11452144,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 41.364126,
+          "cpu": {
+            "user": 94857,
+            "system": 5152
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 94519296,
+            "heapTotal": 12718080,
+            "heapUsed": 7658712,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 116600832,
+            "heapTotal": 17174528,
+            "heapUsed": 11582656,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 41.142875000000004,
+          "cpu": {
+            "user": 91839,
+            "system": 3991
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 92573696,
+            "heapTotal": 12718080,
+            "heapUsed": 7658280,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 108908544,
+            "heapTotal": 16912384,
+            "heapUsed": 11220792,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 41.58210700000001,
+          "cpu": {
+            "user": 92407,
+            "system": 4801
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 92987392,
+            "heapTotal": 12718080,
+            "heapUsed": 7658056,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 109899776,
+            "heapTotal": 16912384,
+            "heapUsed": 11699368,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 41.39308600000001,
+          "cpu": {
+            "user": 91989,
+            "system": 4075
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 93847552,
+            "heapTotal": 12455936,
+            "heapUsed": 7657272,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 116875264,
+            "heapTotal": 16912384,
+            "heapUsed": 11227168,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 41.640668000000005,
+          "cpu": {
+            "user": 92719,
+            "system": 3980
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 92471296,
+            "heapTotal": 12718080,
+            "heapUsed": 7658448,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 110903296,
+            "heapTotal": 17174528,
+            "heapUsed": 11305376,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 41.11797399999999,
+          "cpu": {
+            "user": 89672,
+            "system": 6832
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 93597696,
+            "heapTotal": 12718080,
+            "heapUsed": 7658232,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 110358528,
+            "heapTotal": 16912384,
+            "heapUsed": 11213576,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 41.042084,
+          "cpu": {
+            "user": 90191,
+            "system": 5860
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 93556736,
+            "heapTotal": 12980224,
+            "heapUsed": 7657912,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 109142016,
+            "heapTotal": 16650240,
+            "heapUsed": 11449824,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "c",
+          "ms": 41.47907599999999,
+          "cpu": {
+            "user": 92720,
+            "system": 3826
+          },
+          "result": "code",
+          "cacheBytes": 224528,
+          "followups": [],
+          "before": {
+            "rss": 93261824,
+            "heapTotal": 12718080,
+            "heapUsed": 7657888,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 109940736,
+            "heapTotal": 16912384,
+            "heapUsed": 11226392,
+            "external": 6115628,
+            "arrayBuffers": 1668734
+          }
+        }
+      ]
+    },
+    {
+      "language": "cpp",
+      "n": 30,
+      "p50": 69.559687,
+      "p95": 73.518209,
+      "unknown": 30,
+      "samples": [
+        {
+          "language": "cpp",
+          "ms": 69.898498,
+          "cpu": {
+            "user": 185001,
+            "system": 2961
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 17.86860199999998,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93175808,
+            "heapTotal": 12718080,
+            "heapUsed": 7658656,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 133009408,
+            "heapTotal": 34213888,
+            "heapUsed": 16659696,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 68.00223700000001,
+          "cpu": {
+            "user": 171823,
+            "system": 8976
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 17.938061999999974,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92643328,
+            "heapTotal": 12718080,
+            "heapUsed": 7657224,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 132009984,
+            "heapTotal": 33951744,
+            "heapUsed": 16654344,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 68.307809,
+          "cpu": {
+            "user": 168219,
+            "system": 11800
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 17.847061999999994,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93245440,
+            "heapTotal": 12455936,
+            "heapUsed": 7657728,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 133038080,
+            "heapTotal": 33951744,
+            "heapUsed": 16655080,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 71.13800600000002,
+          "cpu": {
+            "user": 179549,
+            "system": 6854
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 18.531056000000007,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93061120,
+            "heapTotal": 12718080,
+            "heapUsed": 7658096,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 131887104,
+            "heapTotal": 34213888,
+            "heapUsed": 16655040,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 66.86600099999998,
+          "cpu": {
+            "user": 160523,
+            "system": 11016
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 18.786637000000013,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93179904,
+            "heapTotal": 12718080,
+            "heapUsed": 7658056,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 133955584,
+            "heapTotal": 34476032,
+            "heapUsed": 16655064,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 69.948679,
+          "cpu": {
+            "user": 175005,
+            "system": 10314
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 17.970083000000017,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92839936,
+            "heapTotal": 12455936,
+            "heapUsed": 7658200,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 132190208,
+            "heapTotal": 33951744,
+            "heapUsed": 16654888,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 70.008039,
+          "cpu": {
+            "user": 176521,
+            "system": 9824
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 17.77424099999999,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93597696,
+            "heapTotal": 12455936,
+            "heapUsed": 7658584,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 133599232,
+            "heapTotal": 34213888,
+            "heapUsed": 16655176,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 70.16275900000001,
+          "cpu": {
+            "user": 166548,
+            "system": 9877
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 17.88752199999999,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92446720,
+            "heapTotal": 12455936,
+            "heapUsed": 7659080,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 131727360,
+            "heapTotal": 34476032,
+            "heapUsed": 16654288,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 70.43647099999998,
+          "cpu": {
+            "user": 174852,
+            "system": 16269
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 17.87236200000001,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92815360,
+            "heapTotal": 12718080,
+            "heapUsed": 7658736,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 133365760,
+            "heapTotal": 33951744,
+            "heapUsed": 16654344,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 70.853063,
+          "cpu": {
+            "user": 165783,
+            "system": 13265
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 18.58159600000002,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92106752,
+            "heapTotal": 12455936,
+            "heapUsed": 7658936,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 131760128,
+            "heapTotal": 33951744,
+            "heapUsed": 16655248,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 68.756302,
+          "cpu": {
+            "user": 169813,
+            "system": 10246
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 17.834861999999987,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92692480,
+            "heapTotal": 12455936,
+            "heapUsed": 7658376,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 132100096,
+            "heapTotal": 33951744,
+            "heapUsed": 16654392,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 68.15732899999999,
+          "cpu": {
+            "user": 166510,
+            "system": 7465
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 17.946832,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93663232,
+            "heapTotal": 12718080,
+            "heapUsed": 7658680,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 132489216,
+            "heapTotal": 34213888,
+            "heapUsed": 16659728,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 68.877402,
+          "cpu": {
+            "user": 161676,
+            "system": 10583
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 17.926412,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92786688,
+            "heapTotal": 12718080,
+            "heapUsed": 7658104,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 131878912,
+            "heapTotal": 33951744,
+            "heapUsed": 16654416,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 70.822194,
+          "cpu": {
+            "user": 166705,
+            "system": 12053
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 18.604546,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93040640,
+            "heapTotal": 12455936,
+            "heapUsed": 7658960,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 134492160,
+            "heapTotal": 34213888,
+            "heapUsed": 16654472,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 68.95427300000001,
+          "cpu": {
+            "user": 164695,
+            "system": 7171
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 18.141233,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93425664,
+            "heapTotal": 13242368,
+            "heapUsed": 7658256,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 132177920,
+            "heapTotal": 33689600,
+            "heapUsed": 16654272,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 69.042984,
+          "cpu": {
+            "user": 169136,
+            "system": 4852
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 17.987041999999974,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92442624,
+            "heapTotal": 12718080,
+            "heapUsed": 7658056,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 132571136,
+            "heapTotal": 33951744,
+            "heapUsed": 16654008,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 70.545642,
+          "cpu": {
+            "user": 177608,
+            "system": 7204
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 18.062103000000008,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92450816,
+            "heapTotal": 12455936,
+            "heapUsed": 7658056,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 134848512,
+            "heapTotal": 33689600,
+            "heapUsed": 16659240,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 69.682487,
+          "cpu": {
+            "user": 182050,
+            "system": 8497
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 18.006732999999997,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93425664,
+            "heapTotal": 12455936,
+            "heapUsed": 7658056,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 131366912,
+            "heapTotal": 33951744,
+            "heapUsed": 16654328,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 73.66607900000001,
+          "cpu": {
+            "user": 187619,
+            "system": 8715
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 18.023461999999995,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93040640,
+            "heapTotal": 12718080,
+            "heapUsed": 7658304,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 133029888,
+            "heapTotal": 34213888,
+            "heapUsed": 16659472,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 69.559687,
+          "cpu": {
+            "user": 162910,
+            "system": 11377
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 17.951592000000005,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93245440,
+            "heapTotal": 12980224,
+            "heapUsed": 7657936,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 132567040,
+            "heapTotal": 34213888,
+            "heapUsed": 16659088,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 68.957403,
+          "cpu": {
+            "user": 164855,
+            "system": 10400
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 17.786200999999977,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92782592,
+            "heapTotal": 12455936,
+            "heapUsed": 7659008,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 133447680,
+            "heapTotal": 34213888,
+            "heapUsed": 16654960,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 69.919048,
+          "cpu": {
+            "user": 185848,
+            "system": 8050
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 17.840091,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93147136,
+            "heapTotal": 13242368,
+            "heapUsed": 7659248,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 131149824,
+            "heapTotal": 34213888,
+            "heapUsed": 16654976,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 73.518209,
+          "cpu": {
+            "user": 185628,
+            "system": 11261
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 18.989648000000017,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92372992,
+            "heapTotal": 12718080,
+            "heapUsed": 7658560,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 131678208,
+            "heapTotal": 34213888,
+            "heapUsed": 16661424,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 68.594391,
+          "cpu": {
+            "user": 162885,
+            "system": 8643
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 17.91570200000001,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92782592,
+            "heapTotal": 12718080,
+            "heapUsed": 7658728,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 134033408,
+            "heapTotal": 34213888,
+            "heapUsed": 16655272,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 68.22754899999998,
+          "cpu": {
+            "user": 171493,
+            "system": 11578
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 17.858401000000015,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92512256,
+            "heapTotal": 12455936,
+            "heapUsed": 7657280,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 131833856,
+            "heapTotal": 34213888,
+            "heapUsed": 16654272,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 69.815238,
+          "cpu": {
+            "user": 175578,
+            "system": 10681
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 18.025693000000018,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93552640,
+            "heapTotal": 12455936,
+            "heapUsed": 7657752,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 131399680,
+            "heapTotal": 33951744,
+            "heapUsed": 16655088,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 69.13962400000001,
+          "cpu": {
+            "user": 180350,
+            "system": 7167
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 17.952271999999994,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92782592,
+            "heapTotal": 12455936,
+            "heapUsed": 7658648,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 131780608,
+            "heapTotal": 34213888,
+            "heapUsed": 16654976,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 69.62389699999999,
+          "cpu": {
+            "user": 172883,
+            "system": 12828
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 18.12506399999998,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93134848,
+            "heapTotal": 12455936,
+            "heapUsed": 7658080,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 132263936,
+            "heapTotal": 33689600,
+            "heapUsed": 16659184,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 68.54242999999998,
+          "cpu": {
+            "user": 171047,
+            "system": 9876
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 18.049671999999987,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 93605888,
+            "heapTotal": 12718080,
+            "heapUsed": 7657936,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 133611520,
+            "heapTotal": 33689600,
+            "heapUsed": 16654720,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        },
+        {
+          "language": "cpp",
+          "ms": 68.746452,
+          "cpu": {
+            "user": 172415,
+            "system": 10107
+          },
+          "result": "unknown",
+          "reason": "tokenizer-timeout",
+          "cacheBytes": 176928,
+          "followups": [
+            {
+              "ms": 18.162033000000008,
+              "result": "code"
+            }
+          ],
+          "before": {
+            "rss": 92422144,
+            "heapTotal": 12718080,
+            "heapUsed": 7658680,
+            "external": 3975443,
+            "arrayBuffers": 1192599
+          },
+          "after": {
+            "rss": 131801088,
+            "heapTotal": 33689600,
+            "heapUsed": 16655104,
+            "external": 6584686,
+            "arrayBuffers": 1668734
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -2,7 +2,9 @@
 
 在代码和文本之间移动光标时，自动选择你配置的输入源。
 
-当前为 **Linux x64 预览版**，支持 Fcitx5 和 IBus。Fcitx5 已有本地使用反馈，IBus 尚未完成真实桌面验证。此发布包不提供 Windows/macOS 功能。
+提供 **Linux x64、Windows x64/ARM64、macOS Intel/Apple Silicon** 平台包。Windows 使用 C++ helper，macOS 使用 Swift/TIS helper，由 GitHub Actions 编译并随包分发，无需用户安装编译器。Linux 支持 Fcitx5 和 IBus。
+
+Linux Fcitx5 已有本地使用反馈；Windows/macOS 和 IBus 尚未完成真实桌面输入法验证，首次使用请确认实际切换结果。编译和自动测试通过不等于真实输入法兼容性已验证。
 
 ## 能做什么
 
@@ -25,7 +27,9 @@
 
 ## 使用前提与限制
 
-需要系统已安装并运行 Fcitx5（含支持 `--check` 的 `fcitx5-remote`）或 IBus（含 `ibus` 命令）。扩展不会安装或启动系统输入法。如果两个框架都可用，在 `autoIme.backend` 中明确选择一个。
+Linux 需要系统已安装并运行 Fcitx5（含支持 `--check` 的 `fcitx5-remote`）或 IBus（含 `ibus` 命令）。扩展不会安装或启动系统输入法。如果两个框架都可用，在 `autoIme.backend` 中明确选择一个。
+
+Windows 仅支持可解析的 KLID 布局，不支持 TSF profile 或 IME 内部 conversion；macOS 使用已启用、可选择的 TIS source ID，不要求辅助功能权限。
 
 切换的是输入源，不是输入法内部的中文/英文模式。例如 Rime 内按 Shift 切换中英文，可能仍是同一个 `rime` 输入源；把两个方案都记录为它，不会产生预期的中英文切换。
 
@@ -45,7 +49,7 @@
 | `autoIme.enabledLanguages` | 启用的编程语言 |
 | `autoIme.rules.code/string/comment` | code、text、keep 策略 |
 | `autoIme.backend` | 自动探测或明确选择后端 |
-| `autoIme.fcitx5.code/text`、`autoIme.ibus.code/text` | 本机输入方案 |
+| `autoIme.windows.code/text`、`autoIme.macos.code/text`、`autoIme.fcitx5.code/text`、`autoIme.ibus.code/text` | 本机输入方案 |
 | `autoIme.switchDelayMs` | text 方案切换合并延迟，返回 code 不额外等待 |
 | `autoIme.maxFileSizeKB` | 文件大小阈值 |
 | `autoIme.debug` | 有界诊断日志，默认关闭 |

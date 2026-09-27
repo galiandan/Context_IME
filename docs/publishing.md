@@ -1,45 +1,32 @@
-# 在本地终端发布与更新
+# 发布与更新
 
-发布者 `Galiandan-CIO`，扩展完整 ID `Galiandan-CIO.vscode-auto-ime`。项目已安装固定版本的 vsce，不需要额外全局安装。发布脚本目前只上传 Linux x64 包；使用 README.marketplace.md，包含图标和离线资源。
+从 0.1.7 起，默认流程固定为：**提交并推送 → GitHub Actions 编译/打包 → 下载并校验产物 → 原样发布 Marketplace**。开发机器不编译 Windows/macOS helper，也不在发布时重新打包。
 
-## 当前机器的终端准备
+## 一次版本更新
 
-当前机器使用 pacman 安装的系统 Node.js/npm，直接在工程目录运行 npm 命令，不再需要手动 export PATH。新机器先安装 Node/npm，再执行 `npm ci`；vsce 随项目 devDependencies 安装，不需要全局安装。
-
-已有的 `Galiandan-CIO` 登录不受本次目录整理影响；未删除或重建认证信息。
-
-## 首次认证：本地 PAT 登录
-
-在 Azure DevOps 创建 Personal Access Token，选择 **All accessible organizations** 与 **Marketplace → Manage** 权限，并设置适当的有效期；使用拥有该 Publisher 发布权限的账号。
+1. 用 `npm version <新版本> --no-git-tag-version` 同步 package.json/lock；更新 CHANGELOG 和需要的说明。
+2. 提交所有应发布的改动并 push；分支 CI 会构建五个平台。也可推送匹配版本的 Tag，触发 GitHub Release 流程。
+3. 等待 CI/Release 全部成功；失败则修复后重新提交，不发布部分失败构建。
+4. 在该构建提交的干净工作区执行：
 
 ```sh
-npm run marketplace:login
+npm run publish:marketplace -- --run-id <GitHub运行ID> --dry-run
+# 确认需要公开发布后（已获得发布授权时无需再询问）：
+npm run publish:marketplace -- --run-id <GitHub运行ID>
 ```
 
-只在终端的交互提示中输入 PAT，不放到命令行参数、package.json、聊天、日志或源码里。网页登录市场不会自动完成 vsce 的终端认证。PAT 过期后重新登录。若需要临时环境变量方式，vsce 也支持本机 `VSCE_PAT`，不要把值提交到工程。
+脚本核对固定仓库 galiandan/Context_IME、workflow 名称、事件类型、success 状态和 HEAD。拒绝 PR 构建、不一致提交或未提交源码。下载到独立的 artifacts/vsix/github-<运行ID>-<随机后缀>/ 下，每个 vsix-<target> 子目录包含原始 VSIX。每次执行使用新目录，避免复用旧包。
 
-认证政策核验日期为 2026-09-27：官方已公告 Azure DevOps 的 global PAT 将在 **2026-12-01** 退役，并推荐 Microsoft Entra ID。上面的 PAT 方式是当前仍支持的本地路径，不应作为永久自动化方案。已配置相应 Entra 凭据及 Publisher 权限时，可使用：
+五个平台的版本、发布者、grammar/WASM 哈希、README、helper 架构及 macOS 执行权限全部通过后，调用项目级 vsce publish --packagePath，上传这些文件；不执行 npm run build/package。dry-run 同样下载和校验，但不登录或上传。源选择/真实桌面验证状态应如实记录，CI 编译通过不能代替实机验证。
 
-```sh
-npm run publish:marketplace -- --azure-credential
-```
+Marketplace 的五个上传操作不是原子事务；若部分平台已成功而后续失败，检查日志和市场已有目标，只重试缺失目标，不删除已发布版本。必要时使用项目级 `node node_modules/@vscode/vsce/vsce publish --packagePath <已校验的缺失平台VSIX>`。
 
-该参数不会替你创建 Azure 账号、身份或授权。官方认证与发布说明：https://code.visualstudio.com/api/working-with-extensions/publishing-extension
+## 凭据
 
-## 后续发布一个更新
+首次在本机执行 `npm run marketplace:login`，Publisher 为 Galiandan-CIO；凭据存储由 vsce 管理，不提交到仓库。可使用已有 VSCE_PAT 环境变量或受支持的 Azure 凭据。GitHub 下载使用 gh 的已有登录。不要把 PAT 写进命令行参数、日志或配置文件。
 
-完成修改后，更新 CHANGELOG.md 和市场介绍页，再递增版本。例如当前本地 0.1.3，下一次修复可升级为 0.1.4：
+GitHub workflow 当前只自动发布 GitHub Release。未来若在 Actions 内上传 Marketplace，必须使用 Actions Secret `VSCE_PAT`；本机登录不会自动传给 GitHub Runner。
 
-```sh
-npm version patch --no-git-tag-version
-npm run publish:marketplace -- --dry-run
-npm run publish:marketplace
-```
+## 本地打包
 
-- version 命令同步更新 package.json 和 package-lock.json，不自动创建 Git tag；确认发布后可按需要记录 Git 提交和标签。
-- dry-run 执行 lint、strict typecheck、全部单元测试及市场专用打包，不认证、不上传，也不改变版本号。
-- 不带 dry-run 时重复这些检查，成功后通过 `vsce publish --packagePath <本次生成包>` 上传，确保发布的是刚刚打出的 Linux x64 市场包。
-- 每次更新使用新的版本号；不要尝试覆盖已经发布的相同版本。发布脚本不自动递增版本、不自动重试上传。
-- 以上发布测试不包含真实输入法设置。涉及事件/焦点改动时，发布前另运行 npm run test:integration 并完成必要的实机回归。
-
-如果只想手工上传，继续使用 `npm run package:marketplace`，然后从 artifacts/vsix/ 目录拿到 VSIX。所有登录和发布均是显式命令；npm install、npm ci、npm run build 不上传市场。
+`npm run package -- <target>` 仍可供调试；所有目标都使用 README.marketplace.md，包名自动读取 package.json。`package:marketplace` 保留为 Linux 本地打包的兼容入口，输出带 publisher 后缀；它不再是默认发布来源。不要用本地包替换刚下载的 CI 产物。

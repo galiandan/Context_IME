@@ -68,6 +68,7 @@ export class Adapter {
     }
   }
   private async native(args: string[], timeout = 1500): Promise<NativeReply> {
+    this.observed = undefined;
     let parsed: unknown;
     try {
       parsed = JSON.parse(
@@ -87,9 +88,24 @@ export class Adapter {
       (parsed as NativeReply).version !== 1
     )
       throw new Error("INVALID_OUTPUT");
-    return parsed as NativeReply;
+    const reply = parsed as NativeReply;
+    const operation = args[0];
+    if (operation === "get" || operation === "set" || operation === "probe") {
+      if (reply.status !== "observed") throw new Error("INVALID_OUTPUT");
+      source(reply.sourceId);
+    } else if (operation === "target") {
+      if (
+        typeof reply.target !== "string" ||
+        !reply.target ||
+        reply.target.length > 128 ||
+        /[^0-9:]/u.test(reply.target)
+      )
+        throw new Error("FOCUS_UNSAFE");
+    }
+    return reply;
   }
   async get(timeout = 1500): Promise<Observed> {
+    this.observed = undefined;
     this.getCount++;
     let id: string;
     if (this.backend === "fcitx5")
@@ -158,12 +174,17 @@ export class Adapter {
         const guard = await this.native(["target"], check());
         if (typeof guard.target !== "string" || guard.target.length > 128)
           throw new Error("FOCUS_UNSAFE");
-        await this.native(
+        this.observed = undefined;
+        const reply = await this.native(
           ["set", "--source", id, "--target", guard.target],
           check(),
         );
+        check();
+        observed = { sourceId: source(reply.sourceId), observedAt: Date.now() };
+        this.observed = observed;
       }
-      observed = await this.get(check());
+      if (this.backend === "fcitx5" || this.backend === "ibus")
+        observed = await this.get(check());
       check();
     }
     return {

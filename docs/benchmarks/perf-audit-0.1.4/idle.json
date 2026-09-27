@@ -1,0 +1,45 @@
+{
+  "environment": {
+    "date": "2026-09-27T08:46:59.021Z",
+    "node": "v26.10.0",
+    "platform": "linux",
+    "kernel": "7.2.7-zen1-1-zen",
+    "cpu": "AMD Ryzen 7 9700X 8-Core Processor",
+    "extension": "0.1.4",
+    "cpuUnit": "microseconds",
+    "memoryUnit": "bytes",
+    "latencyUnit": "milliseconds"
+  },
+  "elapsed": 300079.331493,
+  "before": {
+    "processes": 2,
+    "get": 1,
+    "set": 0,
+    "memory": {
+      "rss": 120651776,
+      "heapTotal": 13504512,
+      "heapUsed": 7953168,
+      "external": 3991860,
+      "arrayBuffers": 1258159
+    }
+  },
+  "after": {
+    "processes": 2,
+    "get": 1,
+    "set": 0,
+    "memory": {
+      "rss": 117006336,
+      "heapTotal": 9048064,
+      "heapUsed": 7952552,
+      "external": 3821904,
+      "arrayBuffers": 1258175
+    }
+  },
+  "cpu": {
+    "user": 132649,
+    "system": 16196
+  },
+  "oneCoreCpuPercent": 0.04960188336179099,
+  "voluntaryContextSwitches": 942,
+  "scope": "Initialized core + read-only live adapter, not VS Code Host or power consumption"
+}

@@ -29,3 +29,24 @@ IME open/conversion 与源选择独立。IMM32 能否跨进程获取有效 HIMC�
 提供 C++ 源码、固定参数构建脚本、x64/arm64 构建方案、平台 CI，随对应 VSIX 包含正确二进制。使用隐藏窗口的异步进程调用；用户不需编译器。保留复制代码的来源、commit、许可证；本次未复制 im-select 代码。
 
 真实测试至少覆盖系统英文键盘与微软拼音、第三方输入法、多种同语言 profile、标准/提升权限、多窗口 Stable/Insiders、其他应用前台、远程桌面和候选词未提交。按各架构记录。若需注入或模拟热键才能控制某内部模式，首版声明不支持该模式，不偷偷降级。
+
+## 本轮优化（2026-09-27，未发布）
+
+- get/probe/target 不再枚举全部布局；list/set 使用 `GetKeyboardLayoutList` 第二次调用实际复制数量，去重枚举结果。
+- `GetGUIThreadInfo` 获取焦点 HWND，确认其根窗口仍为前台窗口、进程仍匹配 VS Code 路径；请求 token 绑定焦点 HWND/PID/线程。读回前后重验。焦点不可靠则拒绝；仍不能识别 Electron 内部具体输入控件。
+- 注册表字符串预留终止符，拒绝格式不完整的 Layout Id；命令拒绝未知、缺失和重复参数。
+- 保留有界 `SendMessageTimeoutW` 路径并增加 `SMTO_ERRORONEXIT`；消息被接收不等于布局切换，最终仅读回匹配才确认。超时后的 OS 请求可能已生效，不宣称可撤销。官方消息文档描述的是 posted message；当前同步发送在 Electron 上是否稳定仍需 Windows 实测，不能由静态审查证明。
+- MSVC 构建启用 `/W4 /analyze`，obj 输出归入 artifacts/tmp 的架构目录，避免污染根目录。
+
+Windows 的 Visual Studio Developer PowerShell（已安装 MSVC 与 SDK）执行：
+
+```powershell
+npm ci
+npm run check
+$env:TARGET_ARCH = 'x64'
+npm run native:build
+npm run package -- win32-x64
+python scripts/verify-vsix.py --target win32-x64
+```
+
+ARM64 需使用 x64→ARM64 的开发者环境，再把 TARGET_ARCH 和包目标改成 arm64/win32-arm64；环境变量本身不会切换 cl.exe 的编译架构。CI 已配置相应工具链。本轮 Linux 无编译器/SDK，**新 Windows helper 未编译、未实机验证**；旧 CI 结果仅对应旧源码。

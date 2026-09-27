@@ -63,3 +63,8 @@ helper 不接收代码、URI、输入文本或候选词。不提供任意命令�
 无常驻子进程，无空闲心跳。扩展销毁时取消/终止所属短时进程，不遗留句柄。签名与 SHA-256 清单随构建记录，哈希不是信任机制的替代。
 
 构建脚本固定来源，不在运行时下载 helper。第三方代码及二进制的许可证随包保留；系统 fcitx5/ibus 工具通常由用户系统提供，不复制到 VSIX。安装组件、改系统输入法配置、签名凭据或公开发布需另行授权。
+
+
+## 当前原生 wire 协议
+
+实际 helper 的 get/set/probe 输出 `{ "version": 1, "status": "observed", "sourceId": "…" }`；target 输出 version/target，list 输出 version/sources。上文 confirmed/verifiedFields 示例是统一 Adapter 结果，不能直接当作 helper 的回包。原生 set 内部读回后 TS 比较期望 ID，省去额外 get 进程；各次调用仍受事务有效性与总预算约束。失败/未知 status 均拒绝，不将请求接受视为观测。

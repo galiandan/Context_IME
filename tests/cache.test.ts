@@ -162,7 +162,7 @@ test("unsupported grammar and request budget preserve unknown", async () => {
   assert.equal((await new SemanticCache(d).query(0, 1)).kind, "unknown");
   const c = new SemanticCache(d, await tokenizer.grammar("python"), 0);
   assert.equal((await c.query(0, 1)).kind, "unknown");
-  assert.equal((await c.query(0, 1)).kind, "code");
+  assert.equal((await c.query(0, 1)).reason, "request-budget");
 });
 test("same-line multiple edits use old columns in descending application order", async () => {
   const d = new Doc(['value="hello"']);
@@ -190,3 +190,192 @@ test("same-line multiple edits use old columns in descending application order",
   ]);
   assert.equal((await reliable(c, 0, 11)).region, before.region);
 });
+
+test("position results invalidate and release without accumulating across edits", async () => {
+  const d = new Doc(Array(200).fill("value = 123"));
+  const c = new SemanticCache(d, await tokenizer.grammar("python"));
+  await c.query(199, 2);
+  await c.query(10, 2);
+  const bytes = c.bytes;
+  for (let i = 0; i < 20; i++) {
+    d.lines[100] = i % 2 ? "value = 123" : "value = 456";
+    d.version++;
+    c.edit([{ startLine: 100, endLine: 100, newLines: 0 }]);
+    assert.equal((await c.query(199, 2)).kind, "code");
+    assert.equal((await c.query(10, 2)).kind, "code");
+    assert.equal(c.bytes, bytes);
+    const tokenized = c.stats.tokenized;
+    await c.query(10, 2);
+    assert.equal(c.stats.tokenized, tokenized);
+    assert.equal(c.bytes, bytes);
+  }
+  c.clear();
+  assert.equal(c.bytes, 0);
+});
+
+for (const [language, open, close, kind] of [
+  ["python", 'value = """', '"""', "string"],
+  ["javascript", "const value = `", "`;", "string"],
+  ["cpp", "/*", "*/", "comment"],
+]) {
+  test(`${language}: long regions retain distinct opener identities after edits`, async () => {
+    const d = new Doc([
+      open!,
+      ...Array<string>(300).fill("text 世界😀"),
+      close!,
+      open!,
+      "tail",
+      close!,
+    ]);
+    d.languageId = language!;
+    const c = new SemanticCache(d, await tokenizer.grammar(language!));
+    const first = await c.query(1, 2);
+    const tail = await c.query(300, 2);
+    const next = await c.query(303, 2);
+    assert.equal(tail.kind, kind);
+    assert.equal(tail.region, first.region);
+    assert.notEqual(next.region, first.region);
+    d.lines[150] = "changed text";
+    d.version++;
+    c.edit([{ startLine: 150, endLine: 150, newLines: 0 }]);
+    assert.equal((await c.query(300, 2)).region, first.region);
+    assert.equal((await c.query(303, 2)).region, next.region);
+  });
+}
+
+test("compacted rows retain nested regions and propagate delimiter changes across edits", async () => {
+  const { DocumentCache } = await import("../src/context/cache");
+  const d = new Doc([
+    'value = """',
+    ...Array<string>(500).fill("text"),
+    '"""',
+    'other="tail"',
+  ]);
+  const g = await tokenizer.grammar("python");
+  const c = new DocumentCache(d, g, Infinity, 0, 130000);
+  const first = await c.query(1, 2);
+  assert.equal((await c.query(500, 2)).region, first.region);
+  assert.ok(c.bytes <= 130000);
+  const full = new SemanticCache(d, g);
+  for (const line of [0, 1, 100, 500, 502])
+    assert.equal(
+      (await c.query(line, 2)).kind,
+      (await full.query(line, 2)).kind,
+    );
+  d.lines[0] = "value = 123";
+  d.lines[501] = "other = 123";
+  d.version++;
+  c.edit([
+    { startLine: 0, endLine: 0, newLines: 0 },
+    { startLine: 501, endLine: 501, newLines: 0 },
+  ]);
+  assert.equal((await c.query(500, 2)).kind, "code");
+  d.lines.splice(100, 0, '"""');
+  d.version++;
+  c.edit([{ startLine: 100, endLine: 100, newLines: 1 }]);
+  assert.equal((await c.query(500, 2)).kind, "string");
+  const region = (await c.query(500, 2)).region;
+  assert.notEqual(region, first.region);
+  d.lines.splice(100, 1);
+  d.version++;
+  c.edit([{ startLine: 100, endLine: 101, newLines: 0 }]);
+  assert.equal((await c.query(500, 2)).kind, "code");
+  assert.ok(c.bytes <= 130000);
+});
+
+test("unreported version change cannot reuse compacted state", async () => {
+  const { DocumentCache } = await import("../src/context/cache");
+  const d = new Doc(['"""', ...Array<string>(300).fill("text")]);
+  const c = new DocumentCache(
+    d,
+    await tokenizer.grammar("python"),
+    Infinity,
+    0,
+    80000,
+  );
+  assert.equal((await c.query(300, 2)).kind, "string");
+  d.lines[0] = "x=1";
+  d.version++;
+  assert.equal((await c.query(300, 2)).kind, "code");
+});
+
+test("compacted suffix mapping agrees with full tokenization through insert/delete/undo", async () => {
+  const { DocumentCache } = await import("../src/context/cache");
+  const d = new Doc(Array.from({ length: 80 }, (_, i) => `x${i}="text"`));
+  const g = await tokenizer.grammar("python");
+  const c = new DocumentCache(d, g, Infinity, 0, 40000);
+  await c.query(79, 6);
+  assert.ok(c.stats.compacted > 0);
+  for (let i = 0; i < 30; i++) {
+    const at = 1 + ((i * 17) % 70);
+    const original = d.lines[at]!;
+    for (const undo of [false, true]) {
+      if (undo) d.lines.splice(at, 2, original);
+      else d.lines.splice(at, 1, '"""', "# not necessarily a comment");
+      d.version++;
+      c.edit([
+        { startLine: at, endLine: at + (undo ? 2 : 1), newLines: undo ? 1 : 2 },
+      ]);
+      const fresh = new SemanticCache(d, g);
+      for (const line of [
+        0,
+        at,
+        Math.min(at + 3, d.lineCount - 1),
+        d.lineCount - 1,
+      ]) {
+        assert.equal(
+          (await c.query(line, 2)).kind,
+          (await fresh.query(line, 2)).kind,
+          `${i}/${undo}/${line}`,
+        );
+      }
+      assert.ok(c.bytes <= 40000);
+    }
+  }
+  c.clear();
+  assert.equal(c.bytes, 0);
+});
+
+for (const [language, open, close, kind] of [
+  ["javascript", "const x = `", "`;", "string"],
+  ["typescript", "const x = `", "`;", "string"],
+  ["cpp", 'auto x = R"tag(', ')tag";', "string"],
+  ["c", "/*", "*/", "comment"],
+]) {
+  test(`${language}: compacted opener survives tail queries and inserted prefix`, async () => {
+    const { DocumentCache } = await import("../src/context/cache");
+    const d = new Doc([
+      open!,
+      ...Array<string>(350).fill("prose 世界😀 text"),
+      close!,
+    ]);
+    d.languageId = language!;
+    const c = new DocumentCache(
+      d,
+      await tokenizer.grammar(language!),
+      Infinity,
+      0,
+      100000,
+    );
+    const first = await c.query(1, 2);
+    const tail = await c.query(350, 2);
+    assert.equal(tail.kind, kind);
+    assert.equal(tail.region, first.region);
+    assert.ok(c.stats.compacted > 0);
+    assert.equal((await c.query(1, 2)).region, first.region);
+    d.lines.unshift("x=0;");
+    d.version++;
+    c.edit([
+      {
+        startLine: 0,
+        endLine: 0,
+        newLines: 1,
+        startColumn: 0,
+        endColumn: 0,
+        newLastColumn: 0,
+      },
+    ]);
+    assert.equal((await c.query(351, 2)).region, first.region);
+    assert.ok(c.bytes <= 100000);
+  });
+}
