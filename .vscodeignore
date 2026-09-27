@@ -1,0 +1,16 @@
+**
+!package.json
+!README.md
+!LICENSE
+!THIRD_PARTY_NOTICES.md
+!dist/extension.js
+!resources/onig.wasm
+!resources/manifest.json
+!grammars/*.json
+!licenses/**
+!native/bin/**
+!docs/**
+
+!CHANGELOG.md
+
+!media/icon.png

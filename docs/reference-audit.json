@@ -1,0 +1,302 @@
+[
+  {
+    "repository": "daipeihust/im-select",
+    "commit": "9cd5278b185a9d6daa12ba35471ec2cc1a2e3012",
+    "files": [
+      {
+        "path": "LICENSE",
+        "sha256": "cf93eb131ec7866dd6da87173d96c66ab9bd6bbee01c86eeca6d35e148c44821",
+        "local": "daipeihust_im-select_LICENSE"
+      },
+      {
+        "path": "macOS/im-select/im-select/main.m",
+        "sha256": "8f83908e6a0d51523124f35da6ad2fe774d3a1ca710473f7f179480781c0b58f",
+        "local": "daipeihust_im-select_macOS_im-select_im-select_main.m"
+      },
+      {
+        "path": "win/im-select/im-select/im-select.cpp",
+        "sha256": "c3a35d9b36004a6f867b8f56802160c6c08685622b085410fc3cc2f71bded029",
+        "local": "daipeihust_im-select_win_im-select_im-select_im-select.cpp"
+      },
+      {
+        "path": "win/im-select/im-select/stdafx.cpp",
+        "sha256": "2fc9c77abf2b60208aa5aa0362da724f67e2140651c0692181b96319bc15a4e2",
+        "local": "daipeihust_im-select_win_im-select_im-select_stdafx.cpp"
+      }
+    ]
+  },
+  {
+    "repository": "CI124/auto-ime",
+    "commit": "081a5a49a0fa4af41f4377497453b06bb2103997",
+    "files": [
+      {
+        "path": "LICENSE",
+        "sha256": "0c74ae6ece4103bc0cc029036e417588d50500e24e2aee849d2542baadf5ea3a",
+        "local": "CI124_auto-ime_LICENSE"
+      },
+      {
+        "path": "package.json",
+        "sha256": "e514ab594a0d70cc068315ae6b9ee5aed3fcaa82abcc610a2074db564c39d046",
+        "local": "CI124_auto-ime_package.json"
+      },
+      {
+        "path": "src/analysis/ASTAnalyzer.ts",
+        "sha256": "cf7b11a19c6a313a1ea820642e745530a625d8ca1101a98377a4e7d8726dfefd",
+        "local": "CI124_auto-ime_src_analysis_ASTAnalyzer.ts"
+      },
+      {
+        "path": "src/core/controller.ts",
+        "sha256": "dc393e8d812edccfb58229be3be0c4ea5ee46b0cc0d07d2469859023b74e671b",
+        "local": "CI124_auto-ime_src_core_controller.ts"
+      },
+      {
+        "path": "src/core/poller.ts",
+        "sha256": "d8d9281309c8dcb9042a052a53ff2932baddf25e75c4143b7a4d0551606012e4",
+        "local": "CI124_auto-ime_src_core_poller.ts"
+      },
+      {
+        "path": "src/core/state-tracker.ts",
+        "sha256": "eb85a055eebe471e73cd86f2c9f558e534be7fcb39606c9eb9e6d6e68b3d450f",
+        "local": "CI124_auto-ime_src_core_state-tracker.ts"
+      },
+      {
+        "path": "src/core/types.ts",
+        "sha256": "5e4db87a588ca6b37e7832e520665dcaefbda256037a43f841f4871cfd483e1a",
+        "local": "CI124_auto-ime_src_core_types.ts"
+      },
+      {
+        "path": "src/extension.ts",
+        "sha256": "55f1502feb625e88ff8ed10f02d62349058d1c2424610f250d18f3ab2e072e5a",
+        "local": "CI124_auto-ime_src_extension.ts"
+      },
+      {
+        "path": "src/infra/logger.ts",
+        "sha256": "3494fadcee923aa69cf9e4b6df77517a0fe9fcd81340b13641ab181772add5e7",
+        "local": "CI124_auto-ime_src_infra_logger.ts"
+      },
+      {
+        "path": "src/modes/normal.ts",
+        "sha256": "2b8ddeaf9f982ba2e22bb69592fd437f7880f31a6ba0466befc4bde4918028df",
+        "local": "CI124_auto-ime_src_modes_normal.ts"
+      },
+      {
+        "path": "src/modes/vim.ts",
+        "sha256": "1db52fcb9a39880b3dea8a4b4fce5ad65393a0724116d7a69701ace8426150ec",
+        "local": "CI124_auto-ime_src_modes_vim.ts"
+      },
+      {
+        "path": "src/platforms/index.ts",
+        "sha256": "0e886184739b1d4ad749157a1395e8e6bf710287aa70263d9e0ede5e91ffbf5b",
+        "local": "CI124_auto-ime_src_platforms_index.ts"
+      },
+      {
+        "path": "src/platforms/linux/adapter.ts",
+        "sha256": "8a88661454b55b8448376f308d68d6c4927cce1cdb54ae3e802785446d916b6f",
+        "local": "CI124_auto-ime_src_platforms_linux_adapter.ts"
+      },
+      {
+        "path": "src/platforms/linux/fcitx5-profile.ts",
+        "sha256": "eb43ef2ef301e33d77b24d3be2a9387a137ee81770ef270b1f3ede2bc5c3a615",
+        "local": "CI124_auto-ime_src_platforms_linux_fcitx5-profile.ts"
+      },
+      {
+        "path": "src/platforms/linux/shell.ts",
+        "sha256": "2e412bd095649bbf97b38bca3bc5384a2f1d4bc94c572e910b5d34f2959ba9f1",
+        "local": "CI124_auto-ime_src_platforms_linux_shell.ts"
+      },
+      {
+        "path": "src/platforms/windows/adapter.ts",
+        "sha256": "e2c2500ab9264c82d559fd7e6d1a0bd5a3a4053001a2b7a64192e23f0fcee10c",
+        "local": "CI124_auto-ime_src_platforms_windows_adapter.ts"
+      }
+    ]
+  },
+  {
+    "repository": "zlflly/SmartCursor",
+    "commit": "f8c77f0e74f0cce797a307161bc77412cdee7d5c",
+    "files": [
+      {
+        "path": "LICENSE",
+        "sha256": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685",
+        "local": "zlflly_SmartCursor_LICENSE"
+      },
+      {
+        "path": "package.json",
+        "sha256": "e8e02f885cf51cab7a988b7b03d3702ed2a46bafbeaefa8af126d24e7f938f7e",
+        "local": "zlflly_SmartCursor_package.json"
+      }
+    ]
+  },
+  {
+    "repository": "fcitx/fcitx5",
+    "commit": "586a986c5af83f83bd6787c0bd019ca21473fef0",
+    "files": [
+      {
+        "path": "src/frontend/dbusfrontend/dbusfrontend.cpp",
+        "sha256": "48c1bb1aa3e6446804fe906312488c07e0f5a066be0910440af9884281b51194",
+        "local": "fcitx_fcitx5_src_frontend_dbusfrontend_dbusfrontend.cpp"
+      },
+      {
+        "path": "src/frontend/fcitx4frontend/fcitx4frontend.cpp",
+        "sha256": "dfbae1d716329acd715925c98cc9ab545f97e41439aba379af221d2f0da62bb7",
+        "local": "fcitx_fcitx5_src_frontend_fcitx4frontend_fcitx4frontend.cpp"
+      },
+      {
+        "path": "src/frontend/ibusfrontend/common.cpp",
+        "sha256": "bdebc8c54c83c00dd56370f92f803230a89e47ff7473c05c4e94cd9cf02db77a",
+        "local": "fcitx_fcitx5_src_frontend_ibusfrontend_common.cpp"
+      },
+      {
+        "path": "src/frontend/ibusfrontend/gnomeappmonitor.cpp",
+        "sha256": "b64d765bcf8501a6debb51e72a4ce4295a52c941dcd5a10daadb4df5f004cee6",
+        "local": "fcitx_fcitx5_src_frontend_ibusfrontend_gnomeappmonitor.cpp"
+      },
+      {
+        "path": "src/frontend/ibusfrontend/ibusfrontend.cpp",
+        "sha256": "7921e650c5cd6e0de5f17004db93c456d182f0e83436ba1f45dc980ecbf20dcf",
+        "local": "fcitx_fcitx5_src_frontend_ibusfrontend_ibusfrontend.cpp"
+      },
+      {
+        "path": "src/frontend/virtualinputcontext/appmonitor.cpp",
+        "sha256": "2d9ac242bcbdc9dd04924db0aaa93fee86d802415fe2f3d2800afd4d3524d35b",
+        "local": "fcitx_fcitx5_src_frontend_virtualinputcontext_appmonitor.cpp"
+      },
+      {
+        "path": "src/frontend/virtualinputcontext/virtualinputcontext.cpp",
+        "sha256": "5e95b974d20ab07be2b055026b0929a01306fdf1bdcf06c2630e41ae6a857646",
+        "local": "fcitx_fcitx5_src_frontend_virtualinputcontext_virtualinputcontext.cpp"
+      },
+      {
+        "path": "src/frontend/waylandim/cosmicappmonitor.cpp",
+        "sha256": "caa5baa7915c2ae9f285d511e1f703b3468641f62fac5e0f3ca0d666555a37ba",
+        "local": "fcitx_fcitx5_src_frontend_waylandim_cosmicappmonitor.cpp"
+      },
+      {
+        "path": "src/frontend/waylandim/plasmaappmonitor.cpp",
+        "sha256": "c26f80cea0dfa15d367d27a44862e2a3e13d563d02463741699da974efed6d0c",
+        "local": "fcitx_fcitx5_src_frontend_waylandim_plasmaappmonitor.cpp"
+      },
+      {
+        "path": "src/frontend/waylandim/waylandim.cpp",
+        "sha256": "ac99c30dee449129930651303b9fbe7127e2cc9e85f7bac9d4a47647a2620ca2",
+        "local": "fcitx_fcitx5_src_frontend_waylandim_waylandim.cpp"
+      },
+      {
+        "path": "src/frontend/waylandim/waylandimserver.cpp",
+        "sha256": "b672770b965e26454d1620159f1cad95ce919b893a8616e66704c91a0c14257c",
+        "local": "fcitx_fcitx5_src_frontend_waylandim_waylandimserver.cpp"
+      },
+      {
+        "path": "src/frontend/waylandim/waylandimserverbase.cpp",
+        "sha256": "d96177464ff7d4ab16ff621bea624bd41e4020a877bdec8c0a19d240f9cbe392",
+        "local": "fcitx_fcitx5_src_frontend_waylandim_waylandimserverbase.cpp"
+      },
+      {
+        "path": "src/frontend/waylandim/waylandimserverv2.cpp",
+        "sha256": "4c6bb63dac958b1cad6a9a4adf6629b0bf30f001c4d2844dff3d6459fe810b82",
+        "local": "fcitx_fcitx5_src_frontend_waylandim_waylandimserverv2.cpp"
+      },
+      {
+        "path": "src/frontend/waylandim/wlrappmonitor.cpp",
+        "sha256": "a64c1f58c19557faf499032c86394ca195a1af7376f213b101ce55fef8d45a10",
+        "local": "fcitx_fcitx5_src_frontend_waylandim_wlrappmonitor.cpp"
+      },
+      {
+        "path": "src/frontend/xim/xim.cpp",
+        "sha256": "f8080de828082cbd7371b6ebb92711b29b9c20869fa9e1e7ab16fbb258626121",
+        "local": "fcitx_fcitx5_src_frontend_xim_xim.cpp"
+      },
+      {
+        "path": "src/im/keyboard/compose.cpp",
+        "sha256": "c933355d1b542a4e187173f080329067880bde8b69e04a277b3c42a068e739c1",
+        "local": "fcitx_fcitx5_src_im_keyboard_compose.cpp"
+      }
+    ]
+  },
+  {
+    "repository": "ibus/ibus",
+    "commit": "d464316d9b9613005c5573a010fec7f9b40b93b6",
+    "files": [
+      {
+        "path": "bindings/vala/IBus-1.0-custom.vala",
+        "sha256": "962742b57aa592f5f4e827c5d18b9a22a66cf761e863fedf795b1df94c684eb3",
+        "local": "ibus_ibus_bindings_vala_IBus-1.0-custom.vala"
+      },
+      {
+        "path": "bus/component.c",
+        "sha256": "ee779cc79a831f21ca544f09641b657b61a178412fc1827e86ab24f6dbc1da76",
+        "local": "ibus_ibus_bus_component.c"
+      },
+      {
+        "path": "bus/connection.c",
+        "sha256": "97fc3c656448631245b000ac89caf1722ea3e315b8ceac038f8356d2f8f5cf3e",
+        "local": "ibus_ibus_bus_connection.c"
+      },
+      {
+        "path": "bus/dbusimpl.c",
+        "sha256": "95fd4e839e4c3908fdabb1a8e2b1b9d795dc212fdf9bf688ab3dbf3dd9ad014f",
+        "local": "ibus_ibus_bus_dbusimpl.c"
+      },
+      {
+        "path": "bus/engineproxy.c",
+        "sha256": "6f5d9c0fe9fc422e63c2e9b0980b98a0615ddce848114afa71faf36e23f8ddd3",
+        "local": "ibus_ibus_bus_engineproxy.c"
+      },
+      {
+        "path": "bus/factoryproxy.c",
+        "sha256": "047bec4daa74099ac88d031bab89d528772999515a4877e12fca4ca44521788e",
+        "local": "ibus_ibus_bus_factoryproxy.c"
+      },
+      {
+        "path": "bus/global.c",
+        "sha256": "8fc015304bfdff74a6a51fbbf2804193d1df1340860a45f3a3fa17bd1200bca9",
+        "local": "ibus_ibus_bus_global.c"
+      },
+      {
+        "path": "bus/ibusimpl.c",
+        "sha256": "78804cfd6be503d32d22adcbc6b594bcd264dd813a3f1321f19921457486a0f0",
+        "local": "ibus_ibus_bus_ibusimpl.c"
+      },
+      {
+        "path": "bus/inputcontext.c",
+        "sha256": "cb4abf3e511dc114bc467588c4f8b047cb906282d20939be0c6a3e94af79b305",
+        "local": "ibus_ibus_bus_inputcontext.c"
+      },
+      {
+        "path": "bus/main.c",
+        "sha256": "5dff6178fb96337275b7b1fd07089c1fd19924d4c9ea04b0c5cd592f696d43cc",
+        "local": "ibus_ibus_bus_main.c"
+      },
+      {
+        "path": "bus/matchrule.c",
+        "sha256": "182ba03c732727318e90e28f888eef48cf067a428d1b82155d8a629e55cd616f",
+        "local": "ibus_ibus_bus_matchrule.c"
+      },
+      {
+        "path": "bus/panelproxy.c",
+        "sha256": "51c4e4603738a78adeb1e6e389146cfa99d892648f19e6fca6fea1573d96dd7c",
+        "local": "ibus_ibus_bus_panelproxy.c"
+      },
+      {
+        "path": "bus/server.c",
+        "sha256": "6224443cb0b799ab48db63783527177cc48be421abec7da50baaaa95bcb951ab",
+        "local": "ibus_ibus_bus_server.c"
+      },
+      {
+        "path": "client/gtk2/ibusim.c",
+        "sha256": "3659bd7ddf4f1d203b70b30038c9dd4110598d21a0a90569a67ec866472011ab",
+        "local": "ibus_ibus_client_gtk2_ibusim.c"
+      },
+      {
+        "path": "client/gtk2/ibusimcontext.c",
+        "sha256": "3fbe92b2ddb4ca88d1f4720078fc665972347e1a7ddc2211e3b41c642f62e3d0",
+        "local": "ibus_ibus_client_gtk2_ibusimcontext.c"
+      },
+      {
+        "path": "client/gtk2/iconwidget.c",
+        "sha256": "60ef096f510970dc1a610533e024809e67b123e539ac4c506ccda5aacffe8519",
+        "local": "ibus_ibus_client_gtk2_iconwidget.c"
+      }
+    ]
+  }
+]

@@ -1,0 +1,31 @@
+name: build-test-vsix
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest, target: linux-x64, arch: x64 }
+          - { os: windows-latest, target: win32-x64, arch: x64 }
+          - { os: windows-latest, target: win32-arm64, arch: arm64 }
+          - { os: macos-15-intel, target: darwin-x64, arch: x64 }
+          - { os: macos-latest, target: darwin-arm64, arch: arm64 }
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm }
+      - uses: ilammy/msvc-dev-cmd@v1
+        if: runner.os == 'Windows'
+        with: { arch: "${{ matrix.arch }}" }
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run build
+      - run: npm test
+      - run: npm run native:build
+        env: { TARGET_ARCH: "${{ matrix.arch }}" }
+      - run: npm run package -- ${{ matrix.target }}
+      - uses: actions/upload-artifact@v4
+        with: { name: "${{ matrix.target }}", path: "artifacts/vsix/*.vsix" }

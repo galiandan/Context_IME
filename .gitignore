@@ -1,0 +1,20 @@
+# npm dependencies (all npm tools are project-local)
+node_modules/
+
+# Reproducible build outputs and local validation artifacts
+dist/
+out/
+artifacts/
+native/bin/
+*.vsix
+*.obj
+*.pdb
+__pycache__/
+
+# Local credentials and editor/OS scratch files
+.env
+.env.*
+!.env.example
+.vsce
+.vsce-sign/
+.DS_Store

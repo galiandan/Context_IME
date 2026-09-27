@@ -1,0 +1,31 @@
+[
+  {
+    "name": "vscode-textmate",
+    "version": "9.2.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/microsoft/vscode-textmate"
+    },
+    "commit": "f0f2a44b4c055b0e0fa3869e5de338efda5b7cf1",
+    "integrity": "sha512-rkvG4SraZQaPSN/5XjwKswdU0OP9MF28QjrYzUBbhb8QyG3ljB1Ky996m++jiI7KdiAP2CkBiQZd9pqEDTClqA==",
+    "license": "MIT",
+    "licenseFile": "licenses/vscode-textmate-LICENSE.txt"
+  },
+  {
+    "name": "vscode-oniguruma",
+    "version": "2.0.1",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/microsoft/vscode-oniguruma"
+    },
+    "commit": "184a6e2d4603c5a31efc0a33f544be1545d9ec6b",
+    "integrity": "sha512-poJU8iHIWnC3vgphJnrLZyI3YdqRlR27xzqDmpPXYzA93R4Gk8z7T6oqDzDoHjoikA2aS82crdXFkjELCdJsjQ==",
+    "license": "MIT",
+    "licenseFile": "licenses/vscode-oniguruma-LICENSE.txt"
+  },
+  {
+    "name": "onig.wasm",
+    "from": "vscode-oniguruma@2.0.1",
+    "sha256": "76ebc1f0d87b2e7449a45ff3cd1a1546a9f05f54bdac44ee03e8a2b8348897be"
+  }
+]
