@@ -1,6 +1,6 @@
 # GitHub Actions 构建与 Release
 
-> 后续验证更新：0.1.7 的五平台 CI 已全部成功，VSIX 已下载校验并发布 Marketplace。Swift/Win32 本轮均已在对应 Runner 编译；真实桌面输入法仍未验证。[完整记录](https://github.com/galiandan/Context_IME/blob/main/docs/0.1.7-release.md)。下文“未编译/未推送”等表述属于最初交付时的历史状态。
+> 后续验证更新：0.1.8 的五平台 CI 已全部成功，VSIX 已下载校验并逐目标发布 Marketplace。Swift/Win32 在对应 Runner 编译；真实桌面输入法仍未验证。[完整记录](0.1.8-release.md)。
 
 
 开发者只需提交源码，不需要本机安装 Xcode/Swift/MSVC。macOS SDK 类型检查、Swift 编译以及 Windows C++ 编译由 GitHub-hosted Runner 完成。
@@ -43,15 +43,15 @@ Artifact 名称为 vsix-linux-x64、vsix-win32-x64、vsix-win32-arm64、vsix-dar
 版本准备示例（自行选择尚未发布版本）：
 
 ```sh
-npm version 0.1.7 --no-git-tag-version
+npm version 0.1.9 --no-git-tag-version
 # 提交所有应发布的源码、workflow、package.json 和 package-lock.json
 # 确认工作区内容已经进入该提交后：
-git tag v0.1.7
+git tag v0.1.9
 git push origin main
-git push origin v0.1.7
+git push origin v0.1.9
 ```
 
-这里没有代为提交、push 或创建 Tag。当前工作区仍有此前的未提交改动；只提交 workflow 而漏掉 native/macos.swift 等实际源文件会构建旧版或失败。
+上方命令是 Tag Release 的示例，实际使用时应把 `npm version` 与 Tag 都换成尚未发布的同一版本。0.1.8 的真实分支构建与 Marketplace 发布见下方记录；该次没有创建 Tag/GitHub Release。
 
 ## 权限与 Marketplace
 
@@ -59,16 +59,10 @@ git push origin v0.1.7
 
 Marketplace 登录命令保留；publish:marketplace 现改为接收 --run-id，下载成功 CI 的五个平台包，校验后原样上传。workflow 本身不调用 Marketplace；本地使用已有安全凭据存储。若未来把上传放进 GitHub job，令牌只能来自 Actions Secrets 的 VSCE_PAT。详见 [发布步骤](publishing.md)。
 
-## 本轮验证范围
+## 0.1.8 实际运行
 
-本机可执行 npm ci、npm run check、Linux native:build（无 helper）、Linux package 和 verify-vsix.py；使用 actionlint 1.7.11 检查两份 YAML/工作流语义。release 测试覆盖稳定 Tag、版本不一致、非法 Tag 和缺失附件。构建产物由 .gitignore 排除，不提交 node_modules、native/bin、dist、artifacts 或 VSIX。
+2026-09-27，提交 `c11331e602393ed6a88a0e09340f368a2e80a171` 推送到 `main` 后，GitHub Actions [运行 36313805381](https://github.com/galiandan/Context_IME/actions/runs/36313805381) 的五个平台 job 全部成功。每个 Runner 执行 `npm ci`、lint/typecheck/172 项测试、对应平台 native build、package 和 `verify-vsix.py`；五个 Artifact 下载后再次验证，通过项目级 vsce 原样上传 Marketplace。五个目标均返回 `Published ... v0.1.8` 成功结果。没有创建 Tag/GitHub Release，也没有在本地重新打包 Windows/macOS helper。
 
-尚未在 GitHub-hosted Runner 执行本轮 workflow；Windows/MSVC、macOS/Swift 的实际编译、Runner 缓存、Artifact 传输与 Release API 上传仍需推送后验证。通过协议测试或 YAML 检查不代表原生编译或真实输入法测试通过。
+本机 Linux x64 上 `npm ci`、`npm run check`、`npm run package -- linux-x64` 和 VSIX 验证通过；工作流两份 YAML 由 actionlint 1.7.11 静态检查通过。Marketplace Gallery 更新后已将 0.1.8 列为最新版本；五个平台下载端点返回的 VSIX 经 HTTP gzip 解码后与 GitHub Artifact 逐字节一致。构建产物受 `.gitignore` 排除。
 
-本轮实际执行结果（Linux x64，Node 26.10.0；CI 固定 Node 22）：
-
-- npm ci 成功；npm run check 成功，167 项测试通过。
-- actionlint 1.7.11、js-yaml 解析、npm script 引用检查、显式 Bash 步骤的 bash -n、git diff --check 通过。
-- native:build 确认 Linux 无 helper；package -- linux-x64 与 verify-vsix.py --target linux-x64 通过。
-- 本地验证包：artifacts/vsix/vscode-auto-ime-0.1.6-linux-x64.vsix，1,499,922 字节。这是工作区验证包，未发布，也没有覆盖已有带 Publisher 后缀的 Marketplace 包。
-- .gitignore 已排除所有构建目录；git ls-files artifacts native/bin dist 无输出。没有硬编码凭据；Release 仅引用 github.token。
+真实 Windows/macOS 桌面输入法、候选词、焦点/composition、X11/Wayland 会话仍未验证。Runner 给出 actions/checkout@v4、setup-node@v4、upload-artifact@v4 将由 Node 20 迁移到 Node 24 的提示；这次不影响构建结果，后续可单独更新 Action 主版本。

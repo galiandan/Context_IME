@@ -1,8 +1,8 @@
 # 平台兼容性
 
-**0.1.7 当前状态**：五平台 CI 全部成功，全部 VSIX 已原样发布 Marketplace；各平台 167 项 TS 测试通过。Windows MSVC x64/ARM64 helper 已编译；macOS Swift Intel/ARM64 类型检查、编译、包内架构与权限校验通过。Windows/macOS 均未进行真实桌面输入法验证。详见 [0.1.7 发布记录](0.1.7-release.md)。
+**0.1.8 当前状态**：五平台 GitHub Actions 全部成功，VSIX 经校验后逐平台提交 Marketplace；172 项 TS 自动测试通过。Windows MSVC x64/ARM64 helper 已编译；macOS Swift Intel/ARM64 类型检查、编译、包内架构与权限校验通过。Windows/macOS 均未进行真实桌面输入法验证。详见 [0.1.8 发布记录](0.1.8-release.md)。
 
-以下保留 0.1.4–0.1.6 的历史记录，不代表 0.1.7 尚未编译。
+以下平台表记录功能能力及较早版本验证详情，不代表 0.1.8 尚未编译。
 
 0.1.6：本机 Linux x64 构建、162 项单元测试及 VS Code 集成通过；未进行真实输入法切换验证。Windows/macOS 本轮未重新构建，下表跨平台 CI 结果对应 0.1.4。
 
